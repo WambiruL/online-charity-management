@@ -1,5 +1,5 @@
-env/
+
+virtual/
 .env
 migrations/
-*/__pycache__/
-*.pyc
+
