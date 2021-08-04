@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="container">
+  {% for request in requests %}
+<div class="card">
+    <div class="card-header">
+        {{request.ngo_name}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{request.project_name}}</h5>
+      <p class="card-text">{{request.description}}</p>
+      <p>{{request.amount}}</p>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}
