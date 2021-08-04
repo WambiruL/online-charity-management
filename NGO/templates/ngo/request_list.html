@@ -1,17 +1,58 @@
 {% extends "ngo/base.html" %}
+{%load static%}
+
 
 {% block content %}
  <h1>Requests</h1>
 <ul>
 {% for request in object_list %}
     <li>{{ request.name }} - {{ request.category }}</li>
-    {{request.id}}
-    
+    <li><a href="{%url 'detail' request.pk%}">Detail</a>
 {% empty %}
     <li>No requests yet.</li>
+</li>
 
 {% endfor %}
 </ul>
+<!-- <div class="container">
+    <div class="site-content">
+        <div class="posts">
+            <div class="post-content">
+                <div class="post-image">
+                    <div class="">
+                        <img src="" class="img"
+                         alt="blog1">
+                    </div>
+                    <div class="post-info flex-row">
+                        <span>
+                            <i class="fas fa-user text-gray"></i>&nbsp;&nbsp;
+                            Admin
+                        </span>
+                        <span>
+                            <i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;
+                            January 14,2019
+                        </span>
+                        <span>2 comments</span>
+                    </div>
+                </div>
+                <div class="post-title">
+                    <a href="#">Want to Learn more about pigs</a>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad pariatur magnam
+                        expedita recusandae, dicta quis accusantium nihil, nesciunt quam libero
+                        similique iusto unde a qui illo, deleniti impedit. Id totam reiciendis dolores
+                        soluta deserunt
+                        dignissimos, dolore velit doloremque odit at?
+                    </p>
+                    <button class="btn post-btn">
+                        
+                        Read More &nbsp; <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            <hr>
+            </div>
+            </div>
+            </div> -->
 
 {% endblock %}
 

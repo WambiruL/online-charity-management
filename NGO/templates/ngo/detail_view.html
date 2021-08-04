@@ -1,8 +1,25 @@
 {% extends "ngo/base.html" %}
 {% load bootstrap4 %}
+{%load static%}
+
 {% block content %}
 
-{{request.name }}
+
+<br>
+<img src="{{object.project_images.url}}
+" alt="">
+
+<br>
+{{object.name }}
+<br>
+{{object.amount_needed }}
+<br>
+{{object.country }}
+<br>
+{{object.past_projects  }} 
+
+
+
 
 
 {% endblock %}

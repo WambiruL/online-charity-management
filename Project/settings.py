@@ -16,6 +16,18 @@ import os
 import dj_database_url
 from decouple import config,Csv
 
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config(
+    cloud_name = 'hs8k1napd',
+    api_key = '711616426271462',
+    api_secret = 'jSwVe26AvQnapdwGEBcFABvfxYA',
+)
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

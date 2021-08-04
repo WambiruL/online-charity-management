@@ -1,0 +1,213 @@
+
+html, body{
+    margin: 0%;
+    box-sizing:border-box;    /* border and padding width and height of the element */
+    overflow-x:hidden;
+       
+}
+
+:root{
+    /* color themes */
+    /* --text-gray:#3f4945; */
+    /* --text-white:#fff; */
+    /* --text-light:#686666da; */
+    --bg-color:#ffffff;
+    --midnight:#104f55;
+
+    /*gradient color*/
+   --sky: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  --pink: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);
+    /*font themes*/
+    --Abel:'Abel',cursive;  
+    --Anton:'Anton',cursive;
+    --Indel:'Indel',cursive;
+    --Josefin:'Josefin',cursive;
+    --Lexend:'Lexend',cursive;
+    --Livvic:'Livvic',cursive;
+
+}
+
+/*global classes*/
+/* a{
+    text-decoration: none;
+    color:var(--text-gray);
+} */
+ul{
+    list-style-type: none;
+
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+h1{
+    font-family: var(--Josefin);
+    font-size: 2.5rem;
+}
+h2{
+    font-family: var(--Lexend);
+}
+
+h3{
+    font-family: var(--Indel);
+    font-size: 1.3rem;
+}
+button.btn{
+    border: none;
+    border-radius: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-family: var(--Livvic);
+    cursor: pointer;
+}
+
+span{
+    font-family: var(--Abel);
+}
+.blogger{
+    margin: 0.5vw;
+}
+.text-gray{
+    color: var(--text-gray);
+}
+p{
+    font-family: var(--Lexend);
+    color:var(--text-light) ;
+}
+
+  /*section*/
+.site-title{
+      background: url('../assets/background.jpg');
+      background-size: cover;
+      height: 110vh;
+      display: flex;
+      justify-content: center;
+  }
+.site-title .site-background{
+    padding-top: 10rem;
+    text-align: center;
+    color: var(--bg-color);
+}
+.site-title h1, h3{
+    margin: .3rem;
+}
+
+.site-title .btn{
+    margin: 1.8rem;
+    background:var(--sky);
+    /* background: var(--pink); */
+
+}
+
+.site-title .btn:hover{
+    background: transparent;
+    border: 1px solid var(--bg-color);
+    color:var(--bg-color);
+
+}
+
+/* blog */
+.blog {
+    /* background: url('../assets/photo3.jpg'); */
+    background-repeat:no-repeat;
+    background-position: right;
+    height: 80vh;
+    width: 100%;
+    background-size: 65%;
+}
+.blog .blog-post{
+padding-top: 4rem;
+}
+.blog-post .blog-content{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 80%;
+    margin: 3rem 2rem;
+    box-shadow: 0 15px 20px rgba(0,0,0,0.2);
+}
+
+.blog-content .blog-title{
+    padding: 2rem 0;
+}
+.blog-content .btn-blog{
+    padding: .7rem 2rem;
+    background:var(--sky);
+    margin: .5rem;
+}
+.blog-content span{
+    display: block;
+}
+/* carousel */
+.blogger .owl-nav{
+    position: absolute;
+    top: 0%;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.owl-nav .owl-prev .owl-nav-prev,
+.owl-nav .owl-next .owl-nav-next{
+    color: var(--text-gray);
+    background:transparent;
+    font-size: 2rem;
+
+}
+.owl-theme .owl-nav [class*='owl-']:hover{
+    background: transparent;
+    color: var(--text-gray);
+}
+.owl-theme .owl-nav [class*='owl-']{
+    outline: none;
+}
+
+/* blog */
+.site-content{
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+.post-content{
+    width: 100%;
+}
+.site-content .post-content >.post-image, .post-title{
+    padding:1rem 2rem;
+    position: relative;
+}
+.post-content > .post-image .post-info{
+    background: var(--sky);
+    padding: 1rem ;
+    position: absolute;
+    bottom: 0%;
+    left: 20vw;
+    border-radius: 3rem;
+
+}
+.site-content .post-content > .post-image >div{
+    overflow: hidden;
+}
+.site-content .post-content > .post-image .img{
+    width: 100%;
+    transition: all 1s ease;
+}
+.site-content .post-content > .post-image .img:hover{
+    transform:scale(1.3);
+}
+.site-content .post-content > .post-image .post-info span{
+    margin: 0.5rem;
+}
+.post-content .post-title a{
+    font-family: var(--Anton);
+    font-size: 1.5rem;
+}
+.site-content .post-content .post-title .post-btn{
+    /* border-radius: 0; */
+    /* padding: 1.7rem 1.5rem; */
+    background: var(--sky);
+}
+
+
+
+

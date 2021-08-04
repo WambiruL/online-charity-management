@@ -9,5 +9,5 @@ urlpatterns = [
     #path('request/<int:pk>', views.RequestDetailView.as_view(), name='request-detail'),
 
     path('create-cat', views.CategoryCreateView.as_view(), name='create-cat'),
-    path('detail/<int:id>/', views.RequestDetailView.as_view(), name='detail'),
+    path('detail/<int:pk>/', views.RequestDetailView.as_view(), name='detail'),
 ]
