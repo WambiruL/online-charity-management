@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 from pathlib import Path
-import os
 import django_heroku
+import os
 import dj_database_url
 from decouple import config,Csv
 
@@ -32,7 +32,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 MODE=config("MODE", default="dev")
 
-
+DEBUG = True
 # development
 
 
@@ -71,7 +71,7 @@ ROOT_URLCONF = 'Project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,7 +112,7 @@ else:
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'lists'
 
 LOGIN_URL = 'login'
 
@@ -148,7 +148,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-#AUTH_USER_MODEL="users.User_Roles"
+AUTH_USER_MODEL="users.CustomUser"
 
 
 # Static files (CSS, JavaScript, Images)

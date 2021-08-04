@@ -1,0 +1,17 @@
+{% extends "ngo/base.html" %}
+
+{% block content %}
+ <h1>Requests</h1>
+<ul>
+{% for request in object_list %}
+    <li>{{ request.name }} - {{ request.category }}</li>
+    {{request.id}}
+    
+{% empty %}
+    <li>No requests yet.</li>
+
+{% endfor %}
+</ul>
+
+{% endblock %}
+
