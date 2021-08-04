@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import CustomUser
 
 
 
@@ -16,7 +17,7 @@ class NGO(models.Model):
 	id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=200)
 	category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-	pitch = models.TextField()
+	pitch = models.TextField(max_length=5000)
 	email = models.EmailField()
 	amount_needed = models.IntegerField()
 	country = models.CharField(max_length=100)
@@ -27,3 +28,4 @@ class NGO(models.Model):
 
 	def __str__(self):
 		return self.name
+

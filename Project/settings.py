@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'Donor',
     'users',
     'bootstrap4',
+    'crispy_forms',
 
 ]
 
@@ -67,6 +68,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Project.urls'
+LOGIN_REDIRECT_URL = 'lists'
+LOGIN_URL = 'login'
 
 TEMPLATES = [
     {
@@ -111,10 +114,6 @@ else:
    }
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-
-LOGIN_REDIRECT_URL = 'lists'
-
-LOGIN_URL = 'login'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

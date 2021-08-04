@@ -1,6 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import generic
 from .models import NGO, Category
+from django.core.exceptions import ObjectDoesNotExist 
+from .models import *
+from .forms import *
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from users.models import *
+
 # Create your views here.
 
 
@@ -32,3 +39,13 @@ class RequestDetailView(generic.DetailView):
 	template_name = 'ngo/detail_view.html'
 	fields = '__all__'
 	success_url = 'list'
+
+def ngo(request):
+	return render(request,'ngo/request_list.html')
+
+# def profile(request):
+#     current_user=request.user
+#     profile =Profile.objects.get(username=current_user)
+
+#     return render(request,'profile.html', {'profile':profile})
+
