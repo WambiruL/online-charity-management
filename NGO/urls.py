@@ -10,8 +10,11 @@ urlpatterns = [
     path('create/', NGO_views.RequestCreateView.as_view(), name='create-request'),
     #path('request/<int:pk>', views.RequestDetailView.as_view(), name='request-detail'),
 
+
     path('create-cat', NGO_views.CategoryCreateView.as_view(), name='create-cat'),
     path('detail/<int:id>/', NGO_views.RequestDetailView.as_view(), name='detail'),
     path('profile/',users_views.profile,name='profile') 
     
+
+
 ]

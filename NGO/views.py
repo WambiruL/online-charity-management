@@ -1,3 +1,4 @@
+
 from django.shortcuts import render,redirect
 from django.views import generic
 from .models import NGO, Category
@@ -7,6 +8,16 @@ from .forms import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from users.models import *
+
+
+from django.shortcuts import get_object_or_404
+
+
+from django.views.generic.detail import DetailView
+
+
+
+
 
 # Create your views here.
 
@@ -38,6 +49,7 @@ class RequestDetailView(generic.DetailView):
 	model = NGO
 	template_name = 'ngo/detail_view.html'
 	fields = '__all__'
+
 	success_url = 'list'
 
 def ngo(request):
@@ -48,4 +60,10 @@ def ngo(request):
 #     profile =Profile.objects.get(username=current_user)
 
 #     return render(request,'profile.html', {'profile':profile})
+
+	success_url = 'detail'
+	
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		return context
 
