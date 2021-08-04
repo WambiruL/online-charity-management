@@ -1,1 +1,5 @@
 virtual/
+migrations/
+*/__pycache__/
+*.pyc
+.env
