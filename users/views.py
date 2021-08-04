@@ -20,7 +20,7 @@ def registerPage(request):
     context={'form':form}
     return render(request,'registration/register.html',context)
 
-@allowed_users(allowed_roles=['admin'])
-@admin_only
+# @allowed_users(allowed_roles=['admin'])
+# @admin_only
 def index(request):
     return render(request,'index.html')
