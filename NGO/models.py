@@ -26,10 +26,14 @@ class NGO(models.Model):
 	country = models.CharField(max_length=100)
 	past_projects = models.TextField()
 	funded = models.BooleanField(default=False, null=True)
+
 	#project_images = models.ImageField(upload_to='images', null=True)
 	is_approved = models.BooleanField(default=False, null=True)
 	summary=models.TextField(max_length=400,null=True)
-	# project_images = CloudinaryField('image', null=True)
+
+	
+
+	
 
 
 	def __str__(self):

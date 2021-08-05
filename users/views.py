@@ -1,3 +1,4 @@
+from Donor.models import Donation
 from django.shortcuts import render,redirect
 from .forms import *
 from django.urls import reverse_lazy
@@ -53,9 +54,11 @@ def profile_form(request):
     return render(request, 'profile_form.html', context)
 
 def profile(request):
-   Profile.objects.get_or_create(user=request.user)
-   return render(request,'profile.html', {'profile':profile})
-   
+   profile = Profile.objects.get_or_create(user=request.user)
+   donations = Donation.objects.filter(donor_name=request.user.id).all()
+   context = {'donations':donations,'profile':profile}
+   return render(request,'profile.html', context)
+
 
 	
 
