@@ -55,6 +55,7 @@ def profile_form(request):
 def profile(request):
    Profile.objects.get_or_create(user=request.user)
    return render(request,'profile.html', {'profile':profile})
+   
 
 	
 

@@ -80,7 +80,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Project.urls'
-LOGIN_REDIRECT_URL = 'lists'
+LOGIN_REDIRECT_URL = 'create-profile'
 LOGIN_URL = 'login'
 
 TEMPLATES = [
