@@ -32,6 +32,8 @@ class Profile(models.Model):
 	bio=models.CharField(max_length=1000,null=True, default="My Bio")
 	email=models.EmailField(max_length=200,null=True)
 
+	def __str__(self):
+		return self.user.username
 
 	@receiver(post_save, sender=CustomUser) #add this
 	def create_user_profile(sender, instance, created, **kwargs):

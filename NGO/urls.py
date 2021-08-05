@@ -12,7 +12,7 @@ urlpatterns = [
 
 
     path('create-cat', NGO_views.CategoryCreateView.as_view(), name='create-cat'),
-    path('detail/<int:id>/', NGO_views.RequestDetailView.as_view(), name='detail'),
+    path('detail/<int:pk>/', NGO_views.RequestDetailView.as_view(), name='detail'),
     path('profile/',users_views.profile,name='profile') 
     
 

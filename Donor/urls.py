@@ -6,7 +6,6 @@ urlpatterns=[
     url(r'home/',views.home,name='home'),
     url(r'requestslist/',views.viewDonationRequest,name='donation-request'),
     url(r'request/(?P<pk>\d+)/$', views.singleDonationRequest, name='request'),
-    url(r'requestslistform/',views.createDonationRequest,name='donation-requestform'),
     url(r'donate/', views.makeDonation, name='donate'),
-    url(r'donations/',views.donations, name = 'donation'),
+    url(r'donations/',views.donations, name = 'donations'),
 ]

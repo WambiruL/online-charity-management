@@ -35,7 +35,9 @@ class RequestCreateView(generic.CreateView):
 	model = NGO
 	template_name = 'ngo/request_create.html'
 	fields = '__all__'
-	success_url = 'list'
+
+	def get_success_url(self):
+		return reverse('lists')
 
 
 
