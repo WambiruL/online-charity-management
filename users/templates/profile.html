@@ -9,7 +9,7 @@
 /> 
 {%block content%}
 <div class="container">
-    <div class="section" style="text-align: center; background-color: black; position: relative; top: 150px; border-radius: 50px;">
+    <div class="section" style="text-align: center; background-color: rgb(0, 0, 0); position: relative; top: 150px; border-radius: 50px;">
         <br>
         <h2 class="account-heading">USERNAME:{{user.username}}</h2>
         <img class="rounded-circle account-img" style="width: 150px; height: 100px;" src="{{user.profile_image.url}}">
@@ -17,10 +17,21 @@
         <p>{{user.user_roles}}</p>
 
        <a href="{%url 'create-profile'%}" ><button class="btn btn-primary">EDIT PROFILE</button></a>
-    </div>
+       <br><br><br><br><br>
+       
+       {% for donation in donations %}
+    <p>{{donation.donor_name}}</p>
+    <p>{{donation.donation_title}}</p>
+    <p>{{donation.donation_amount}}</p>
+    <p>{{donation.description}}</p>
+    <p>{{donation.donation_time}}</p>
+    {% endfor %}
+<br>
+      </div>
 
     
 </div>
+
 {%endblock%}
 
 <script

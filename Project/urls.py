@@ -19,6 +19,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    path('',include('users.urls')),
+    path('donor/',include('Donor.urls')),
     path('admin/', admin.site.urls),
 
     path('index/',include('users.urls')),

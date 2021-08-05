@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load bootstrap4 %} 
+{% block content %}
+
+<div class="row">
+  {% if results%}
+  <h2>Found {{ results|length }} of {{message}} Category.</h2>
+
+  {% else %}
+  <h3>{{message}} Category</h3>
+
+  {% endif %} 
+  
+  {% if results %}
+  <div class="card-columns">
+      
+    {% for result in results %}
+    <div class="card">
+        <div class="card-header">
+            {{result.ngo_name}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{result.project_name}}</h5>
+          <p class="card-text">{{result.description}}</p>
+          <p class="card-text">{{result.amount}}</p>
+        </div>
+      </div>
+      {% endfor %}
+      
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
