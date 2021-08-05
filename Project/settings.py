@@ -11,10 +11,22 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 from pathlib import Path
-import os
 import django_heroku
+import os
 import dj_database_url
 from decouple import config,Csv
+
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config(
+    cloud_name = 'hs8k1napd',
+    api_key = '711616426271462',
+    api_secret = 'jSwVe26AvQnapdwGEBcFABvfxYA',
+)
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,7 +44,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 MODE=config("MODE", default="dev")
 
-
+DEBUG = True
 # development
 
 
@@ -53,6 +65,7 @@ INSTALLED_APPS = [
     'Donor',
     'users',
     'bootstrap4',
+    'crispy_forms',
 
 ]
 
@@ -67,11 +80,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Project.urls'
+LOGIN_REDIRECT_URL = 'lists'
+LOGIN_URL = 'login'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,10 +127,6 @@ else:
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-LOGIN_REDIRECT_URL = 'index'
-
-LOGIN_URL = 'login'
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -148,7 +159,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-#AUTH_USER_MODEL="users.User_Roles"
+AUTH_USER_MODEL="users.CustomUser"
 
 
 # Static files (CSS, JavaScript, Images)
