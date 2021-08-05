@@ -2,21 +2,64 @@
 
 {%load static%}
 
-
-
 {% block content %}
 
- <h1>Requests</h1>
-<ul>
-{% for request in object_list %}
-    <li>{{ request.name }} - {{ request.category }}</li>
-    <li><a href="{%url 'detail' request.pk%}">Detail</a>
-{% empty %}
-    <li>No requests yet.</li>
-</li>
 
-{% endfor %}
-</ul>
+<div class="container my-5">
+    <!-- Section: Block Content -->
+    <section class="dark-grey-text text-center">
+        <h3 class="font-weight-bold mb-4 pb-2" style="color: white;text-align: center;">REQUESTS YOU HAVE MADE</h3>
+        
+
+        <!-- Grid row -->
+        <div class="row">
+  
+            <!-- Grid column -->
+            
+            <div class="col-md-1"></div>
+                {% for request in queryset %}
+                <div class="col-md-5">
+                <div class="card">
+                    <div class="card-header" style="background-color: white;">
+                        <h4 class="font-weight-bold mb-3" style="color: black;"> {{ request.name }}</h4>
+
+                    
+                    </div>
+
+                    <div class="card-body">
+
+                    <div class="px-3 pt-3 mx-1 mt-1 pb-0">
+                        <div class="view overlay rounded z-depth-1">
+                            <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid" alt="Sample project image">
+                            <a><div class="mask rgba-white-slight"></div></a>
+                        </div>
+                       
+                        <p class="text-muted" style="height: 100px;">{{request.summary}}</p>
+                        <a href="{%url 'detail' request.pk%}"><button class="btn-details" style="background-color: seagreen;">Details</button></a>
+                    </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+                    {% empty %}
+                    <li>No requests yet.</li>  
+                
+                
+              
+                {% endfor %}
+              
+  
+          
+        </div>  
+        
+    </section>
+       
+
+</div>
+
+
+
+
 <!-- <div class="container">
     <div class="site-content">
         <div class="posts">

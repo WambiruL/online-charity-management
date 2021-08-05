@@ -2,7 +2,9 @@
 {% load crispy_forms_tags %}
 {% load bootstrap4 %}
 {% load static %} 
+{%include 'navbar.html'%} 
 {%block content%}
+
  <body style=" background:url('/static/Images/backcard.jpeg');">
 <!--
 <div class="container">
@@ -31,7 +33,7 @@
                                 {{ p_form|crispy}}
                                 <br>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary btn-sm"> Update Profile</button>
+                                    <button type="submit" class="btn btn-sm" style="background-color: seagreen;"> Update Profile</button>
                                 </div>
                             </form>
                         </div>

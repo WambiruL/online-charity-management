@@ -59,5 +59,6 @@ def profile(request):
    context = {'donations':donations,'profile':profile}
    return render(request,'profile.html', context)
 
+
 	
 

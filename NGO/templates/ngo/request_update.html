@@ -1,0 +1,10 @@
+{% extends "ngo/base.html" %}
+{% load bootstrap4 %}
+{%load static%}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="Update">
+</form>
+{%endblock%}
