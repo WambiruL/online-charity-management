@@ -7,7 +7,7 @@ from NGO.models import NGO
 
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    return render(request,'view_requests.html')
 
 def viewDonationRequest(request):
     requests = NGO.objects.all()

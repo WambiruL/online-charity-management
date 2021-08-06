@@ -7,7 +7,7 @@
 <body>
   <div class="wrapper">
     <div class="product-img">
-      <img src="{{object.project_images.url}}" height="520" width="327">
+      <img src="/static/Images/charity.png" height="520" width="367">
     </div>
     <div class="product-info">
       <div class="product-text">
@@ -17,9 +17,16 @@
       <div class="product-price-btn">
         <p>COUNTRY:{{object.country }}</p>
         <h6 type="button">AMOUNT NEEDED:{{object.amount_needed }}</h6>
-        <a href="{%url 'request-update' object.id%}"><button class="btn btn-success">UPDATE REQUEST</button></a>
 
+        {%if user.is_ngo%}
+        
+        <a href="{%url 'request-update' object.id%}"><button class="btn btn-success">UPDATE REQUEST</button></a>
+      
         <a href="{%url 'request-delete' object.id%}"><button class="btn btn-success">DELETE REQUEST</button></a>
+        {%elif user.is_donor%}
+        <a href="{%url 'donate'%}"><button class="btn btn-success" style="margin-left:100px;">DONATE</button></a>
+       
+        {%endif%}
       </div>
       
 

@@ -15,6 +15,7 @@ from users.models import Profile
     
 
 class Category(models.Model):
+    id=models.AutoField(primary_key=True)
     name = models.CharField(max_length=55)
 
     def __str__(self):
@@ -38,11 +39,12 @@ class Category(models.Model):
 #         return requests
 
 class Donation(models.Model):
+    id=models.AutoField(primary_key=True)
     donor_name = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     donation_title = models.CharField(max_length=50, default=None)
     donation_amount = models.CharField(max_length=70, default=None)
     description = models.TextField(default=None)
-    donation_time = models.DateTimeField(default=timezone.now())
+    donation_time = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.donation_title
        

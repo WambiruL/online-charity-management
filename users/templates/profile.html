@@ -1,5 +1,3 @@
-
-
 {%include 'navbar.html'%}
 {%block content%}
 <!DOCTYPE html>
@@ -425,7 +423,7 @@
 
     
     <body class="profile-page">
-        <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg "  color-on-scroll="100"  id="sectionsNav">
+        <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg "  color-on-scroll="100"  id="sectionsNav">
             <div class="container">
             
                 <div class="collapse navbar-collapse">
@@ -462,13 +460,14 @@
                     <div class="description text-center">
                         <p>BIO:{{user.bio}} </p>
                         <a href="{%url 'create-profile'%}" ><button class="btn" style="background-color: seagreen;" >EDIT PROFILE</button></a>
-                         {% for donation in donations %}
+<br>
+                
     <p>{{donation.donor_name}}</p>
     <p>{{donation.donation_title}}</p>
     <p>{{donation.donation_amount}}</p>
     <p>{{donation.description}}</p>
     <p>{{donation.donation_time}}</p>
-    {% endfor %}
+    
                     </div>
                     
                    
