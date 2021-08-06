@@ -9,5 +9,6 @@ urlpatterns=[
     url(r'^logout/',auth_views.LogoutView.as_view(),{"next_page": '/lists'}, name='logout'), 
     url(r'^$',views.index,name='index'),
     url(r'create-profile/',views.profile_form,name='create-profile'),
+    url(r'profile/',views.profile,name='profile'),
     
 ]
