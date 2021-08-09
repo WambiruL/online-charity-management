@@ -462,13 +462,11 @@
                     <div class="description text-center">
                         <p>BIO:{{user.bio}} </p>
                         <a href="{%url 'create-profile'%}" ><button class="btn" style="background-color: seagreen;" >EDIT PROFILE</button></a>
-                         {% for donation in donations %}
-    <p>{{donation.donor_name}}</p>
-    <p>{{donation.donation_title}}</p>
-    <p>{{donation.donation_amount}}</p>
-    <p>{{donation.description}}</p>
-    <p>{{donation.donation_time}}</p>
-    {% endfor %}
+                        <p>{{donation.donor_name}}</p>
+                        <p>{{donation.donation_title}}</p>
+                        <p>{{donation.donation_amount}}</p>
+                        <p>{{donation.description}}</p>
+                        <p>{{donation.donation_time}}</p>
                     </div>
                     
                    

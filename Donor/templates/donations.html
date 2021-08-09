@@ -2,13 +2,13 @@
 {% load bootstrap4 %}
 {% block content %}
 
-
+{% for donation in donations %}
 <p>{{donation.donor_name}}</p>
 <p>{{donation.donation_title}}</p>
 <p>{{donation.donation_amount}}</p>
 <p>{{donation.description}}</p>
 <p>{{donation.donation_time}}</p>
 <br>
-
+{% endfor %}
 
 {% endblock %}
