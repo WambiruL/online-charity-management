@@ -10,7 +10,7 @@ urlpatterns = [
     path('create/', ngo.RequestCreate, name='create-request'),
     path('create-cat', ngo.CategoryCreateView.as_view(), name='create-cat'),
     path('detail/<int:pk>/', ngo.RequestDetailView.as_view(), name='detail'),
-    path('update/<int:pk>', ngo.RequestUpdateView.as_view(), name='request-update'),
+    path('update/<int:pk>', ngo.UpdateRequest, name='request-update'),
     path('delete/<int:pk>', ngo.RequestDeleteView.as_view(), name='request-delete'),
     path('ngo-profile/', ngo.ngoProfile, name='ngo-profile'),
     path('search/',ngo.search_results,name='search'),
@@ -28,6 +28,9 @@ urlpatterns = [
     ################### ADMIN ################################################
     path('admin_profile/', ad_user.adminProfile, name='admin-profile'),
     path('queries/', ad_user.admin_view, name='queries'),
+    path('adminupdate/<int:pk>', ad_user.UpdateRequest, name='request-update'),
+    
+
    
     
 
