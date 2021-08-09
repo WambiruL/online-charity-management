@@ -1,7 +1,7 @@
 from django.contrib.auth import login
 from django.shortcuts import redirect,render
 from django.views.generic import CreateView, ListView
-from ngo.models import User, Donor, DonorProfile, Admin,AdminProfile
+from ngo.models import *
 from ngo.forms import DonorSignUpForm, UserUpdateForm, DonorProfileUpdateForm,AdminSignUpForm, AdminProfileUpdateForm
 from django.contrib import messages
 
@@ -32,7 +32,7 @@ def adminProfile(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated!')
-            return redirect('lists')
+            return redirect('queries')
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = AdminProfileUpdateForm(instance=request.user.adminprofile)
@@ -47,3 +47,8 @@ class AdminCreateView(CreateView):
     template_name = 'admincreate.html'
     fields = '__all__'
     success_url = '/'
+
+def admin_view(request):
+   # Only fetch the requests that are approved
+   queryset = NGO.objects.all()
+   return render(request, 'admin/queries.html', {'queryset' :queryset})

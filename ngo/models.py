@@ -24,7 +24,7 @@ class Category(models.Model):
 
 ################### NGO ################################################
 class NGO(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+	#user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 	Organisation = models.CharField(max_length=200)
 	categorys = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
 	pitch = models.TextField(max_length=5000)

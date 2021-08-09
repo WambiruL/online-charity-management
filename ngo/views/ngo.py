@@ -29,7 +29,7 @@ class NGOSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('ngo-profile/')
+        return redirect('ngo-profile')
 
 
 # class NGOListView(ListView):
@@ -72,16 +72,32 @@ def ngoProfile(request):
 
 
 # Create your views here.
-class RequestCreateView(generic.CreateView):
-    model = NGO
-    template_name = 'ngo/ngocreate.html'
-    fields = '__all__'
-    exclude=['user']
+# class RequestCreateView(generic.CreateView):
+#     model = NGO
+#     template_name = 'ngo/ngocreate.html'
+#     form_class=NGORequestCreateForm
     
-    def get_success_url(self):
-        return reverse('lists')
+#     def get_success_url(self):
+#         return reverse('lists')
 
+def RequestCreate(request):
+    if request.method == 'POST':
+        form = NGORequestCreateForm(request.POST)
+        if form.is_valid():
+            requests = NGO(
+                Organisation=form.cleaned_data.get('Organisation'),
+	            categorys=form.cleaned_data.get('categorys'),
+	            pitch=form.cleaned_data.get('pitch'), 
+	            amount_needed=form.cleaned_data.get('amount_needed'),
+	            country =form.cleaned_data.get('country'),
+                summary=form.cleaned_data.get('summary'),
+            )
+            requests.save()
+            return redirect('lists')
+    else:
+        form = NGORequestCreateForm()
 
+    return render(request,'ngo/ngocreate.html', {'form':form})
 
 class CategoryCreateView(generic.CreateView):
 	model = Category
@@ -105,6 +121,7 @@ def get_ngo_post(request):
    # Only fetch the requests that are approved
    queryset = NGO.objects.filter(is_approved=True)
    return render(request, 'ngo/request_list.html', {'queryset' : queryset})
+
 
 
 class RequestUpdateView(generic.UpdateView):
