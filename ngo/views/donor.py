@@ -17,6 +17,7 @@ class DonorSignUpView(CreateView):
     template_name = 'registration/signup_form.html'
 
     def get_context_data(self, **kwargs):
+        is_donor=True
         kwargs['user_type'] = 'donor'
         return super().get_context_data(**kwargs)
 
@@ -64,18 +65,17 @@ def donorProfile(request):
     }
     return render(request, 'donor/donor-profile.html', context)
 
-@login_required(login_url='/accounts/signup')
 def viewNGORequest(request):
     requests =NGO.objects.all()
     context={'requests':requests}
     return render(request,'donor/donorhomepage.html',context)
 
-@login_required(login_url='/accounts/signup')
+
 def singleDonationRequest(request, pk):
     requests = NGO.objects.get(pk=pk)
     return render(request, 'donor/singleDonation.html',{'requests':requests})
 
-@login_required(login_url='/accounts/signup')
+
 def makeDonation(request):
     if request.method == 'POST':
         form = MakeDonationForm(request.POST)
@@ -92,13 +92,12 @@ def makeDonation(request):
 
     return render(request,'donor/makedonation.html', {'form':form})
 
-@method_decorator(login_required(login_url='/accounts/signup'))
 def donations(request):
     donations = Donor.objects.all()
     context = {'donations':donations}
     return render(request,'donor/donations.html',context)
 
-@method_decorator(login_required(login_url='/accounts/signup'))
+
 def search_results(request):
     if 'name' in request.GET and request.GET["name"]:
         search_term = request.GET.get("name")

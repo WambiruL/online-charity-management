@@ -12,7 +12,7 @@ urlpatterns = [
     path('detail/<int:pk>/', ngo.RequestDetailView.as_view(), name='detail'),
     path('update/<int:pk>', ngo.RequestUpdateView.as_view(), name='request-update'),
     path('delete/<int:pk>', ngo.RequestDeleteView.as_view(), name='request-delete'),
-    path('profile/', ngo.ngoProfile, name='ngo-profile'),
+    path('ngo-profile/', ngo.ngoProfile, name='ngo-profile'),
     path('search/',ngo.search_results,name='search'),
     
     
