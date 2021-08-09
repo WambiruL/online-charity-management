@@ -138,7 +138,7 @@ def UpdateRequest(request, pk):
     # redirect to detail_view
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect('/queries/')
+        return HttpResponseRedirect('/lists/')
     # add form dictionary to context
     context["form"] = form
     return render(request, "ngo/request_update.html", context)
