@@ -1,0 +1,17 @@
+{%extends "registration/base.html"%}
+{% load bootstrap4 %}
+{% block content %}
+{% load static %}
+<div class="container first">
+    <h1>Sign up for an account</h1>
+    <h4>Select below the kind of account you want to create</h4>
+    <div class="buttons">
+        <a href="{%url 'admin_signup'%}"><button class="btn-choose btn-outline-secondary">ADMIN</button></a>
+        <a href="{%url 'ngo_signup'%}"><button class="btn-choose btn-outline-secondary">NGO</button></a>
+        <a href="{%url 'donor_signup'%}"><button class="btn-choose btn-outline-secondary">DONOR</button></a>
+
+    </div>
+</div>
+
+
+{%endblock%}

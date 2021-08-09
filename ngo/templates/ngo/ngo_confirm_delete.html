@@ -1,0 +1,76 @@
+{% load bootstrap4 %}
+{%load static%}
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'ngo/details.css'%}">
+
+{% endblock %}
+<style>
+body{
+    background-image: url('/static/Images/back2.jpg');
+}
+    .container{
+        background-color: white;
+        border-radius: 50px;
+        height: 300px;
+    }
+
+    .delete{
+    color: black;
+    font-size: 30px;
+    margin-top: 150px;
+    text-align: center;
+    position: relative;
+    top: 70px;
+    }
+
+.btn{
+   
+   height: 50px;
+   width: 100px;
+   margin: 0 40px 0 16px;
+   box-sizing: border-box;
+   border: transparent;
+   border-radius: 60px;
+   font-family: 'Raleway', sans-serif;
+   font-size: 10px;
+   font-weight: 500;
+   text-transform: uppercase;
+   letter-spacing: 0.2em;
+   color: white;
+   background:seagreen;
+   cursor: pointer;
+   outline: none;
+   position: relative;
+   left: 350px;
+   top: 90px;
+}
+
+   .btn:hover{
+    background-color: springgreen;
+        color: black;
+
+   }
+
+
+</style>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+  integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+  crossorigin="anonymous"
+/>
+{% block content %}
+<div class="container">
+<form method="post">{% csrf_token %}
+     
+    <p class="delete">Are you sure you want to delete "{{ object }}" NGO request?</p>
+        <input type="submit" class="btn" value="Confirm">
+       
+    </form>
+    <a href="{%url 'lists'%}"><button class="btn">BACK</button></a>
+
+
+
+</div>
+{%endblock%}
