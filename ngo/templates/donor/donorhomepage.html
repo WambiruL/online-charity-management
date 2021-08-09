@@ -1,0 +1,21 @@
+{% extends 'ngo/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+{% for request in requests %}
+<div class="card">
+    <div class="card-header">
+        {{request.Organisation}}
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{request.pitch}}</p>
+      <p class="card-text">{{request.amount_needed}}</p>
+      <p class="card-text">{{request.country}}</p>
+      <a href="{%url 'donate'%}"><button class="btn btn-success" style="margin-left:100px;">DONATE</button></a>
+    </div>
+  </div>
+  {% endfor %}
+
+
+
+{% endblock %}
