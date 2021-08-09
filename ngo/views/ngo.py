@@ -29,7 +29,7 @@ class NGOSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('ngo-profile')
+        return redirect('ngo-profile/')
 
 
 # class NGOListView(ListView):
@@ -100,7 +100,7 @@ class RequestDetailView(generic.DetailView):
 		context = super().get_context_data(**kwargs)
 		return context
 
-@login_required(login_url='/accounts/signup')
+
 def get_ngo_post(request):
    # Only fetch the requests that are approved
    queryset = NGO.objects.filter(is_approved=True)
@@ -135,7 +135,7 @@ class RequestDeleteView(generic.DeleteView):
 	# def get_success_url(self):
 	# 	return reverse('detail', kwargs={'pk': self.kwargs['pk']})
 
-@login_required(login_url='/accounts/signup')
+
 def search_results(request):
     if 'name' in request.GET and request.GET["name"]:
         search_term = request.GET.get("name")

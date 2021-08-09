@@ -11,6 +11,7 @@ class AdminSignUpView(CreateView):
     template_name = 'registration/signup_form.html'
 
     def get_context_data(self, **kwargs):
+        is_admin=True
         kwargs['user_type'] = 'admin'
         return super().get_context_data(**kwargs)
 
@@ -39,7 +40,7 @@ def adminProfile(request):
         'u_form': u_form,
         'p_form': p_form
     }
-    return render(request, 'admin-profile.html', context)
+    return render(request, 'admin/admin-profile.html', context)
 
 class AdminCreateView(CreateView):
     model = Admin

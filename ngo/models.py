@@ -24,7 +24,7 @@ class Category(models.Model):
 
 ################### NGO ################################################
 class NGO(models.Model):
-	user = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=True)
+	user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 	Organisation = models.CharField(max_length=200)
 	categorys = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
 	pitch = models.TextField(max_length=5000)
@@ -49,11 +49,14 @@ class NGO(models.Model):
 		return categorys
 
 class NGOProfile(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
     username=models.CharField(max_length=200,null=True)
     profile_image=models.ImageField(default='default.jpeg', upload_to='Profilepics/')
     bio=models.CharField(max_length=1000,null=True, default="My Bio")
     email=models.EmailField(max_length=200,null=True)
+
+    def __str__(self):
+        return self.user.username
 	
 	
     @receiver(post_save, sender=User) #add this
@@ -73,7 +76,7 @@ class NGOProfile(models.Model):
 ########################### Donor ####################################################    
 
 class DonorProfile(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
     username=models.CharField(max_length=200,null=True)
     profile_image=models.ImageField(default='default.jpeg', upload_to='Profilepics/')
     bio=models.CharField(max_length=1000,null=True, default="My Bio")
@@ -96,7 +99,7 @@ class DonorProfile(models.Model):
 
 
 class Donor(models.Model):
-	user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+	user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
 	receipient=models.ForeignKey(NGO, related_name='Donor', on_delete=models.CASCADE,null=True)
 	donation_amount = models.CharField(max_length=70, default=None)
 	description = models.TextField(default=None)
@@ -111,11 +114,12 @@ class Donor(models.Model):
 
 
 class AdminProfile(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
     username=models.CharField(max_length=200,null=True)
     profile_image=models.ImageField(default='default.jpeg', upload_to='Profilepics/')
     bio=models.CharField(max_length=1000,null=True, default="My Bio")
     email=models.EmailField(max_length=200,null=True)
+
     def __str__(self):
         return self.user.username
 
