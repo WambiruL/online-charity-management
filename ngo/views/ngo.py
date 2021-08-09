@@ -93,6 +93,7 @@ def RequestCreate(request):
                 summary=form.cleaned_data.get('summary'),
             )
             requests.save()
+            messages.success(request, f'Waiting for the Admin to approve')
             return redirect('lists')
     else:
         form = NGORequestCreateForm()
