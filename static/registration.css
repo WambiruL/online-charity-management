@@ -1,7 +1,7 @@
 body {
-    background:url('/static/Images/back2.jpg');
     font-family: 'Playfair Display', serif;
     color: white;
+    background:  #fdf1ec;
 }
 
 .reg-box {
@@ -88,8 +88,8 @@ label {
 }
 
 .btn-outline-primary {
-    border-color: #0DB8DE;
-    color: #0DB8DE;
+    border-color: seagreen;
+    color: white;
     border-radius: 0px;
     font-weight: bold;
     letter-spacing: 1px;
@@ -97,7 +97,7 @@ label {
 }
 
 .btn-outline-primary:hover {
-    background-color: #0DB8DE;
+    background-color: seagreen;
     right: 0px;
 }
 
@@ -117,4 +117,34 @@ label {
 }
 nav{
     background-color: rgb(37, 54, 71);
+}
+
+.first{
+    color: white;
+    height: 400px;
+    text-align: center;
+    margin-top: 150px;
+    border-radius: 50px;
+    background-color: rgb(37, 54, 71);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.16), 0 5px 10px rgba(0, 0, 0, 0.23);
+}
+
+.btn-choose{
+    color: white;
+    border-radius: 50px;
+    width:150px;
+    height: 50px;
+    background-color: seagreen;
+}
+.btn-choose:hover{
+    background-color:lightgreen ;
+    color: black;
+}
+
+h1{
+    position: relative;
+    top: 130px;
+}
+h4{
+    margin-top: 150px;
 }
