@@ -156,6 +156,7 @@ USE_L10N = True
 USE_TZ = True
 
 AUTH_USER_MODEL = 'ngo.User'
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 
 # Static files (CSS, JavaScript, Images)

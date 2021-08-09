@@ -7,7 +7,7 @@ urlpatterns = [
 
     ################### NGO ################################################
     path('', ngo.get_ngo_post, name='lists'),
-    path('create/', ngo.RequestCreateView.as_view(), name='create-request'),
+    path('create/', ngo.RequestCreate, name='create-request'),
     path('create-cat', ngo.CategoryCreateView.as_view(), name='create-cat'),
     path('detail/<int:pk>/', ngo.RequestDetailView.as_view(), name='detail'),
     path('update/<int:pk>', ngo.RequestUpdateView.as_view(), name='request-update'),
@@ -25,8 +25,9 @@ urlpatterns = [
     path('donate/', donor.makeDonation, name='donate'),
     path('donations/',donor.donations, name = 'donations'),
 
-
+    ################### ADMIN ################################################
     path('admin_profile/', ad_user.adminProfile, name='admin-profile'),
+    path('queries/', ad_user.admin_view, name='queries'),
    
     
 

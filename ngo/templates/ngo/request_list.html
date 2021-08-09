@@ -19,15 +19,14 @@
         <h3 class="font-weight-bold mb-4 pb-2">WELCOME TO USAIDIZI</h3>
         <p class="text-center mx-auto mb-4 pb-2">Have a project that needs to be funded? Make your request here!</p>
       
-        <a href="{%url 'create-request'%}"><button type="button" class="btn btn-rounded create" style="border-radius: 50px; background-color: seagreen;color: white;">Create Your Request</button></a>
-  
+        <a href="{%url 'create-request'%}"><input type="submit" id="join-btn" name="join" alt="Join" value="CREATE YOUR REQUEST" style="border-radius: 50px;"></a>
+        
     </section>
     <br>
     </div>
   <hr>
     <!--Section: Content-->
-  
-    
+
 </div>
 <div class="container my-5">
     <!-- Section: Block Content -->
@@ -58,7 +57,8 @@
                                     <a><div class="mask rgba-white-slight"></div></a>
                                 </div><br>
                                 <p class="text-muted" style="height: 100px;">{{request.summary}}</p>
-                                <a href="{%url 'detail' request.pk%}"><button class="btn" style="background-color: seagreen; border-radius: 50px; color: white; position: relative; top:100px;"> Details</button></a>
+                                <a href="{%url 'detail' request.pk%}"><input type="submit" id="join-btn" name="join" alt="Join" value="VIEW DETAILS"></a>
+                                
                             </div>
                         </div>
                         <br>
@@ -66,6 +66,7 @@
                 </div>
                 {% empty %}
                 <li>No requests yet.</li> 
+               
                 {% endfor %}
               
   
@@ -78,7 +79,7 @@
        
 
 </div>
-{%elif user.is_donor or user.is_admin%}
+{%elif user.is_donor%}
 <div class="container my-5">
     <!-- Section: Block Content -->
     <div class="dark-grey-text text-center">
