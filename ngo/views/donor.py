@@ -46,7 +46,6 @@ class DonorListView(ListView):
 
 def donorProfile(request):
     DonorProfile.objects.get_or_create(user=request.user)
-    donations= Donor.objects.filter(user=request.user)
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = DonorProfileUpdateForm(request.POST,
@@ -62,8 +61,7 @@ def donorProfile(request):
         p_form = DonorProfileUpdateForm(instance=request.user.donorprofile)
     context = {
         'u_form': u_form,
-        'p_form': p_form,
-        'donations':donations
+        'p_form': p_form
     }
     return render(request, 'donor/donor-profile.html', context)
 
@@ -90,8 +88,7 @@ def makeDonation(request):
     return render(request,'donor/makedonation.html', {'form':form})
 
 def donations(request):
-    logged_in_user=request.user 
-    donations = Donor.objects.filter(user=logged_in_user)
+    donations = Donor.objects.all()
     context = {'donations':donations}
     return render(request,'donor/donations.html',context)
 

@@ -76,7 +76,7 @@ class NGOProfile(models.Model):
 ########################### Donor ####################################################    
 
 class DonorProfile(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
     username=models.CharField(max_length=200,null=True)
     profile_image=models.ImageField(default='default.jpeg', upload_to='Profilepics/')
     bio=models.CharField(max_length=1000,null=True, default="My Bio")
@@ -109,10 +109,10 @@ class Donor(models.Model):
 	def __str__(self):
 		return str(self.user)
 
-# class Donation(models.Model):
-#     donor = models.ForeignKey(DonorProfile, on_delete=models.CASCADE)
-#     amount_donated = models.IntegerField()
-#     ngo = models.ForeignKey(NGO, on_delete=models.CASCADE)
+class Donation(models.Model):
+    donor = models.ForeignKey(DonorProfile, on_delete=models.CASCADE)
+    amount_donated = models.IntegerField()
+    ngo = models.ForeignKey(NGO, on_delete=models.CASCADE)
     
     # def amount_remaining(self):
     #     balance = NGO.amount_needed - Donation.amount_donated
