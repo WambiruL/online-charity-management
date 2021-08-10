@@ -14,10 +14,11 @@
 
           <!-- Grid column -->
           
-          <div class="col-md-1"></div>
+         
           {% for request in requests %}
-          <div class="col-md-5">
-                  <div class="card" style="height: 700px;">
+         
+          <div class="col-md-4">
+                  <div class="card" style="height: 600px;">
                       <div class="card-header" style="background-color: white;">
                           <h4 class="font-weight-bold mb-3" style="color: black;"> {{ request.Organisation }}</h4>
 
@@ -32,27 +33,28 @@
                                   <a><div class="mask rgba-white-slight"></div></a>
                               </div><br>
                               <p class="text-muted" style="height: 100px;">{{request.summary}}</p>
-                              <a href="{%url 'detail' request.pk%}"><input type="submit" id="join-btn" name="join" alt="Join" value="VIEW DETAILS"></a>
+                              <a href="{%url 'detail' request.pk%}" style="position: relative;top: 60px;"><input type="submit" id="join-btn" name="join" alt="Join" value="VIEW DETAILS"></a>
                               
                           </div>
                       </div>
                       <br>
                   </div>
-              </div>
+                  <br>
+              </div> 
               {% empty %}
               <li>No requests yet.</li> 
-             
+              
               {% endfor %}
             
 
-        
+            
           </div>  
-
+          
       </div>
-      
+     
   </div>
      
-
+ 
 </div>
 
 

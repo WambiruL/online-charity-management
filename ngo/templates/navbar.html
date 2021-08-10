@@ -33,8 +33,6 @@ ul li a{
     {%elif user.is_donor%}
     <ul>
       <li id="work-link"><a class="scroll" href="{%url 'home'%}">home</a></li>
-
-        <li id="about-link"><a class="scroll" href="{%url 'donor_create'%}">Create Donation</a></li>
         <li id="contact-link"><a class="scroll" href="{%url 'donate'%}">Donate</a></li>
         <li id="blog-link"><a href="{%url 'donor-profile'%}" >Profile</a></li>
         <li id="work-link"><a class="scroll" href="{%url 'logout'%}">logout</a></li>
