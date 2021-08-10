@@ -80,3 +80,15 @@ def UpdateRequest(request, pk):
 
     #     return 
          
+
+def adminApproved(request):
+   # Only fetch the requests that are approved
+   queryset = NGO.objects.filter(is_approved=True)
+   return render(request, 'admin/approved.html', {'queryset' : queryset})
+
+
+def adminNotapproved(request):
+   # Only fetch the requests that are approved
+   queryset = NGO.objects.filter(is_approved=False)
+   return render(request, 'admin/notapproved.html', {'queryset' : queryset})
+

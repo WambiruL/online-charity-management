@@ -28,7 +28,12 @@ urlpatterns = [
     ################### ADMIN ################################################
     path('admin_profile/', ad_user.adminProfile, name='admin-profile'),
     path('queries/', ad_user.admin_view, name='queries'),
-    path('adminupdate/<int:pk>', ad_user.UpdateRequest, name='admin_request-update'),
+
+
+    path('adminupdate/<int:pk>', ad_user.UpdateRequest, name='request-update'),
+    path('approved/', ad_user.adminApproved, name='approved'),
+    path('notapproved/', ad_user.adminNotapproved, name='notapproved'),
+
     
 
    
