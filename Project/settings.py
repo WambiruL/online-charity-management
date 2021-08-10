@@ -60,10 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #installed
-    'Admin',
-    'NGO',
-    'Donor',
-    'users',
+    'ngo',
     'bootstrap4',
     'crispy_forms',
 
@@ -80,8 +77,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Project.urls'
-LOGIN_REDIRECT_URL = 'create-profile'
-LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = '/'
 
 TEMPLATES = [
     {
@@ -159,7 +155,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-AUTH_USER_MODEL="users.CustomUser"
+AUTH_USER_MODEL = 'ngo.User'
 
 
 # Static files (CSS, JavaScript, Images)
