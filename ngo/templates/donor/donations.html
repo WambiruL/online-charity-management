@@ -41,10 +41,10 @@
                     <div class="px-3 pt-3 mx-1 mt-1 pb-0">
                         
                        
-                        <p style="font-weight: bolder;">AMOUNT DONATED:{{donation.amount_donated}}</p>
+                        <p style="font-weight: bolder;">AMOUNT DONATED:{{donation.donation_amount}}</p>
                         <p>{{donation.description}}</p>
                         <div class="card-footer">
-                        <p class="text-muted">Donated on <strong>{{donation.user}}</strong></p>
+                        <p class="text-muted">Donated on <strong>{{donation|date:"F d,Y"}}</strong></p>
                         </div>
                         
                     
@@ -54,7 +54,7 @@
                 </div>
             </div>
                     {% empty %}
-                    <li style="color: white;">No requests yet.</li>  
+                    <li>No Donations Made</li>  
                 
                 <br>
               

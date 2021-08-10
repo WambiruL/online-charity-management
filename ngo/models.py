@@ -76,7 +76,7 @@ class NGOProfile(models.Model):
 ########################### Donor ####################################################    
 
 class DonorProfile(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
     username=models.CharField(max_length=200,null=True)
     profile_image=models.ImageField(default='default.jpeg', upload_to='Profilepics/')
     bio=models.CharField(max_length=1000,null=True, default="My Bio")
