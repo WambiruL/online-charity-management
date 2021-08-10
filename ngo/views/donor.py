@@ -46,6 +46,7 @@ class DonorListView(ListView):
 
 def donorProfile(request):
     DonorProfile.objects.get_or_create(user=request.user)
+    donations= Donor.objects.filter(user=request.user)
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = DonorProfileUpdateForm(request.POST,
