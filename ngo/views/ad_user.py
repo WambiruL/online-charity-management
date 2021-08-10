@@ -2,8 +2,10 @@ from django.contrib.auth import login
 from django.shortcuts import redirect,render
 from django.views.generic import CreateView, ListView
 from ngo.models import *
-from ngo.forms import DonorSignUpForm, UserUpdateForm, DonorProfileUpdateForm,AdminSignUpForm, AdminProfileUpdateForm
+from ngo.forms import *
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
 
 class AdminSignUpView(CreateView):
     model = User
@@ -52,3 +54,41 @@ def admin_view(request):
    # Only fetch the requests that are approved
    queryset = NGO.objects.all()
    return render(request, 'admin/queries.html', {'queryset' :queryset})
+   
+
+def UpdateRequest(request, pk):
+    # dictionary for initial data with
+    # field names as keys
+    context ={}
+    # fetch the object related to passed id
+    obj = get_object_or_404(NGO, pk = pk)
+    # pass the object as instance in form
+    form = AdminUpdateRequestForm(request.POST or None, instance = obj)
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/queries/')
+    # add form dictionary to context
+    context["form"] = form
+    return render(request, "ngo/request_update.html", context)
+    # def user_update(self):
+    #     if user.is_ngo():
+            
+    #         amount_donated_field=HiddenInput(), 
+    #         funded_field=HiddenInput()
+
+    #     return 
+         
+
+def adminApproved(request):
+   # Only fetch the requests that are approved
+   queryset = NGO.objects.filter(is_approved=True)
+   return render(request, 'admin/approved.html', {'queryset' : queryset})
+
+
+def adminNotapproved(request):
+   # Only fetch the requests that are approved
+   queryset = NGO.objects.filter(is_approved=False)
+   return render(request, 'admin/notapproved.html', {'queryset' : queryset})
+

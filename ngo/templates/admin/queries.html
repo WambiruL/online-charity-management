@@ -14,10 +14,10 @@
   
             <!-- Grid column -->
             
-            <div class="col-md-1"></div>
                 {% for request in queryset %}
-                <div class="col-md-5">
-                    <div class="card" style="height: 700px;">
+                <div class="col-md-4">
+                    <br><br>
+                    <div class="card" style="height: 600px;">
                         <div class="card-header" style="background-color: white;">
                             <h4 class="font-weight-bold mb-3" style="color: black;"> {{ request.Organisation }}</h4>
 
@@ -33,14 +33,20 @@
                                 </div>
                                 <p class="text-muted" style="height: 100px;">{{request.summary}}</p>
                                 <a href="{%url 'detail' request.pk%}"><button class="btn" style="background-color: seagreen; border-radius: 50px; color: white;position: relative; top:100px;"> Details</button></a>
+                                <p>{{object.is_approved}}</p>
+
+
                             </div>
                         </div>
                         <br>
                     </div>
                 </div>
+              
                 {% empty %}
                 <li>No requests yet.</li> 
+                
                 {% endfor %}
+                
               
   
           
@@ -49,7 +55,9 @@
         </div>
         
     </div>
+ 
        
 
 </div>
+
 {%endblock%}

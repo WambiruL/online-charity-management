@@ -80,12 +80,7 @@ def makeDonation(request):
     if request.method == 'POST':
         form = MakeDonationForm(request.POST)
         if form.is_valid():
-            donation = Donor(
-                receipient=form.cleaned_data.get('receipient'),
-                donation_amount=form.cleaned_data.get('donation_amount'),
-                description=form.cleaned_data.get('description'),
-            )
-            donation.save()
+            form.save()
             return redirect('donations')
     else:
         form = MakeDonationForm()
@@ -93,8 +88,10 @@ def makeDonation(request):
     return render(request,'donor/makedonation.html', {'form':form})
 
 def donations(request):
-    donations = Donor.objects.all()
-    context = {'donations':donations}
+    donations = Donation.objects.first()
+    balance=donations.amount_remaining()
+    print(balance)
+    context = {'donations':donations,'balance':balance}
     return render(request,'donor/donations.html',context)
 
 
@@ -107,6 +104,9 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
+# def donationStatus(request,pk):
+#     donation=Donation.objects.get(pk=pk)
 
 
 
