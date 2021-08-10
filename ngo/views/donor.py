@@ -66,7 +66,7 @@ def donorProfile(request):
     return render(request, 'donor/donor-profile.html', context)
 
 def viewNGORequest(request):
-    requests =NGO.objects.all()
+    requests = NGO.objects.filter(is_approved=True)
     context={'requests':requests}
     return render(request,'donor/donorhomepage.html',context)
 
@@ -88,10 +88,8 @@ def makeDonation(request):
     return render(request,'donor/makedonation.html', {'form':form})
 
 def donations(request):
-    donations = Donation.objects.first()
-    balance=donations.amount_remaining()
-    print(balance)
-    context = {'donations':donations,'balance':balance}
+    donations = Donor.objects.all()
+    context = {'donations':donations}
     return render(request,'donor/donations.html',context)
 
 
