@@ -13,6 +13,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView,ListView
 from django.views.generic.detail import DetailView
 from django.utils.decorators import method_decorator
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 
@@ -72,16 +73,33 @@ def ngoProfile(request):
 
 
 # Create your views here.
-class RequestCreateView(generic.CreateView):
-    model = NGO
-    template_name = 'ngo/ngocreate.html'
-    fields = '__all__'
-    exclude=['user']
+# class RequestCreateView(generic.CreateView):
+#     model = NGO
+#     template_name = 'ngo/ngocreate.html'
+#     form_class=NGORequestCreateForm
     
-    def get_success_url(self):
-        return reverse('lists')
+#     def get_success_url(self):
+#         return reverse('lists')
 
+def RequestCreate(request):
+    if request.method == 'POST':
+        form = NGORequestCreateForm(request.POST)
+        if form.is_valid():
+            requests = NGO(
+                Organisation=form.cleaned_data.get('Organisation'),
+	            categorys=form.cleaned_data.get('categorys'),
+	            pitch=form.cleaned_data.get('pitch'), 
+	            amount_needed=form.cleaned_data.get('amount_needed'),
+	            country =form.cleaned_data.get('country'),
+                summary=form.cleaned_data.get('summary'),
+            )
+            requests.save()
+            messages.success(request, f'Waiting for the Admin to approve')
+            return redirect('lists')
+    else:
+        form = NGORequestCreateForm()
 
+    return render(request,'ngo/ngocreate.html', {'form':form})
 
 class CategoryCreateView(generic.CreateView):
 	model = Category
@@ -107,14 +125,23 @@ def get_ngo_post(request):
    return render(request, 'ngo/request_list.html', {'queryset' : queryset})
 
 
-class RequestUpdateView(generic.UpdateView):
-	model = NGO
-	template_name = 'ngo/request_update.html'
-	fields = '__all__'
 
-	def get_success_url(self):
-		return reverse('detail', kwargs={'pk': self.kwargs['pk']})
-        
+def UpdateRequest(request, pk):
+    # dictionary for initial data with
+    # field names as keys
+    context ={}
+    # fetch the object related to passed id
+    obj = get_object_or_404(NGO, pk = pk)
+    # pass the object as instance in form
+    form = NGORequestUpdateForm(request.POST or None, instance = obj)
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/lists/')
+    # add form dictionary to context
+    context["form"] = form
+    return render(request, "ngo/request_update.html", context)
     # def user_update(self):
     #     if user.is_ngo():
             
@@ -129,8 +156,8 @@ class RequestUpdateView(generic.UpdateView):
 
 class RequestDeleteView(generic.DeleteView):
 	model = NGO
-	template_name='ngo/ngo_confirm_delete.html'
-	success_url='/'
+	template_name='ngo/detail_view.html'
+	success_url='lists'
 
 	# def get_success_url(self):
 	# 	return reverse('detail', kwargs={'pk': self.kwargs['pk']})
@@ -147,7 +174,15 @@ def search_results(request):
         return render(request, 'search.html',{"message":message})
 
 
+def deleteView(request,pk):
+    ctx={}
+    object=get_object_or_404(NGO,pk=pk)
+    if request.method=='POST':
+        object.delete()
 
+        return HttpResponseRedirect('/lists/') 
+
+    return render(request,'ngo/ngo_confirm_delete.html',ctx)
 
 	    
 	

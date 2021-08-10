@@ -25,8 +25,15 @@ class NGOProfileUpdateForm(forms.ModelForm):
 
 class NGORequestUpdateForm(forms.ModelForm):
     class Meta:
-        model:NGO
-        fields=['funded']
+        model=NGO
+        fields='__all__'
+        exclude=['user','funded','is_approved']
+
+class NGORequestCreateForm(forms.ModelForm):
+    class Meta:
+        model=NGO
+        fields='__all__'
+        exclude=['user','funded','is_approved']
 
 
 ################## ADMIN################################################
@@ -45,6 +52,13 @@ class AdminSignUpForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class AdminUpdateRequestForm(forms.ModelForm):
+    class Meta:
+        model=NGO
+        fields='__all__'
+        exclude=['user','funded']
 
 ################## DONOR ################################################
 class DonorSignUpForm(UserCreationForm):
@@ -65,8 +79,9 @@ class DonorProfileUpdateForm(forms.ModelForm):
 
 class MakeDonationForm(forms.ModelForm):
     class Meta:
-        model = Donor
+        model = Donation
         fields = '__all__'
+        
 
         
 
