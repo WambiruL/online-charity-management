@@ -81,7 +81,6 @@ class MakeDonationForm(forms.ModelForm):
     class Meta:
         model = Donor
         fields = '__all__'
-        exclude=['user','receipient',]
         
 
         
