@@ -109,6 +109,22 @@ class Donor(models.Model):
 	def __str__(self):
 		return str(self.user)
 
+class Donation(models.Model):
+    donor = models.ForeignKey(DonorProfile, on_delete=models.CASCADE)
+    amount_donated = models.IntegerField()
+    ngo = models.ForeignKey(NGO, on_delete=models.CASCADE)
+    
+    # def amount_remaining(self):
+    #     balance = NGO.amount_needed - Donation.amount_donated
+    #     return balance
+
+    # def amount_remaining(self, *args, **kwargs):
+    #     amount_needed = self.ngo.amount_needed
+    #     donation= Donation.objects.filter(ngo=self.ngo)
+    #     balance =amount_needed-donation
+    #     super(Donation, self).save(*args, **kwargs)
+            
+
 
 ######################################### Admin #############################################
 
