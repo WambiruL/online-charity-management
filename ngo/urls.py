@@ -19,7 +19,7 @@ urlpatterns = [
 
     ################### DONOR ################################################
     path('home/',donor.viewNGORequest,name='home'),
-    path('donor_create', donor.DonorCreateView.as_view(), name='donor_create'),
+    #path('donor_create', donor.DonorCreateView.as_view(), name='donor_create'),
     path('donorlist', donor.DonorListView.as_view(), name='donor_list'),
     path('donor_profile/', donor.donorProfile, name='donor-profile'),
     path('donate/', donor.makeDonation, name='donate'),
@@ -30,9 +30,10 @@ urlpatterns = [
     path('queries/', ad_user.admin_view, name='queries'),
 
 
-    path('adminupdate/<int:pk>', ad_user.UpdateRequest, name='request-update'),
+    path('adminupdate/<int:pk>', ad_user.UpdateRequest, name='adminrequest-update'),
     path('approved/', ad_user.adminApproved, name='approved'),
     path('notapproved/', ad_user.adminNotapproved, name='notapproved'),
+    path('admindetail/<int:pk>/', ad_user.RequestDetailView.as_view(), name='admindetail'),
 
     
 

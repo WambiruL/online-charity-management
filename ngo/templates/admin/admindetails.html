@@ -1,0 +1,38 @@
+{% extends "ngo/base.html" %}
+{% load bootstrap4 %}
+{%load static%}
+
+{% block content %}
+
+<body>
+  <div class="wrapper">
+    <div class="product-img">
+      <img src="/static/Images/charity.png" height="520" width="367">
+    </div>
+    <div class="product-info">
+      <div class="product-text">
+        <h1>{{object.Organisation }}</h1>
+        <p>{{object.pitch  }} </p>
+      </div>
+      <div class="product-price-btn">
+        <p>COUNTRY:{{object.country }}</p>
+        <p>{{object.is_approved}}</p>
+        <h6 type="button">AMOUNT NEEDED:{{object.amount_needed }}</h6>
+
+        <a href="{%url 'adminrequest-update' object.pk%}"><button class="btn btn-success">UPDATE REQUEST</button></a>
+      
+        <a href="{%url 'request-delete' object.pk%}"><button class="btn btn-success">DELETE REQUEST</button></a>
+       
+       
+      </div>
+      
+
+    </div>
+  </div>
+
+</body>
+
+</html>
+
+{% endblock %}
+

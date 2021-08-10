@@ -79,7 +79,7 @@ class DonorProfileUpdateForm(forms.ModelForm):
 
 class MakeDonationForm(forms.ModelForm):
     class Meta:
-        model = Donation
+        model = Donor
         fields = '__all__'
         
 
