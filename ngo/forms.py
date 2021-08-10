@@ -79,9 +79,9 @@ class DonorProfileUpdateForm(forms.ModelForm):
 
 class MakeDonationForm(forms.ModelForm):
     class Meta:
-        model = Donor
+        model = Donation
         fields = '__all__'
-        exclude=['user','receipient']
+        
 
         
 

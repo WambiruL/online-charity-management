@@ -138,3 +138,8 @@ body {
     background-color: springgreen;
     color: black;
   }
+
+  .btn-delete:hover{
+    background-color:springgreen ;
+  }
+

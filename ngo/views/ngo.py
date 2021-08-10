@@ -156,8 +156,8 @@ def UpdateRequest(request, pk):
 
 class RequestDeleteView(generic.DeleteView):
 	model = NGO
-	template_name='ngo/ngo_confirm_delete.html'
-	success_url='/'
+	template_name='ngo/detail_view.html'
+	success_url='lists'
 
 	# def get_success_url(self):
 	# 	return reverse('detail', kwargs={'pk': self.kwargs['pk']})
@@ -174,7 +174,15 @@ def search_results(request):
         return render(request, 'search.html',{"message":message})
 
 
+def deleteView(request,pk):
+    ctx={}
+    object=get_object_or_404(NGO,pk=pk)
+    if request.method=='POST':
+        object.delete()
 
+        return HttpResponseRedirect('/lists/') 
+
+    return render(request,'ngo/ngo_confirm_delete.html',ctx)
 
 	    
 	

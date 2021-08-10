@@ -54,6 +54,7 @@ def admin_view(request):
    # Only fetch the requests that are approved
    queryset = NGO.objects.all()
    return render(request, 'admin/queries.html', {'queryset' :queryset})
+   
 
 def UpdateRequest(request, pk):
     # dictionary for initial data with
