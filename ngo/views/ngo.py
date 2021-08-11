@@ -85,8 +85,9 @@ def RequestCreate(request):
         form = NGORequestCreateForm(request.POST)
         if form.is_valid():
             requests = NGO(
+                user=form.cleaned_data.get('user'),
                 Organisation=form.cleaned_data.get('Organisation'),
-	            categorys=form.cleaned_data.get('categorys'),
+	            categories=form.cleaned_data.get('categories'),
 	            pitch=form.cleaned_data.get('pitch'), 
 	            amount_needed=form.cleaned_data.get('amount_needed'),
 	            country =form.cleaned_data.get('country'),
@@ -124,17 +125,26 @@ def get_ngo_post(request):
    queryset = NGO.objects.filter(is_approved=True,user=request.user.ngoprofile)
    return render(request, 'ngo/request_list.html', {'queryset' : queryset})
 
-# def sum_of_donations(request,pk):    
-#     ngo = NGO.objects.get(pk=pk)
-#     print(ngo.pk)
-#     obj = Donor.objects.filter(receipient=ngo).aggregate(Sum('donation_amount'))
-#     print('obj',obj)
-#     #sum_total = Donation.objects.aggregate(Sum('donated_amount'))
-#     #sum_total = Donation.objects.filter().aggregate(Sum('donated_amount'))
-#     #print(sum_total)
-#     #balance = ngo.amount_needed - obj['donation_amount__sum']
-#     #print(balance)
-#     return render(request,'ngo/request_list.html')
+def sum_of_donations(request,pk):  
+    donations=Donor.objects.filter(receipient=pk) 
+    ngo = NGO.objects.get(pk=pk)
+    print(ngo.pk)
+    obj = Donor.objects.filter(receipient=ngo).aggregate(Sum('donation_amount'))
+    #print('obj',obj)
+    print(obj)
+    #sum_total = Donation.objects.aggregate(Sum('donated_amount'))
+    #sum_total = Donation.objects.filter().aggregate(Sum('donated_amount'))
+    #print(sum_total)
+    balances = ngo.amount_needed - obj['donation_amount__sum']
+    print(balances)
+    ctx={
+        'donations':donations,
+        'obj':obj,
+        'balances':balances,
+        'ngo':ngo,
+        
+    }
+    return render(request,'ngo/total_donations.html',ctx)
 
 
 def UpdateRequest(request, pk):
@@ -195,6 +205,12 @@ def deleteView(request,pk):
 
     return render(request,'ngo/ngo_confirm_delete.html',ctx)
 
+def donationsMade(request,pk):
+    donations= Donor.objects.get(pk=pk)
+    context = {
+    'donations':donations
+    }
+    return render(request, 'ngo/total_donations.html', context)
 	    
 	
 
