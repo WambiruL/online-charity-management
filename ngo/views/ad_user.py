@@ -22,7 +22,7 @@ class AdminSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('admin-profile')
+        return redirect('queries')
 
 
 def adminProfile(request):

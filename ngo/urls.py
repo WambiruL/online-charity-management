@@ -1,3 +1,4 @@
+from functools import total_ordering
 from django.urls import path
 from . import views
 from ngo.views import ad_user, ngo, donor
@@ -14,6 +15,7 @@ urlpatterns = [
     path('delete/<int:pk>', ngo.deleteView, name='request-delete'),
     path('ngo-profile/', ngo.ngoProfile, name='ngo-profile'),
     path('search/',ngo.search_results,name='search'),
+    path('total_donations/<int:pk>/',ngo.sum_of_donations,name='total_donations'),
     
     
 
@@ -24,6 +26,7 @@ urlpatterns = [
     path('donor_profile/', donor.donorProfile, name='donor-profile'),
     path('donate/', donor.makeDonation, name='donate'),
     path('donations/',donor.donations, name = 'donations'),
+    path('updatedonation/<int:pk>', donor.UpdateDonation, name='donation-update'),
 
     ################### ADMIN ################################################
     path('admin_profile/', ad_user.adminProfile, name='admin-profile'),
