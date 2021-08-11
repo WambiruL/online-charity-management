@@ -72,18 +72,16 @@ def viewNGORequest(request):
     context={'requests':requests}
     return render(request,'donor/donorhomepage.html',context)
 
-
 def singleDonationRequest(request, pk):
     requests = NGO.objects.get(pk=pk)
     return render(request, 'donor/singleDonation.html',{'requests':requests})
 
 
 def makeDonation(request):
-    DonorProfile.objects.get_or_create(user=request.user)
     if request.method == 'POST':
         form = MakeDonationForm(request.POST)
         if form.is_valid():
-            form.user=request.user 
+            #form.user=onor
             #form.receipient=request.user        
             form.save()
             return redirect('donations')

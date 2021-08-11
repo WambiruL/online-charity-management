@@ -51,11 +51,12 @@ class NGOProfile(models.Model):
 class NGO(models.Model):
 	user = models.ForeignKey(NGOProfile, on_delete=models.CASCADE, null=True)
 	Organisation = models.CharField(max_length=200)
-	categorys = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+	categories = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
 	pitch = models.TextField(max_length=5000)
 	amount_needed = models.IntegerField()
 	country = models.CharField(max_length=100)
 	funded = models.BooleanField(default=False, null=True)
+    
 
 	#project_images = models.ImageField(upload_to='images/', null=True)
 	is_approved = models.BooleanField(default=False, null=True)
@@ -106,7 +107,7 @@ class DonorProfile(models.Model):
 class Donor(models.Model):
 	user = models.ForeignKey(DonorProfile, on_delete=models.CASCADE,null=True)
 	receipient=models.ForeignKey(NGO, related_name='Donor', on_delete=models.CASCADE,null=True)
-	donation_amount = models.CharField(max_length=70, default=None)
+	donation_amount = models.IntegerField(max_length=70, default=0)
 	description = models.TextField(default=None)
 	donation_time = models.DateTimeField(auto_now_add=True)
 	

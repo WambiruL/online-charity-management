@@ -27,13 +27,13 @@ class NGORequestUpdateForm(forms.ModelForm):
     class Meta:
         model=NGO
         fields='__all__'
-        exclude=['funded','is_approved','summary']
+        exclude=['funded','is_approved','summary','user']
 
 class NGORequestCreateForm(forms.ModelForm):
     class Meta:
         model=NGO
         fields='__all__'
-        exclude=['funded','is_approved','summary']
+        exclude=['funded','is_approved','summary','user']
 
 
 ################## ADMIN################################################

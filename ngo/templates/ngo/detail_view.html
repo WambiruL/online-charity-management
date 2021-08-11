@@ -11,21 +11,21 @@
     </div>
     <div class="product-info">
       <div class="product-text">
-        <h1>{{object.Organisation }}</h1>
+        <h1>{{object.Organisation|upper }}</h1>
         <p>{{object.pitch  }} </p>
       </div>
-      <div class="product-price-btn">
-        <p>COUNTRY:{{object.country }}</p>
+      <div class="product">
+        <p style="margin-left:50px;">COUNTRY:{{object.country|upper }}</p>
         
-        <h6 type="button">AMOUNT NEEDED:{{object.amount_needed }}</h6>
+        <h6 type="button" style="margin-left:50px;">AMOUNT NEEDED:${{object.amount_needed }}</h6>
 
         {%if user.is_donor%}
         <a href="{%url 'donate'%}"><button class="btn btn-success" style="margin-left:100px;">DONATE</button></a>
         
         {%else%}
-        <a href="{%url 'request-update' object.pk%}"><button class="btn btn-success">UPDATE REQUEST</button></a>
+        <a href="{%url 'request-update' object.pk%}"><button class="btn btn-primary" style="margin-top:40px; margin-left: 70px;">UPDATE</button></a>
       
-        <a href="{%url 'request-delete' object.pk%}"><button class="btn btn-success">DELETE REQUEST</button></a>
+        <a href="{%url 'request-delete' object.pk%}"><button class="btn btn-danger"style="margin-top:40px;">DELETE</button></a>
        
        
         {%endif%}
@@ -37,7 +37,7 @@
 
 </body>
 
-</html>
+
 
 {% endblock %}
 

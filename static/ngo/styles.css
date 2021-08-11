@@ -121,6 +121,7 @@ h2 {
   padding: 10px 50px;
   cursor: pointer;
   transition: .4s;
+  border-radius: 50px;
 
 }
 #join-btn:hover {
