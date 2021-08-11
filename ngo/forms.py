@@ -27,13 +27,13 @@ class NGORequestUpdateForm(forms.ModelForm):
     class Meta:
         model=NGO
         fields='__all__'
-        exclude=['user','funded','is_approved']
+        exclude=['funded','is_approved','summary']
 
 class NGORequestCreateForm(forms.ModelForm):
     class Meta:
         model=NGO
         fields='__all__'
-        exclude=['user','funded','is_approved']
+        exclude=['funded','is_approved','summary']
 
 
 ################## ADMIN################################################
@@ -58,7 +58,7 @@ class AdminUpdateRequestForm(forms.ModelForm):
     class Meta:
         model=NGO
         fields='__all__'
-        exclude=['user','funded']
+        exclude=['user','funded','summary']
 
 ################## DONOR ################################################
 class DonorSignUpForm(UserCreationForm):
@@ -81,9 +81,16 @@ class MakeDonationForm(forms.ModelForm):
     class Meta:
         model = Donor
         fields = '__all__'
+        exclude=['user','receipient']
+       
         
 
-        
+class DonationUpdateForm(forms.ModelForm):
+    class Meta:
+        model=Donor
+        fields='__all__'
+        exclude=['user','receipient']
+
 
 ################## FOR ALL ################################################
 

@@ -11,9 +11,8 @@ from ngo.forms import *
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView,ListView
-from django.views.generic.detail import DetailView
-from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect
+from django.db.models import Sum
 # Create your views here.
 
 
@@ -105,7 +104,7 @@ class CategoryCreateView(generic.CreateView):
 	model = Category
 	template_name = 'ngo/category_create.html'
 	fields = '__all__'
-	success_url = 'list'
+	success_url = '/'
 
 
 class RequestDetailView(generic.DetailView):
@@ -120,10 +119,22 @@ class RequestDetailView(generic.DetailView):
 
 
 def get_ngo_post(request):
+   NGOProfile.objects.get_or_create(user=request.user)
    # Only fetch the requests that are approved
-   queryset = NGO.objects.filter(is_approved=True)
+   queryset = NGO.objects.filter(is_approved=True,user=request.user.ngoprofile)
    return render(request, 'ngo/request_list.html', {'queryset' : queryset})
 
+# def sum_of_donations(request,pk):    
+#     ngo = NGO.objects.get(pk=pk)
+#     print(ngo.pk)
+#     obj = Donor.objects.filter(receipient=ngo).aggregate(Sum('donation_amount'))
+#     print('obj',obj)
+#     #sum_total = Donation.objects.aggregate(Sum('donated_amount'))
+#     #sum_total = Donation.objects.filter().aggregate(Sum('donated_amount'))
+#     #print(sum_total)
+#     #balance = ngo.amount_needed - obj['donation_amount__sum']
+#     #print(balance)
+#     return render(request,'ngo/request_list.html')
 
 
 def UpdateRequest(request, pk):
@@ -138,7 +149,7 @@ def UpdateRequest(request, pk):
     # redirect to detail_view
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect('/lists/')
+        return HttpResponseRedirect('/')
     # add form dictionary to context
     context["form"] = form
     return render(request, "ngo/request_update.html", context)
