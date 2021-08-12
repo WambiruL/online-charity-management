@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+      {{requests.ngo_name}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{requests.project_name}}</h5>
+      <p class="card-text">{{requests.description}}</p>
+      <a href="#" class="btn btn-primary">{{requests.amount}}</a>
+    </div>
+  </div>
+
+  {% endblock %}

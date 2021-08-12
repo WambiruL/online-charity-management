@@ -1,0 +1,38 @@
+{%extends "registration/base.html"%}
+{% load bootstrap4 %}
+{% block content %}
+
+{% load static %}
+
+<div class="container">
+  
+    <div class="row">
+        <div class="col-lg-3 col-md-2"></div>
+        <div class="col-lg-6 col-md-8 reg-box">
+            <div class="col-lg-12 reg-title">USAIDIZI</div>
+
+            <div class="col-lg-12 reg-form">
+                <div class="col-lg-12 reg-form">
+                    <div class="card-body">
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <button type="submit" class="btn btn-outline-primary" style="background-color: black;color: white;">CREATE YOUR ACCOUNT</button>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                    <p style="font-size: 20px;">Already have an account?<a href="{%url 'login'%}" style="color:black;"><strong>Login Here</strong></a></p>
+                    </div>
+                </div>
+            </div>
+            
+                
+           
+        </div>
+    </div>
+
+
+
+</div>
+
+{%endblock%}

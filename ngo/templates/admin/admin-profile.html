@@ -1,0 +1,20 @@
+{% extends 'ngo/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br>
+<div class="card">
+  <form action="" method="POST" enctype="multipart/form-data" style="text-align: center; color:black;">
+  {% csrf_token%}
+  {{ u_form|crispy}}
+  <br>
+  {{ p_form|crispy}}
+  <br>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-sm" style="background-color: seagreen;color: white;"> Update Profile</button>
+  </div>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,160 @@
+body {
+    font-family: 'Playfair Display', serif;
+    color: white;
+   
+    
+    
+}
+
+
+.reg-box {
+    margin-top: 75px;
+    height: auto;
+    background:lightseagreen;
+    opacity: 0.9;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    color: black;
+}
+
+.reg-title {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 2px;
+    margin-top: 15px;
+    font-weight: bold;
+    color: black;
+}
+
+.reg-form {
+    margin-top: 25px;
+    text-align: left;
+    color: black;
+}
+
+input[type=text] {
+    background-color:transparent;
+    border: none;
+    border-bottom: 2px solid black;
+    border-top: 0px;
+    border-radius: 0px;
+    font-weight: bold;
+    outline: 0;
+    margin-bottom: 20px;
+    padding-left: 0px;
+    
+}
+input[type=email] {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid black;
+    border-top: 0px;
+    border-radius: 0px;
+    font-weight: bold;
+    outline: 0;
+    margin-bottom: 20px;
+    padding-left: 0px;
+    color: black;
+}
+
+input[type=password] {
+    background-color:transparent;
+    border: none;
+    border-bottom: 2px solid black;
+    border-top: 0px;
+    border-radius: 0px;
+    font-weight: bold;
+    outline: 0;
+    padding-left: 0px;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.form-group {
+    margin-bottom: 40px;
+    outline: 0px;
+    color: black;
+}
+
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0;
+    
+}
+
+label {
+    margin-bottom: 0px;
+}
+
+.form-control-label {
+    font-size: 10px;
+    color: black;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn-outline-primary {
+    border-color: seagreen;
+       border-radius: 0px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.btn-outline-primary:hover {
+    color: white;
+    right: 0px;
+}
+.btn:hover{
+    color: white;
+}
+
+.card{
+    position: relative;
+    left: 300px;
+    top: 100px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.card-header{
+    background-color: transparent;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.container{
+    height: 750px;
+}
+nav{
+    background-color: rgb(37, 54, 71);
+}
+
+.first{
+    color: white;
+    height: 400px;
+    text-align: center;
+    margin-top: 150px;
+    border-radius: 50px;
+    background-color: rgb(37, 54, 71);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.16), 0 5px 10px rgba(0, 0, 0, 0.23);
+}
+
+.btn-choose{
+    color: white;
+    border-radius: 50px;
+    width:150px;
+    height: 50px;
+    background-color: seagreen;
+}
+.btn-choose:hover{
+    background-color:lightgreen ;
+    color: black;
+}
+
+h1{
+    position: relative;
+    top: 130px;
+}
+h4{
+    margin-top: 150px;
+}

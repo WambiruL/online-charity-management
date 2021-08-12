@@ -1,0 +1,163 @@
+{% extends "ngo/base.html" %}
+
+{%load static%}
+
+{% block content %}
+
+{%if user.is_ngo%}
+<div
+  class="hero-wrap"
+  style="
+    background-image: url('/static/Images/larm-rmah-AEaTUnvneik-unsplash\ \(1\).jpg');
+    background-repeat:no-repeat;
+          background-size:cover;
+          background-position: center center;
+          min-height:400px;
+          filter: grayscale(100%);
+          height: 500px;"
+  data-stellar-background-ratio="0.5"
+>
+  <div class="overlay"></div>
+  <div class="container">
+    <div
+      class="
+        row
+        no-gutters
+        slider-text
+        align-items-center
+        justify-content-center
+      "
+      data-scrollax-parent="true"
+      
+      
+    >
+      <div
+        class="col-md-7 ftco-animate text-center"
+        data-scrollax=" properties: { translateY: '70%' }"
+        style="position: relative; bottom: 100px;"
+      
+      >
+        <h1
+          class="mb-2"
+          data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"
+          style="background-color: black;"
+        >
+          Create a fund request for your organisation
+        </h1>
+        <!-- <p class="mb-5" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Created by <a href="#">Colorlib.com</a></p> -->
+<br>
+        <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="{% url 'create-request' %}" class="btn btn-white btn-outline-white px-4 py-3 " style="background-color: white;color: black;">Make a Request</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="ftco-section">
+    <h3 class="font-weight-bold " style="color: black;text-align: center;">REQUESTS MADE</h3>
+
+    <div class="container">
+        
+      <div class="row d-flex">
+
+        {% for request in queryset %}
+
+        <div class="col-md-5 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+            <a href="{%url 'detail' request.pk%}" class="block-20"><img src="{{request.images.url}}"></a>">
+                
+            </a>
+            <div class="text p-4 d-block">
+                <div class="meta mb-3">
+                <!-- <div><a href="#">Sept 10, 2018</a></div> -->
+                <!-- <div><a href="#">Approved: {{request.is_approved}}</a></div> -->
+              </div>
+              <h3 class="heading mt-3"><a href="{%url 'detail' request.pk%}">{{ request.Organisation }}</a></h3>
+              <p>{{request.pitch}}</p>
+              <a href="{%url 'total_donations' request.pk%}"><input type="submit" id="join-btn" name="join" alt="Join" value="DONATIONS"></a>
+              
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <li>No requests yet.</li> 
+        {% endfor %}
+      </div>
+    </div>
+
+
+</section>
+
+{%elif user.is_ngo%}
+<div
+  class="hero-wrap"
+  style="
+    background-image: url('https://images.unsplash.com/photo-1509023464722-18d996393ca8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80');
+    background-repeat:no-repeat;
+          background-size:cover;
+          background-position: center center;
+          min-height:200px;"
+  data-stellar-background-ratio="0.5"
+>
+  <div class="overlay"></div>
+  <div class="container">
+    <div
+      class="
+        row
+        no-gutters
+        slider-text
+        align-items-center
+        justify-content-center
+      "
+      data-scrollax-parent="true"
+    >
+      <div
+        class="col-md-7 ftco-animate text-center"
+        data-scrollax=" properties: { translateY: '70%' }"
+      >
+        <h1
+          class="mb-4"
+          data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"
+        >
+          Have a view of the some of the causes put up for funding
+        </h1>
+        <!-- <p class="mb-5" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Created by <a href="#">Colorlib.com</a></p> -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<section class="ftco-section">
+    <h3 class="font-weight-bold " style="color: black;text-align: center;">REQUESTS MADE</h3>
+
+    <div class="container">
+        
+      <div class="row d-flex">
+
+        {% for request in queryset %}
+
+        <div class="col-md-5 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+            <a href="{%url 'detail' request.pk%}" class="block-20" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg');">
+            </a>
+            <div class="text p-4 d-block">
+                <div class="meta mb-3">
+                <!-- <div><a href="#">Sept 10, 2018</a></div> -->
+                <!-- <div><a href="#">Approved: {{request.is_approved}}</a></div> -->
+              </div>
+              <h3 class="heading mt-3"><a href="{%url 'detail' request.pk%}">{{ request.Organisation }}</a></h3>
+              <p>{{request.summary}}</p>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <li>No requests yet.</li> 
+        {% endfor %}
+      </div>
+    </div>
+
+
+</section>
+{%endif%}
+
+
+
+{% endblock %}
