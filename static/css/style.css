@@ -15,6 +15,11 @@
 	z-index: 9;
 
 }
+.btn-white:hover{
+  transform: scale(1.2, 1.2);
+	z-index: 9;
+
+}
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
