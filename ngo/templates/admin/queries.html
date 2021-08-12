@@ -3,61 +3,37 @@
 {%load static%}
 
 {% block content %}
-<div class="container my-5">
-    <!-- Section: Block Content -->
-    <div class="dark-grey-text text-center">
-        <h3 class="font-weight-bold mb-4 pb-2" style="color: black;text-align: center;">REQUESTS MADE</h3>
+<section class="ftco-section">
+    <h3 class="font-weight-bold " style="color: black;text-align: center;">REQUESTS MADE</h3>
+
+    <div class="container">
         
+      <div class="row d-flex">
 
-        <!-- Grid row -->
-        <div class="row">
-  
-            <!-- Grid column -->
-            
-                {% for request in queryset %}
-                <div class="col-md-4">
-                    <br><br>
-                    <div class="card" style="height: 600px;">
-                        <div class="card-header" style="background-color: white;">
-                            <h4 class="font-weight-bold mb-3" style="color: black;"> {{ request.Organisation }}</h4>
+        {% for request in queryset %}
 
-                    
-                        </div>
-
-                        <div class="card-body">
-
-                            <div class="px-3 pt-3 mx-1 mt-1 pb-0">
-                                <div class="view overlay rounded z-depth-1">
-                                    <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid" alt="Sample project image">
-                                    <a><div class="mask rgba-white-slight"></div></a>
-                                </div>
-                                <p class="text-muted" style="height: 100px;">{{request.summary}}</p>
-                                <a href="{%url 'detail' request.pk%}"><button class="btn" style="background-color: seagreen; border-radius: 50px; color: white;position: relative; top:100px;"> Details</button></a>
-                                <p>{{object.is_approved}}</p>
-
-
-                            </div>
-                        </div>
-                        <br>
-                    </div>
-                </div>
-              
-                {% empty %}
-                <li>No requests yet.</li> 
-                
-                {% endfor %}
-                
-              
-  
-          
-            </div>  
-
+        <div class="col-md-4 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+            <a href="{%url 'detail' request.pk%}" class="block-20" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg');">
+            </a>
+            <div class="text p-4 d-block">
+                <div class="meta mb-3">
+                <!-- <div><a href="#">Sept 10, 2018</a></div> -->
+                <div><a href="#">Approved: {{request.is_approved}}</a></div>
+              </div>
+              <h3 class="heading mt-3"><a href="{%url 'detail' request.pk%}">{{ request.Organisation }}</a></h3>
+              <p>{{request.summary}}</p>
+            </div>
+          </div>
         </div>
-        
+        {% empty %}
+        <li>No requests yet.</li> 
+        {% endfor %}
+      </div>
     </div>
- 
-       
 
-</div>
+
+</section>
+
 
 {%endblock%}

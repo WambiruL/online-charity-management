@@ -5,35 +5,41 @@
 {% block content %}
 
 <body>
-  <div class="wrapper">
-    <div class="product-img">
-      <img src="/static/Images/charity.png" height="520" width="367">
-    </div>
-    <div class="product-info">
-      <div class="product-text">
-        <h1>{{object.Organisation }}</h1>
-        <p>{{object.pitch  }} </p>
-      </div>
-      <div class="product-price-btn">
-        <p>COUNTRY:{{object.country }}</p>
-        <p>{{object.is_approved}}</p>
-        <h6 type="button">AMOUNT NEEDED:{{object.amount_needed }}</h6>
 
-        {%if user.is_donor%}
-        <a href="{%url 'donate'%}"><button class="btn btn-success" style="margin-left:100px;">DONATE</button></a>
-        
-        {%else%}
-        <a href="{%url 'request-update' object.pk%}"><button class="btn btn-success">UPDATE REQUEST</button></a>
-      
-        <a href="{%url 'request-delete' object.pk%}"><button class="btn btn-success">DELETE REQUEST</button></a>
-       
-       
-        {%endif%}
-      </div>
-      
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10 d-flex ftco-animate">
+          <div class="blog-entry align-self-stretch">
+            <a href="blog-single.html" class="block-20" style="background-image: url(/static/Images/charity.png);">
+            </a>
+            <div class="text p-4 d-block">
+              <div class="meta mb-3">
+                <div><a href="#">Country: {{object.country }}</a></div>
+                <div><a href="#">Approved: {{object.is_approved}}</a></div>
+                <div><a href="#">Amount needed(KES):{{object.amount_needed}}</a></div>
+                <!-- <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div> -->
+              </div>
+              <h3 class="heading mb-4"><a href="#">{{object.Organisation }}</a></h3>
+              
+              <p>{{object.pitch}}</p>
+              
+              {%if user.is_donor%}
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{%url 'donate'%}"><i class="ion-ios-share"></i> Donate </a></p>
+              {% else %}
 
+
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{%url 'request-update' object.pk%}"><i class="ion-ios-create"></i> Update Request </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{%url 'request-delete' object.pk%}"><i class="ion-ios-trash"></i> Delete Request</a></p>
+              {% endif %}
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
     </div>
-  </div>
+  </section>
 
 </body>
 

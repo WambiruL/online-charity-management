@@ -17,6 +17,8 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 
 
+
+
 class NGOSignUpView(CreateView):
     model = User
     form_class = NGOSignUpForm
@@ -49,6 +51,14 @@ class NGOSignUpView(CreateView):
 #     fields = '__all__'
 #     success_url = '/'
 
+def join(request):
+    return render(request, 'join.html')
+
+def homepage(request):
+    queryset = NGO.objects.filter(is_approved=True)
+    donations = Donation.objects.all()
+    context = {'queryset' : queryset, 'donations': donations}
+    return render(request, 'homepage.html', context)
 
 def ngoProfile(request):
     NGOProfile.objects.get_or_create(user=request.user)
@@ -122,7 +132,9 @@ class RequestDetailView(generic.DetailView):
 def get_ngo_post(request):
    # Only fetch the requests that are approved
    queryset = NGO.objects.filter(is_approved=True)
-   return render(request, 'ngo/request_list.html', {'queryset' : queryset})
+   donations = Donation.objects.all()
+   context = {'queryset' : queryset, 'donations': donations}
+   return render(request, 'ngo/request_list.html', context)
 
 
 
