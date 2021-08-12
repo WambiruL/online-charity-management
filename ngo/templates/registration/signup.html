@@ -1,17 +1,97 @@
-{%extends "registration/base.html"%}
+{% extends "registration/base.html" %}
 {% load bootstrap4 %}
-{% block content %}
 {% load static %}
-<div class="container first">
-    <h1>Sign up for an account</h1>
-    <h4>Select below the kind of account you want to create</h4>
-    <div class="buttons">
-        <a href="{%url 'admin_signup'%}"><button class="btn-choose btn-outline-secondary">ADMIN</button></a>
-        <a href="{%url 'ngo_signup'%}"><button class="btn-choose btn-outline-secondary">NGO</button></a>
-        <a href="{%url 'donor_signup'%}"><button class="btn-choose btn-outline-secondary">DONOR</button></a>
+{% block content %}
 
+<body style="
+background-image: url('https://images.unsplash.com/photo-1509023464722-18d996393ca8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80');
+max-height: 400px;">
+    <!-- header cards -->
+<div class="container" >
+    <section class="ftco-counter ftco-intro" id="section-counter">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+          <div class="row no-gutters">
+            <!-- <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                <div class="block-18 color-1 align-items-stretch">
+                  <div class="text">
+                    <span>Served Over</span>
+                    <strong class="number" data-number="143">0</strong>
+                    <span>Children in 190 countries in the world</span>
+                  </div>
+                </div>
+              </div> -->
+            <div
+              class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate"
+            >
+              <div class="block-18 color-3 align-items-stretch">
+                <div class="text">
+                  <h3 class="mb-4">Register as a donor</h3>
+                  <p>
+                    “We rise by lifting others.” <br />
+                    ― Robert Ingersoll
+                  </p>
+                  <p>
+                    <a
+                      href="{%url 'donor_signup'%}"
+                      class="btn btn-white px-3 py-2 mt-2"
+                      >Donate</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate"
+            >
+              <div class="block-18 color-2 align-items-stretch">
+                <div class="text">
+                  <h3 class="mb-4">For Organizations</h3>
+                  <p>
+                    “Always receive without forgetting.”<br />
+                    ― Brian Tracy
+                  </p>
+                  <p>
+                    <a
+                      href="{%url 'ngo_signup'%}"
+                      class="btn btn-white px-3 py-2 mt-2"
+                      >NGO</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate"
+            >
+              <div class="block-18 color-3 align-items-stretch">
+                <div class="text">
+                  <h3 class="mb-4">Staff Portal</h3>
+                  <p>Only authorised members</p>
+                  <p>
+                    <a
+                      href="{%url 'admin_signup'%}"
+                      class="btn btn-white px-3 py-2 mt-2"
+                      >Staff</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-</div>
+      <!-- header cards end-->
+</body>
+
 
 
 {%endblock%}

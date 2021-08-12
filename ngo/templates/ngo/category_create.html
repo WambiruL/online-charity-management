@@ -1,16 +1,16 @@
 {% extends "ngo/base.html" %}
 {% load bootstrap4 %}
 {% block content %}
-
-<form method="POST">
-	{% csrf_token%}
-
-	{% bootstrap_form form %}
+<div class="container">
+	<form method="POST">
+		{% csrf_token%}
 	
-	<input type="submit" name="submit" value="Submit">
-</form>
-
-
+		{% bootstrap_form form %}
+		
+		<input type="submit" name="submit" value="Submit">
+	</form>
+	
+</div>
 {% endblock %}
 
 

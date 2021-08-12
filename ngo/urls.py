@@ -7,7 +7,6 @@ urlpatterns = [
 
     ################### NGO ################################################
     path('', ngo.get_ngo_post, name='lists'),
-    path('join/', ngo.join, name='join'),
     path('homepage/', ngo.homepage, name='homepage'),
     path('create/', ngo.RequestCreate, name='create-request'),
     path('create-cat', ngo.CategoryCreateView.as_view(), name='create-cat'),

@@ -51,8 +51,7 @@ class NGOSignUpView(CreateView):
 #     fields = '__all__'
 #     success_url = '/'
 
-def join(request):
-    return render(request, 'join.html')
+
 
 def homepage(request):
     queryset = NGO.objects.filter(is_approved=True)
