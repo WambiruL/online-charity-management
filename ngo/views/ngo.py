@@ -13,6 +13,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView,ListView
 from django.http import HttpResponseRedirect
 from django.db.models import Sum
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
@@ -48,7 +49,7 @@ class NGOSignUpView(CreateView):
 #     fields = '__all__'
 #     success_url = '/'
 
-
+@login_required(login_url='accounts/login')
 def ngoProfile(request):
     NGOProfile.objects.get_or_create(user=request.user)
     if request.method == 'POST':
@@ -80,6 +81,7 @@ def ngoProfile(request):
 #     def get_success_url(self):
 #         return reverse('lists')
 
+@login_required(login_url='accounts/login')
 def RequestCreate(request):
     if request.method == 'POST':
         form = NGORequestCreateForm(request.POST)
@@ -108,7 +110,7 @@ class CategoryCreateView(generic.CreateView):
 	success_url = '/'
 
 
-class RequestDetailView(generic.DetailView):
+class RequestDetailView(LoginRequiredMixin,generic.DetailView):
 	model = NGO
 	template_name = 'ngo/detail_view.html'
 	fields = '__all__'
@@ -118,14 +120,18 @@ class RequestDetailView(generic.DetailView):
 		context = super().get_context_data(**kwargs)
 		return context
 
-
+@login_required(login_url='accounts/login')
 def get_ngo_post(request):
    NGOProfile.objects.get_or_create(user=request.user)
    # Only fetch the requests that are approved
    queryset = NGO.objects.filter(is_approved=True,user=request.user.ngoprofile)
    return render(request, 'ngo/request_list.html', {'queryset' : queryset})
 
+@login_required
 def sum_of_donations(request,pk):  
+    """
+    find sum of donations
+    """
     donations=Donor.objects.filter(receipient=pk) 
     ngo = NGO.objects.get(pk=pk)
     print(ngo.pk)
@@ -145,6 +151,8 @@ def sum_of_donations(request,pk):
         
     }
     return render(request,'ngo/total_donations.html',ctx)
+
+
 
 
 def UpdateRequest(request, pk):
@@ -175,10 +183,23 @@ def UpdateRequest(request, pk):
 
 
 
-class RequestDeleteView(generic.DeleteView):
-	model = NGO
-	template_name='ngo/detail_view.html'
-	success_url='lists'
+class RequestDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = NGO
+    template_name='ngo/request_delete.html'
+    success_url='lists'
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(NGO, id=id_)
+
+    def post(self, request, *args, **kwargs):
+        request = self.get_object()
+        #print(employee.errors)
+        return render(request, 'ngo/request_delete.html', {'request': request})
+    
+
+    def get_success_url(self):
+        return reverse('employee:employee-list')
 
 	# def get_success_url(self):
 	# 	return reverse('detail', kwargs={'pk': self.kwargs['pk']})
@@ -211,6 +232,12 @@ def donationsMade(request,pk):
     'donations':donations
     }
     return render(request, 'ngo/total_donations.html', context)
+
+def homepage(request):
+    queryset = NGO.objects.filter(is_approved=True).order_by('-date')[0:3]
+    donations = Donor.objects.all().order_by('-donation_time')[0:5]
+    context = {'queryset' : queryset, 'donations': donations}
+    return render(request, 'homepage.html', context)
 	    
 	
 

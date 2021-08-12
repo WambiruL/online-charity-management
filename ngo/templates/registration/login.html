@@ -14,11 +14,11 @@
                         <form method="post" novalidate>
                             {% csrf_token %}
                             {% bootstrap_form form %}
-                            <button type="submit" class="btn btn-outline-primary">LOGIN</button>
+                            <button type="submit" class="btn btn-outline-primary" style="background-color: black;color: white;">LOGIN</button>
                         </form>
                     </div>
                     <div class="card-footer">
-                    <p style="color: white; font-size: 20px;">Don't have an account?<a href="{%url 'donor_signup'%}">Register Here</a></p>
+                    <p style="font-size: 20px;">Don't have an account?<a href="{%url 'donor_signup'%}" style="color: white;">Register Here</a></p>
                     </div>
                 </div>
             </div>    
