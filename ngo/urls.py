@@ -16,17 +16,18 @@ urlpatterns = [
     path('ngo-profile/', ngo.ngoProfile, name='ngo-profile'),
     path('search/',ngo.search_results,name='search'),
     path('total_donations/<int:pk>/',ngo.sum_of_donations,name='total_donations'),
+    path('homepage/', ngo.homepage, name='homepage'),
     
     
 
     ################### DONOR ################################################
     path('home/',donor.viewNGORequest,name='home'),
     #path('donor_create', donor.DonorCreateView.as_view(), name='donor_create'),
-    path('donorlist', donor.DonorListView.as_view(), name='donor_list'),
+    path('donorlist/', donor.DonorListView.as_view(), name='donor_list'),
     path('donor_profile/', donor.donorProfile, name='donor-profile'),
-    path('donate/', donor.makeDonation, name='donate'),
+    path('donate/<int:pk>/', donor.makeDonation, name='donate'),
     path('donations/',donor.donations, name = 'donations'),
-    path('updatedonation/<int:pk>', donor.UpdateDonation, name='donation-update'),
+    path('updatedonation/<int:pk>/', donor.UpdateDonation, name='donation-update'),
 
     ################### ADMIN ################################################
     path('admin_profile/', ad_user.adminProfile, name='admin-profile'),

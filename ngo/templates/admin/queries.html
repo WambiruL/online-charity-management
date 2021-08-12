@@ -3,61 +3,40 @@
 {%load static%}
 
 {% block content %}
-<div class="container my-5">
-    <!-- Section: Block Content -->
-    <div class="dark-grey-text text-center">
-        <h3 class="font-weight-bold mb-4 pb-2" style="color: black;text-align: center;">REQUESTS MADE</h3>
+<section class="ftco-section">
+    <h3 class="font-weight-bold " style="color: black;text-align: center;">REQUESTS MADE</h3>
+
+    <div class="container">
         
+      <div class="row d-flex">
 
-        <!-- Grid row -->
-        <div class="row">
-  
-            <!-- Grid column -->
-            
-                {% for request in queryset %}
-                <div class="col-md-4">
-                    <br><br>
-                    <div class="card">
-                        <div class="card-header" style="background-color: white;">
-                            <h4 class="font-weight-bold mb-3" style="color: black;"> {{ request.Organisation }}</h4>
+        {% for request in queryset %}
 
-                    
-                        </div>
-
-                        <div class="card-body">
-
-                            <div class="px-3 pt-3 mx-1 mt-1 pb-0">
-                                <div class="view overlay rounded z-depth-1">
-                                    <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid" alt="Sample project image">
-                                    <a><div class="mask rgba-white-slight"></div></a>
-                                </div>
-                                <a href="{%url 'admindetail' request.pk%}"><button class="btn" id="join-btn"> Details</button></a>
-                                <a href="{%url 'total_donations' request.pk%}"><input type="submit" id="join-btn" name="join" alt="Join" value="DONATIONS"></a>
-                               
-
-
-                            </div>
-                        </div>
-                        <br>
-                    </div>
-                </div>
-              
-                {% empty %}
-                <li>No requests yet.</li> 
+        <div class="col-md-4 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+            <a href="{%url 'detail' request.pk%}" class="block-20"><img src="{{request.images.url}}"></a>
+            </a>
+            <div class="text p-4 d-block">
+                <div class="meta mb-3">
+                <!-- <div><a href="#">Sept 10, 2018</a></div> -->
+                <div><a href="#">Approved: {{request.is_approved}}</a></div>
                 
-                {% endfor %}
-                
+              </div>
               
-  
-          
-            </div>  
-
+              <h3 class="heading mt-3"><a href="{%url 'detail' request.pk%}">{{ request.Organisation }}</a></h3>
+              <p>{{request.pitch}}</p>
+              <a href="{%url 'total_donations' request.pk%}"><input type="submit" id="join-btn" name="join" alt="Join" value="DONATIONS"></a>
+            </div>
+          </div>
         </div>
-        
+        {% empty %}
+        <li>No requests yet.</li> 
+        {% endfor %}
+      </div>
     </div>
- 
-       
 
-</div>
+
+</section>
+
 
 {%endblock%}

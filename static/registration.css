@@ -1,15 +1,20 @@
 body {
     font-family: 'Playfair Display', serif;
     color: white;
-    background:  #fdf1ec;
+   
+    
+    
 }
+
 
 .reg-box {
     margin-top: 75px;
     height: auto;
-    background:rgb(37, 54, 71);
+    background:lightseagreen;
+    opacity: 0.9;
     text-align: center;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    color: black;
 }
 
 .reg-title {
@@ -19,18 +24,19 @@ body {
     letter-spacing: 2px;
     margin-top: 15px;
     font-weight: bold;
-    color: #ECF0F5;
+    color: black;
 }
 
 .reg-form {
     margin-top: 25px;
     text-align: left;
+    color: black;
 }
 
 input[type=text] {
     background-color:transparent;
     border: none;
-    border-bottom: 2px solid #0DB8DE;
+    border-bottom: 2px solid black;
     border-top: 0px;
     border-radius: 0px;
     font-weight: bold;
@@ -42,31 +48,33 @@ input[type=text] {
 input[type=email] {
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid #0DB8DE;
+    border-bottom: 2px solid black;
     border-top: 0px;
     border-radius: 0px;
     font-weight: bold;
     outline: 0;
     margin-bottom: 20px;
     padding-left: 0px;
+    color: black;
 }
 
 input[type=password] {
     background-color:transparent;
     border: none;
-    border-bottom: 2px solid #0DB8DE;
+    border-bottom: 2px solid black;
     border-top: 0px;
     border-radius: 0px;
     font-weight: bold;
     outline: 0;
     padding-left: 0px;
     margin-bottom: 20px;
-    color: #ECF0F5;
+    color: black;
 }
 
 .form-group {
     margin-bottom: 40px;
     outline: 0px;
+    color: black;
 }
 
 
@@ -82,23 +90,25 @@ label {
 
 .form-control-label {
     font-size: 10px;
-    color: #6C6C6C;
+    color: black;
     font-weight: bold;
     letter-spacing: 1px;
 }
 
 .btn-outline-primary {
     border-color: seagreen;
-    color: white;
-    border-radius: 0px;
+       border-radius: 0px;
     font-weight: bold;
     letter-spacing: 1px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .btn-outline-primary:hover {
-    background-color: seagreen;
+    color: white;
     right: 0px;
+}
+.btn:hover{
+    color: white;
 }
 
 .card{
