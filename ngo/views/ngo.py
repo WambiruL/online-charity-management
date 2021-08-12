@@ -127,7 +127,7 @@ def get_ngo_post(request):
    queryset = NGO.objects.filter(is_approved=True,user=request.user.ngoprofile)
    return render(request, 'ngo/request_list.html', {'queryset' : queryset})
 
-@login_required
+
 def sum_of_donations(request,pk):  
     """
     find sum of donations
@@ -151,8 +151,6 @@ def sum_of_donations(request,pk):
         
     }
     return render(request,'ngo/total_donations.html',ctx)
-
-
 
 
 def UpdateRequest(request, pk):

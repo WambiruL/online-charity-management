@@ -79,6 +79,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'Project.urls'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL='homepage'
+LOGIN_URL='homepage'
 
 TEMPLATES = [
     {
