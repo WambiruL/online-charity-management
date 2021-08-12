@@ -57,9 +57,8 @@ class NGO(models.Model):
     country = models.CharField(max_length=100)
     funded = models.BooleanField(default=False, null=True)
     is_approved = models.BooleanField(default=False, null=True)
-    summary=models.TextField(max_length=400,null=True)
     date = models.DateTimeField(auto_now_add=True, null=True)
-    images=models.ImageField(upload_to='Images',null=True)
+    #images=models.ImageField(upload_to='Images',null=True,blank=True, default='/media/default.jpeg') 
 
     class Meta:
         ordering = ['-date',]
@@ -74,6 +73,12 @@ class NGO(models.Model):
     def search_by_name(cls,search_term):
 	    categorys = cls.objects.filter(categorys__name__icontains=search_term).all()
 	    return categorys
+
+    # def get_images(self):
+    #     if self.images
+    #     return images_url
+    #     else:
+    #         return '/media/default.jpeg'
 
     
 

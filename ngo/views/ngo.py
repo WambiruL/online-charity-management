@@ -84,7 +84,7 @@ def ngoProfile(request):
 @login_required(login_url='accounts/login')
 def RequestCreate(request):
     if request.method == 'POST':
-        form = NGORequestCreateForm(request.POST)
+        form = NGORequestCreateForm(request.POST,request.FILES)
         if form.is_valid():
             requests = NGO(
                 user=form.cleaned_data.get('user'),
@@ -93,7 +93,7 @@ def RequestCreate(request):
 	            pitch=form.cleaned_data.get('pitch'), 
 	            amount_needed=form.cleaned_data.get('amount_needed'),
 	            country =form.cleaned_data.get('country'),
-                summary=form.cleaned_data.get('summary'),
+                images=form.cleaned_data.get('images')
             )
             requests.save()
             messages.success(request, f'Waiting for the Admin to approve')
