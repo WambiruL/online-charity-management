@@ -1,0 +1,104 @@
+{%extends 'ngo/base.html'%}
+{%load bootstrap4%}
+{%block content%}
+<div
+  class="hero-wrap"
+  style="
+    background-image: url(/static/Images/xiaoxiao-sun-e8e4YY65sOk-unsplash.jpg);
+          background-size:cover;
+          background-position: center center;
+          min-height:400px;
+          filter: grayscale(100%);
+          height: 500px;"
+  data-stellar-background-ratio="0.5"
+>
+  <div class="overlay"></div>
+  <div class="container">
+      
+    <div
+      class="
+        row
+        no-gutters
+        slider-text
+        align-items-center
+        justify-content-center
+      "
+      data-scrollax-parent="true"
+      
+      
+    >
+      <div
+        class="col-md-7 ftco-animate text-center"
+        data-scrollax=" properties: { translateY: '70%' }"
+        style="position: relative; bottom: 100px;"
+      
+      >
+        <h1
+          class="mb-2"
+          data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"
+          style="background-color: black;"
+        >
+          VIEW DONATIONS MADE TO YOUR REQUEST
+        </h1>
+        <!-- <p class="mb-5" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Created by <a href="#">Colorlib.com</a></p> -->
+<br>
+       
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+   <br><br><br>
+    <h2 class="text-center">DONATIONS MADE TO <strong>{{ngo.Organisation|upper}} - ${{obj.donation_amount__sum}}</strong></h2>
+  
+    <div class="container">
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th style="background-color: lightslategray;">DONOR</th>
+                  <th style="background-color: lightslategray;">AMOUNT DONATED</th>
+                 
+                 
+              </tr>
+          </thead>
+          <tbody>
+              {% for donation in donations%}
+              <tr  style="background-color:lightseagreen;">
+                  <td style="color: black;">{{donation.user}}</td>
+                 <td style="color: black;">${{donation.donation_amount}}</td>
+                 
+                   
+                
+                  </a>
+             </td>
+              </tr>
+              {%endfor%}
+
+          </tbody>
+         
+         
+      </table>
+      <table class="table table-striped">
+      <thead>
+        <tr>
+            
+            
+            <th style="background-color: lightslategray;">AMOUNT RAISED</th>
+            <th style="background-color: lightslategray;">AMOUNT REMAINING</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="background-color:lightseagreen;">
+        
+        <td><strong>${{obj.donation_amount__sum}}</strong> OUT OF <strong>${{ngo.amount_needed}}</strong></td>
+        <td><strong>${{balances}}</strong></td>
+        </tr>
+
+    </tbody>
+    </table>
+  </div>
+  
+</div>
+<br><br><br>
+{%endblock%}

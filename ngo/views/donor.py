@@ -8,6 +8,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from . import ngo
 from django.utils.decorators import method_decorator
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -27,7 +30,7 @@ class DonorSignUpView(CreateView):
         return redirect('donor-profile')
 
 
-class DonorCreateView(CreateView):
+class DonorCreateView(LoginRequiredMixin,CreateView):
     model = Donor
     template_name = 'donor/donorcreate.html'
     fields = '__all__'
@@ -70,16 +73,23 @@ def viewNGORequest(request):
     context={'requests':requests}
     return render(request,'donor/donorhomepage.html',context)
 
-
 def singleDonationRequest(request, pk):
     requests = NGO.objects.get(pk=pk)
     return render(request, 'donor/singleDonation.html',{'requests':requests})
 
 
-def makeDonation(request):
+def makeDonation(request,pk):
+    receipient=NGO.objects.get(pk=pk)
+    user=request.user
+    donor=DonorProfile.objects.get(user=user)
+
+    print(donor)
     if request.method == 'POST':
         form = MakeDonationForm(request.POST)
         if form.is_valid():
+            donation=form.save(commit=False)
+            donation.user=donor
+            donation.receipient=receipient        
             form.save()
             return redirect('donations')
     else:
@@ -88,7 +98,8 @@ def makeDonation(request):
     return render(request,'donor/makedonation.html', {'form':form})
 
 def donations(request):
-    donations = Donor.objects.all()
+    DonorProfile.objects.get_or_create(user=request.user)
+    donations = Donor.objects.filter(user=request.user.donorprofile)
     context = {'donations':donations}
     return render(request,'donor/donations.html',context)
 
@@ -106,5 +117,20 @@ def search_results(request):
 # def donationStatus(request,pk):
 #     donation=Donation.objects.get(pk=pk)
 
-
+def UpdateDonation(request, pk):
+    # dictionary for initial data with
+    # field names as keys
+    context ={}
+    # fetch the object related to passed id
+    obj = get_object_or_404(Donor, pk = pk)
+    # pass the object as instance in form
+    form = DonationUpdateForm(request.POST or None, instance = obj)
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/donations/')
+    # add form dictionary to context
+    context["form"] = form
+    return render(request, "donor/donation_update.html", context)
 
