@@ -15,13 +15,13 @@ ul li a{
 
 </style>
 <nav class="navbar navbar-expand-lg">
-  <a class="navbar-brand text-white" href="{%url 'lists'%}"><h3><strong>USAIDIZI</strong></h3></a>
+  <a class="navbar-brand text-white" href="{%url 'categories'%}"><h3><strong>USAIDIZI</strong></h3></a>
   
 
   <div id="nav">
     {%if user.is_ngo%}
     <ul>
-      <li id="work-link"><a class="scroll" href="{%url 'lists'%}">List</a></li>
+      <li id="work-link"><a class="scroll" href="{%url 'categories'%}">Categories</a></li>
 
         <li id="about-link"><a class="scroll" href="{%url 'create-request'%}">Make Request</a></li>
         <li id="contact-link"><a class="scroll" href="{%url 'create-cat'%}">Category</a></li>
@@ -41,9 +41,7 @@ ul li a{
       </ul>
     {%else%}
     <ul>
-      <li id="work-link"><a class="scroll" href="{%url 'approved'%}">Approved</a></li>
-      <li id="work-link"><a class="scroll" href="{%url 'notapproved'%}"> Not Yet Approved</a></li>
-
+      
 
       <li id="work-link"><a class="scroll" href="{%url 'queries'%}">All Requests</a></li>
 

@@ -87,7 +87,7 @@ def RequestCreate(request):
         if form.is_valid():
             requests = NGO(
                 Organisation=form.cleaned_data.get('Organisation'),
-	            categorys=form.cleaned_data.get('categorys'),
+	            category=form.cleaned_data.get('category'),
 	            pitch=form.cleaned_data.get('pitch'), 
 	            amount_needed=form.cleaned_data.get('amount_needed'),
 	            country =form.cleaned_data.get('country'),
@@ -95,7 +95,7 @@ def RequestCreate(request):
             )
             requests.save()
             messages.success(request, f'Waiting for the Admin to approve')
-            return redirect('lists')
+            return redirect('categories')
     else:
         form = NGORequestCreateForm()
 
@@ -119,12 +119,19 @@ class RequestDetailView(generic.DetailView):
 		return context
 
 
-def get_ngo_post(request):
-   # Only fetch the requests that are approved
-   queryset = NGO.objects.filter(is_approved=True)
-   return render(request, 'ngo/request_list.html', {'queryset' : queryset})
+# def get_ngo_post(request):
+#    # Only fetch the requests that are approved
+#    queryset = NGO.objects.filter(is_approved=True)
+#    return render(request, 'ngo/request_list.html', {'queryset' : queryset})
 
+def get_objects_per_category(request, **kwargs):
+    categories = Category.objects.all()
+    return render(request,'ngo/allcategories.html',{'categories':categories})
 
+def specific_requests(request,id):
+    category=Category.objects.get(id=id)
+    requests=NGO.objects.filter(is_approved=True,category=category)
+    return render(request,'ngo/single_request.html',{'requests':requests,'category':category})
 
 def UpdateRequest(request, pk):
     # dictionary for initial data with

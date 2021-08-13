@@ -26,7 +26,7 @@ class Category(models.Model):
 class NGO(models.Model):
 	#user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 	Organisation = models.CharField(max_length=200)
-	categorys = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+	category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
 	pitch = models.TextField(max_length=5000)
 	amount_needed = models.IntegerField()
 	country = models.CharField(max_length=100)
@@ -35,9 +35,13 @@ class NGO(models.Model):
 	#project_images = models.ImageField(upload_to='images/', null=True)
 	is_approved = models.BooleanField(default=False, null=True)
 	summary=models.TextField(max_length=400,null=True)
+    
+        # class Meta:
+        #     ordering = ["-pk"]
 
 	def __str__(self):
 		return self.Organisation
+
 
 		
 	def get_absolute_url(self):
