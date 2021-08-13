@@ -89,7 +89,9 @@ def RequestCreate(request):
             requests = NGO(
                 user=form.cleaned_data.get('user'),
                 Organisation=form.cleaned_data.get('Organisation'),
+
 	            categories=form.cleaned_data.get('categories'),
+
 	            pitch=form.cleaned_data.get('pitch'), 
 	            amount_needed=form.cleaned_data.get('amount_needed'),
 	            country =form.cleaned_data.get('country'),
@@ -97,7 +99,7 @@ def RequestCreate(request):
             )
             requests.save()
             messages.success(request, f'Waiting for the Admin to approve')
-            return redirect('lists')
+            return redirect('categories')
     else:
         form = NGORequestCreateForm()
 
@@ -119,6 +121,17 @@ class RequestDetailView(LoginRequiredMixin,generic.DetailView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		return context
+
+
+
+# def get_ngo_post(request):
+#    # Only fetch the requests that are approved
+#    queryset = NGO.objects.filter(is_approved=True)
+#    return render(request, 'ngo/request_list.html', {'queryset' : queryset})
+
+def get_objects_per_category(request, **kwargs):
+    categories = Category.objects.all()
+    return render(request,'ngo/allcategories.html',{'categories':categories})
 
 @login_required(login_url='accounts/login')
 def get_ngo_post(request):
@@ -154,6 +167,11 @@ def sum_of_donations(request,pk):
 
 
 
+
+def specific_requests(request,id):
+    category=Category.objects.get(id=id)
+    requests=NGO.objects.filter(is_approved=True,category=category)
+    return render(request,'ngo/single_request.html',{'requests':requests,'category':category})
 
 def UpdateRequest(request, pk):
     # dictionary for initial data with

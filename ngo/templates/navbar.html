@@ -1,3 +1,4 @@
+
 <!-- NEW NAV -->
 <nav class="navbar navbar-expand-lg  ftco_navbar  ftco-navbar" id="ftco-navbar" style="background-color:lightseagreen;">
   <div class="container">
@@ -24,6 +25,7 @@
         <li class="nav-item"><a href="{%url 'home'%}" class="nav-link">Requests</a></li>
         <li class="nav-item"><a href="{%url 'donor-profile'%}" class="nav-link">Profile</a></li>
         <li class="nav-item"><a href="{%url 'logout'%}" class="nav-link">Logout</a></li>
+
       </ul>
       {% elif user.is_admin %}
       <ul class="navbar-nav ml-auto">
@@ -33,6 +35,7 @@
         <li class="nav-item"><a href="{%url 'admin-profile'%}" class="nav-link">Profile</a></li>
         <li class="nav-item"><a href="{%url 'logout'%}" class="nav-link">Logout</a></li>
       </ul>
+
       {%else%}
       <li class="nav-item active"><a href="{%url 'homepage'%}" class="nav-link">Home</a></li>
       {% endif %}
@@ -44,5 +47,6 @@
             color: black;
           }
         </style>
+
 </nav>
   <!-- END nav -->
