@@ -1,8 +1,10 @@
-.env
-migrations/
-/*__pycache__/
-*.pyc
 virtual/
+migrations/
+*/__pycache__/
+*.pyc
+.env
+
+
 
 
 
