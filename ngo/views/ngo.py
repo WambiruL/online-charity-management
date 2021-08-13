@@ -98,7 +98,7 @@ def RequestCreate(request):
             requests.user=ngo
             form.save()
             messages.success(request, f'Waiting for the Admin to approve')
-            return redirect('categories')
+            return redirect('/')
     else:
         form = NGORequestCreateForm()
 
