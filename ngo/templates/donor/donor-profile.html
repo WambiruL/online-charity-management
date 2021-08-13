@@ -1,42 +1,39 @@
-{% extends 'ngo/base.html' %}
-
+{%extends "registration/base.html"%}
 {% load crispy_forms_tags %}
-
 {% block content %}
-<br>
-<div class="card">
-  <form action="" method="POST" enctype="multipart/form-data" style="text-align: center; color:black;">
-  {% csrf_token%}
-  {{ u_form|crispy}}
-  <br>
-  {{ p_form|crispy}}
-  <br>
-  <div class="card-footer">
-    <button type="submit" class="btn btn-sm" style="background-color: seagreen;color: white;"> Update Profile</button>
-  </div>
-  </form>
-</div>
-{{donations.amount_donated}}
+{%load static%}
+<link rel="stylesheet" href="{% static 'registration.css' %}">
+{% load static %}
 
-<div class="row user-images">
-  {% for donation in donations %}
-  <div class="col-md-4">
-      <div class="card" style="width:30rem;height:30rem; background-color: #100e17;">
-          <div class="card-header" style="color: white;">
-              <a href="{% url 'rating' %}" style="font-size: 30px; color: white;">{{donation.donation_amount}}</a>
-          </div>
-          <div class="card-body"> 
-              <p>"{{project.image_landing.url}}" alt="" style="width: 435px; border-radius: 50px; text-align: center;" height="360px"></p>
-              
-          </div>
-      </div> 
-      <br><br><br>              
-  </div>
-  {% empty %}
-  <div class="col-md-12">
-      <h2> No Donations Made</h2>
-  </div>
-  {% endfor %}
+<div class="container">
+  
+    <div class="row">
+        <div class="col-lg-3 col-md-2"></div>
+        <div class="col-lg-6 col-md-8 reg-box">
+            <div class="col-lg-12 reg-title">USAIDIZI</div>
+
+            <div class="col-lg-12 reg-form">
+                <div class="col-lg-12 reg-form">
+                    <div class="card-body">
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            {{ u_form|crispy}} <br>
+                            {{ p_form|crispy}}
+                                <br>
+                            <button type="submit" class="btn btn-outline-primary" style="background-color: black;color: white;">UPDATE YOUR PROFILE</button>
+                        </form>
+                    </div>
+          
+                </div>
+            </div>
+            
+                
+           
+        </div>
+    </div>
+
+
+
 </div>
 
-{% endblock %}
+{%endblock%}

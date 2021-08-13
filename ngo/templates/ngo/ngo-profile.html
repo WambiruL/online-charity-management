@@ -1,20 +1,39 @@
-{% extends 'ngo/base.html' %}
-
+{%extends "registration/base.html"%}
 {% load crispy_forms_tags %}
-
 {% block content %}
-<br>
-<div class="card">
-  <form action="" method="POST" enctype="multipart/form-data" style="text-align: center; color:black;">
-  {% csrf_token%}
-  {{ u_form|crispy}}
-  <br>
-  {{ p_form|crispy}}
-  <br>
-  <div class="card-footer">
-    <button type="submit" class="btn btn-sm" style="background-color: seagreen;color: white;"> Update Profile</button>
-  </div>
-  </form>
+{%load static%}
+<link rel="stylesheet" href="{% static 'registration.css' %}">
+{% load static %}
+
+<div class="container">
+  
+    <div class="row">
+        <div class="col-lg-3 col-md-2"></div>
+        <div class="col-lg-6 col-md-8 reg-box">
+            <div class="col-lg-12 reg-title">USAIDIZI</div>
+
+            <div class="col-lg-12 reg-form">
+                <div class="col-lg-12 reg-form">
+                    <div class="card-body">
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            {{ u_form|crispy}} <br>
+                            {{ p_form|crispy}}
+                                <br>
+                            <button type="submit" class="btn btn-outline-primary" style="background-color: black;color: white;">UPDATE YOUR PROFILE</button>
+                        </form>
+                    </div>
+          
+                </div>
+            </div>
+            
+                
+           
+        </div>
+    </div>
+
+
+
 </div>
 
-{% endblock %}
+{%endblock%}

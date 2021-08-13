@@ -1,5 +1,6 @@
 {% extends 'ngo/base.html' %}
 {% block content %}
+<body style="background-color: whitesmoke;">
 <div
   class="hero-wrap"
   style="
@@ -26,14 +27,13 @@
         <h1
           class="mb-4"
           data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"
-         
         >
           Giving is not just about making a donation. It is about making a
           difference.
         </h1>
         <!-- <p class="mb-5" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Created by <a href="#">Colorlib.com</a></p> -->
 
-        <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="{% url 'signup' %}" class="btn btn-white btn-outline-white px-4 py-3 " style="background-color: black;">Join Today</a></p>
+        <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="{% url 'signup' %}" class="btn btn-white btn-outline-white px-4 py-3 " style="background-color: black;color: white;">Join Today</a></p>
       </div>
     </div>
   </div>
@@ -54,8 +54,6 @@
         </div> -->
       <div
         class="col-md d-flex justify-content-center counter-wrap ftco-animate"
-        style="position: relative;"
-        
       >
         <div class="block-18 color-3 align-items-stretch" style="background-color: lightseagreen;">
           <div class="text">
@@ -97,19 +95,19 @@
       <div
         class="col-md d-flex justify-content-center counter-wrap ftco-animate"
       >
-      <div class="block-18 color-3 align-items-stretch" style="background-color: lightseagreen;">
-        <div class="text">
-          <h3 class="mb-4">Staff Portal</h3>
-          <p>Only authorised members</p>
-          <p>
-            <a
-              href="{%url 'admin_signup'%}"
-              class="btn btn-white px-3 py-2 mt-2"
-              >Staff</a
-            >
-          </p>
+        <div class="block-18 color-3 align-items-stretch" style="background-color: lightseagreen;">
+          <div class="text">
+            <h3 class="mb-4">Staff Portal</h3>
+            <p>Only authorised members</p>
+            <p>
+              <a
+                href="{%url 'admin_signup'%}"
+                class="btn btn-white px-3 py-2 mt-2"
+                >Staff</a
+              >
+            </p>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   </div>
@@ -117,43 +115,43 @@
 <!-- header cards end-->
 <!-- NGO and donor description -->
 <section class="ftco-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 d-flex align-self-stretch ftco-animate">
-                <div class="media block-6 d-flex services p-3 py-4 d-block">
-                    <div class="icon d-flex mb-3">
-                        <span style="color: lightseagreen;" class="flaticon-donation-1"></span>
-                    </div>
-                    <div class="media-body pl-4">
-                        <h3 class="heading">Make Donation</h3>
-                        <p>
-                            "At the end it's not about what you have or even what you've
-                            accomplished. It's about who you've lifted up, who you've made
-                            better. It's about what you've given back." <br />
-                           <br /><br />
-                           ― Denzel Washington
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 d-flex align-self-stretch ftco-animate">
-                <div class="media block-6 d-flex services p-3 py-4 d-block">
-                    <div class="icon d-flex mb-3">
-                        <span class="flaticon-charity"style="color: lightseagreen;"></span>
-                    </div>
-                    <div class="media-body pl-4">
-                        <h3 class="heading">Join as an NGO</h3>
-                    <p>
-                      "Until we can receive with an open heart, we're never really
-                       giving with an open heart. When we attach judgment to receiving
-                       help, we knowingly or unknowingly attach judgment to giving
-                        help."<br />
-                         <br />
-                        ― Brené Brown
-                    </p>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 d-flex services p-3 py-4 d-block">
+          <div class="icon d-flex mb-3">
+            <span class="flaticon-donation-1" style="color: lightseagreen;"></span>
+          </div>
+          <div class="media-body pl-4">
+            <h3 class="heading">Make Donation</h3>
+            <p>
+              "At the end it's not about what you have or even what you've
+              accomplished. It's about who you've lifted up, who you've made
+              better. It's about what you've given back." <br />
+              <br /><br />
+              ― Denzel Washington
+            </p>
+          </div>
         </div>
+      </div>
+      <div class="col-md-6 d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 d-flex services p-3 py-4 d-block">
+          <div class="icon d-flex mb-3">
+            <span class="flaticon-charity" style="color: lightseagreen;"></span>
+          </div>
+          <div class="media-body pl-4">
+            <h3 class="heading">Join as an NGO</h3>
+            <p>
+              "Until we can receive with an open heart, we're never really
+              giving with an open heart. When we attach judgment to receiving
+              help, we knowingly or unknowingly attach judgment to giving
+              help."<br />
+              <br />
+              ― Brené Brown
+            </p>
+          </div>
+        </div>
+      </div>
       <!-- <div class="col-md-4 d-flex align-self-stretch ftco-animate">
         <div class="media block-6 d-flex services p-3 py-4 d-block">
           <div class="icon d-flex mb-3"><span class="flaticon-donation"></span></div>
@@ -164,35 +162,39 @@
         </div>    
       </div> -->
     </div>
+  </div>
 </section>
 <!-- NGO and donor description end -->
 
 <!-- Previous requests reel -->
 
-<section class="ftco-section" style="position: relative; bottom: 200px;">
-  <div class="container ftco-animate">
-      <h1 class='text-center'>REQUESTS MADE</h1>
-      <p class="text-center">Far far away, behind the word mountains,<br> far from the countries
-        Vokalia and Consonantia, there live the blind texts.</p><br>
-    <div class="row">
-      {% for request in queryset %}
-      <div class="col-md-5 d-flex ftco-animate">
-        <div class="blog-entry align-self-stretch">
-        <a href="{%url 'detail' request.pk%}" class="block-20"><img src="{{request.images.url}}"></a>
-            
-        </a>
-        <div class="text p-4 d-block">
-            <div class="meta mb-3">
-            <!-- <div><a href="#">Sept 10, 2018</a></div> -->
-            <!-- <div><a href="#">Approved: {{request.is_approved}}</a></div> -->
-          </div>
-          <h3 class="heading mt-3"><a href="{%url 'detail' request.pk%}">{{ request.Organisation }}</a></h3>
-          <p>{{request.pitch}}</p>
-          <a href="{%url 'total_donations' request.pk%}"><input type="submit" id="join-btn" name="join" alt="Join" value="DONATIONS"></a>
-          
-        </div>
+<section class="ftco-section">
+  <div class="container" style="position: relative;bottom: 200px;">
+    <div class="row justify-content-center mb-5 pb-3">
+      <div class="col-md-7 heading-section ftco-animate text-center">
+        <h2 class="mb-4">REQUESTS MADE</h2>
       </div>
     </div>
+    <div class="row">
+      {% for request in queryset %}
+      <div class="col-md-4 ftco-animate">
+        <div class="cause-entry">
+          <a
+            href="#"
+            class="img"
+            style="
+              background-image: url(https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg);
+            "
+          ></a>
+          <div class="text p-3 p-md-4">
+            <h3><a href="">{{ request.Organisation }}</a></h3>
+            <p>{{request.pitch}}</p>
+            <span class="donation-time mb-3 d-block text-muted" style="color: black;">{{request.date}}</span>
+            
+           
+          </div>
+        </div>
+     
   </div>
 
   {% empty %}
@@ -207,16 +209,12 @@
     <div class="container">
       <div class="row justify-content-center mb-5 pb-3">
         <div class="col-md-7 heading-section ftco-animate text-center">
-          <h2 class="mb-4">Latest Donations</h2>
-          <p>
-            Far far away, behind the word mountains, far from the countries
-            Vokalia and Consonantia, there live the blind texts.
-          </p>
+          <h2 class="mb-4" style="position: relative;left: 30px;">Latest Donations</h2>
         </div>
       </div>
       <div class="row">
         {%for donation in donations%}
-        <div class="col-lg-4 d-flex mb-sm-4 ftco-animate">
+        <div class="col-lg-5 d-flex mb-sm-4 ftco-animate">
           <div class="staff">
             <div class="d-flex mb-4">
               <div
@@ -224,12 +222,12 @@
                 style="background-image: url(https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg)"
               ></div>
               <div class="info ml-4">
-                <h3><a href="">{{donation.user}}</a></h3>
+                <h3><a href="teacher-single.html">{{donation.user}}</a></h3>
                 <span class="position text-muted" style="color: black;">{{donation.donation_time|timesince}}</span>
                 <div class="text">
                   <p>
-                    Donated <span style="color: forestgreen;">{{donation.donation_amount}}</span> for
-                    <a href="">{{donation.receipient}}</a>
+                    Donated <span>{{donation.donation_amount}}</span> for
+                    <a href="#">{{donation.receipient}}</a>
                   </p>
                 </div>
               </div>
@@ -244,10 +242,11 @@
         {% endfor %}
       </div>
     </div>
+    
   </section>
-  <br><br>
-  <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="{% url 'signup' %}" class="btn btn-white btn-outline-white px-4 py-3 ftco-animate" style="color: black;position: relative;left: 200px;width: 700px;height: 100px;font-size: 50px;top: 40px;">Join Today</a></p>
+  
+  <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="{% url 'signup' %}" class="btn btn-join btn-outline-white px-4 py-3 ftco-animate" style="position: relative;left: 300px;color: black;font-size: 70px;bottom: 0px;top: 100px;">Join Today</a></p>
   <!-- Donations Made -->
 </section>
-
+</body>
 {% endblock %}

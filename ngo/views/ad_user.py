@@ -95,6 +95,7 @@ def adminNotapproved(request):
    return render(request, 'admin/notapproved.html', {'queryset' : queryset})
 
 
+
 class RequestDetailView(generic.DetailView):
 	model = NGO
 	template_name = 'admin/admindetails.html'

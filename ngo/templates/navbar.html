@@ -12,12 +12,14 @@
         
         {%if user.is_ngo%}
         <li class="nav-item"><a href="{%url 'lists'%}" class="nav-link">Requests List</a></li>
-        <li class="nav-item"><a href="{%url 'create-request'%}" class="nav-link">Make Request</a></li>
-        <li class="nav-item"><a href="{%url 'create-cat'%}" class="nav-link">Add Category</a></li>
+
+        <li class="nav-item"><a href="{%url 'create-cat'%}" class="nav-link">Add category</a></li>
+        
         
         <li class="nav-item"><a href="{%url 'ngo-profile'%}" class="nav-link">Profile</a></li>
 
         <li class="nav-item"><a href="{%url 'logout'%}" class="nav-link">Logout</a></li>
+        
       </ul>  
         {%elif user.is_donor%}
       <ul class="navbar-nav ml-auto">
