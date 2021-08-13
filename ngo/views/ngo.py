@@ -14,6 +14,10 @@ from django.views.generic import CreateView,ListView
 from django.http import HttpResponseRedirect
 from django.db.models import Sum
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django import forms
+from django.http import HttpResponse
+
+from cloudinary.forms import cl_init_js_callbacks 
 # Create your views here.
 
 
@@ -83,19 +87,16 @@ def ngoProfile(request):
 
 @login_required(login_url='accounts/login')
 def RequestCreate(request):
+    user=request.user
+    ngo=NGOProfile.objects.get(user=user)
+    print(ngo)
+    user.is_ngo
     if request.method == 'POST':
         form = NGORequestCreateForm(request.POST,request.FILES)
         if form.is_valid():
-            requests = NGO(
-                user=form.cleaned_data.get('user'),
-                Organisation=form.cleaned_data.get('Organisation'),
-	            categories=form.cleaned_data.get('categories'),
-	            pitch=form.cleaned_data.get('pitch'), 
-	            amount_needed=form.cleaned_data.get('amount_needed'),
-	            country =form.cleaned_data.get('country'),
-                images=form.cleaned_data.get('images')
-            )
-            requests.save()
+            requests=form.save(commit=False)
+            requests.user=ngo
+            form.save()
             messages.success(request, f'Waiting for the Admin to approve')
             return redirect('lists')
     else:
@@ -107,7 +108,7 @@ class CategoryCreateView(generic.CreateView):
 	model = Category
 	template_name = 'ngo/category_create.html'
 	fields = '__all__'
-	success_url = '/'
+	success_url = 'create'
 
 
 class RequestDetailView(LoginRequiredMixin,generic.DetailView):
@@ -122,9 +123,12 @@ class RequestDetailView(LoginRequiredMixin,generic.DetailView):
 
 @login_required(login_url='accounts/login')
 def get_ngo_post(request):
-   NGOProfile.objects.get_or_create(user=request.user)
+   user=request.user
+   ngo=NGOProfile.objects.get(user=user)
+   print(ngo)
    # Only fetch the requests that are approved
-   queryset = NGO.objects.filter(is_approved=True,user=request.user.ngoprofile)
+   queryset = NGO.objects.filter(is_approved=True,user=ngo.user.ngoprofile)
+   print(queryset)
    return render(request, 'ngo/request_list.html', {'queryset' : queryset})
 
 
@@ -236,7 +240,21 @@ def homepage(request):
     donations = Donor.objects.all().order_by('-donation_time')[0:5]
     context = {'queryset' : queryset, 'donations': donations}
     return render(request, 'homepage.html', context)
-	    
+	
+
+     
+
+
+def upload(request):
+  context = dict( backend_form = PhotoForm())
+
+  if request.method == 'POST':
+    form = PhotoForm(request.POST, request.FILES)
+    context['posted'] = form.instance
+    if form.is_valid():
+        form.save()
+
+  return render(request, 'ngo/upload.html', context)
 	
 
 
