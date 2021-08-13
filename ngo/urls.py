@@ -9,9 +9,9 @@ from django.conf import settings
 urlpatterns = [
 
     ################### NGO ################################################
-    # path('', ngo.get_ngo_post, name='lists'),
+    path('', ngo.get_ngo_post, name='lists'),
     path('single_request/<int:id>', ngo.specific_requests, name='single_request'),
-    path('', ngo.get_objects_per_category, name='categories'),
+    #path('categories/', ngo.get_objects_per_category, name='categories'),
     path('create/', ngo.RequestCreate, name='create-request'),
     path('create-cat', ngo.CategoryCreateView.as_view(), name='create-cat'),
     path('detail/<int:pk>/', ngo.RequestDetailView.as_view(), name='detail'),
@@ -35,28 +35,16 @@ urlpatterns = [
     path('donate/<int:pk>/', donor.makeDonation, name='donate'),
     path('donations/',donor.donations, name = 'donations'),
     path('updatedonation/<int:pk>/', donor.UpdateDonation, name='donation-update'),
+    #path('categories/', donor.get_objects_per_category, name='categories'),
 
     ################### ADMIN ################################################
     path('admin_profile/', ad_user.adminProfile, name='admin-profile'),
     path('queries/', ad_user.admin_view, name='queries'),
-<<<<<<< HEAD
-   
-    
-
-
-     
-
-    
-
-=======
-
-
     path('adminupdate/<int:pk>', ad_user.UpdateRequest, name='adminrequest-update'),
     path('approved/', ad_user.adminApproved, name='approved'),
     path('notapproved/', ad_user.adminNotapproved, name='notapproved'),
     path('admindetail/<int:pk>/', ad_user.RequestDetailView.as_view(), name='admindetail'),
     path('create-cat', ngo.CategoryCreateView.as_view(), name='create-cat'),
->>>>>>> cf2dc465626c1d597f4db970f5b106d04bb491e5
 
 ]
 if settings.DEBUG:

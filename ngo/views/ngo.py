@@ -98,7 +98,7 @@ def RequestCreate(request):
             requests.user=ngo
             form.save()
             messages.success(request, f'Waiting for the Admin to approve')
-            return redirect('categories')
+            return redirect('/')
     else:
         form = NGORequestCreateForm()
 
@@ -128,9 +128,7 @@ class RequestDetailView(LoginRequiredMixin,generic.DetailView):
 #    queryset = NGO.objects.filter(is_approved=True)
 #    return render(request, 'ngo/request_list.html', {'queryset' : queryset})
 
-def get_objects_per_category(request, **kwargs):
-    categories = Category.objects.all()
-    return render(request,'ngo/allcategories.html',{'categories':categories})
+
 
 @login_required(login_url='accounts/login')
 def get_ngo_post(request):
@@ -168,11 +166,13 @@ def sum_of_donations(request,pk):
     return render(request,'ngo/total_donations.html',ctx)
 
 
-
+def get_objects_per_category(request, **kwargs):
+    categories = Category.objects.all()
+    return render(request,'ngo/allcategories.html',{'categories':categories})
 
 def specific_requests(request,id):
     category=Category.objects.get(id=id)
-    requests=NGO.objects.filter(is_approved=True,category=category)
+    requests=NGO.objects.filter(is_approved=True,categories=category)
     return render(request,'ngo/single_request.html',{'requests':requests,'category':category})
 
 def UpdateRequest(request, pk):
