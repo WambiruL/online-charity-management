@@ -4,9 +4,23 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+ .btn-join{
+   width: 600px;
+   height: 100px;
+   text-align: center;
+   
+ }
+
+
+.btn-join:hover{
+  transform: scale(1.2, 1.2);
+	z-index: 9;
+
+}
 .btn-white:hover{
   transform: scale(1.2, 1.2);
 	z-index: 9;
+
 }
 :root {
   --blue: #007bff;
@@ -69,7 +83,7 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff; 
+ 
   overflow-x: hidden;
 }
 

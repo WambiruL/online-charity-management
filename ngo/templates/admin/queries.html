@@ -1,9 +1,12 @@
 {% extends "ngo/base.html" %}
 
 {%load static%}
+{%load bootstrap4%}
+{%load crispy_forms_tags%}
 
 {% block content %}
 <section class="ftco-section">
+
     <h3 class="font-weight-bold " style="color: black;text-align: center;">REQUESTS MADE</h3>
 
     <div class="container">
@@ -14,7 +17,7 @@
 
         <div class="col-md-4 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-            <a href="{%url 'detail' request.pk%}" class="block-20"><img src="{{request.images.url}}"></a>
+            <a href="{%url 'admindetail' request.pk%}" class="block-20"><img src="{{request.images.url}}"></a>
             </a>
             <div class="text p-4 d-block">
                 <div class="meta mb-3">
@@ -23,9 +26,10 @@
                 
               </div>
               
-              <h3 class="heading mt-3"><a href="{%url 'detail' request.pk%}">{{ request.Organisation }}</a></h3>
-              <p>{{request.pitch}}</p>
-              <a href="{%url 'total_donations' request.pk%}"><input type="submit" id="join-btn" name="join" alt="Join" value="DONATIONS"></a>
+              <h3 class="heading mt-3"><a href="{%url 'admindetail' request.pk%}">{{ request.Organisation }}</a></h3>
+              
+              <p>{{request.pitch|truncatechars:150 | safe}}<a href="{%url 'admindetail' request.pk%}" class="btn btn-sm btn-outline-info mr-3">Read more...</a></p>
+             
             </div>
           </div>
         </div>

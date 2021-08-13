@@ -1,76 +1,27 @@
-{% extends "ngo/base.html" %}
+{%extends "ngo/base.html"%}
 {% load bootstrap4 %}
-<link
-  rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
-  integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
-  crossorigin="anonymous"
-/>
 {% block content %}
-
-<br>
-<div class="signupSection" style="height: 750px;">
-	<div class="info">
-	  <p style="font-size: 25px;">MAKE DONATIONS</p>
-	</div>
-	<form method="POST" class="form">
-	  <ul class="noBullet"><br>
-	 
-		{% csrf_token%}
-	
-		{% bootstrap_form form %}
-		
-		<input type="submit" id="join-btn" name="join" alt="Join" value="DONATE">
-		
-	 </ul>
-	
-	
+{% load static %}
+<div class="style" >
+    <div class="container" style="color: black;">
+        <br><br>
+    <div class="row">
+        <div class="col-lg-3 col-md-2"></div>
+        <div class="col-lg-6 col-md-8 reg-box">
+            <div class="col-lg-12 reg-form">
+                <div class="col-lg-12 reg-form"style="background-color: transparent;  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.16), 0 5px 10px rgba(0, 0, 0, 0.23); ">
+                    <div class="card-body">
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <button type="submit" class="btn btn-outline-primary" style="background-color: rgb(29, 121, 133);color: white;">DONATE </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
 </div>
-<br><br><br><br>
-
-
-{% endblock %}
-<script>
-	var alertRedInput = "#8C1010";
-var defaultInput = "rgba(10, 180, 180, 1)";
-
-function userNameValidation(usernameInput) {
-    var username = document.getElementById("username");
-    var issueArr = [];
-    if (/[-!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(usernameInput)) {
-        issueArr.push("No special characters!");
-    }
-    if (issueArr.length > 0) {
-        username.setCustomValidity(issueArr);
-        username.style.borderColor = alertRedInput;
-    } else {
-        username.setCustomValidity("");
-        username.style.borderColor = defaultInput;
-    }
-}
-
-function passwordValidation(passwordInput) {
-    var password = document.getElementById("password");
-    var issueArr = [];
-    if (!/^.{7,15}$/.test(passwordInput)) {
-        issueArr.push("Password must be between 7-15 characters.");
-    }
-    if (!/\d/.test(passwordInput)) {
-        issueArr.push("Must contain at least one number.");
-    }
-    if (!/[a-z]/.test(passwordInput)) {
-        issueArr.push("Must contain a lowercase letter.");
-    }
-    if (!/[A-Z]/.test(passwordInput)) {
-        issueArr.push("Must contain an uppercase letter.");
-    }
-    if (issueArr.length > 0) {
-        password.setCustomValidity(issueArr.join("\n"));
-        password.style.borderColor = alertRedInput;
-    } else {
-        password.setCustomValidity("");
-        password.style.borderColor = defaultInput;
-    }
-}
-</script>
-
+</div>
+{%endblock%}

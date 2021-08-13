@@ -2,6 +2,8 @@ from functools import total_ordering
 from django.urls import path
 from . import views
 from ngo.views import ad_user, ngo, donor
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
@@ -19,6 +21,7 @@ urlpatterns = [
     path('search/',ngo.search_results,name='search'),
     path('total_donations/<int:pk>/',ngo.sum_of_donations,name='total_donations'),
     path('homepage/', ngo.homepage, name='homepage'),
+    path('upload/',ngo.upload,name='upload'),
     
     
 
@@ -36,6 +39,7 @@ urlpatterns = [
     ################### ADMIN ################################################
     path('admin_profile/', ad_user.adminProfile, name='admin-profile'),
     path('queries/', ad_user.admin_view, name='queries'),
+<<<<<<< HEAD
    
     
 
@@ -44,5 +48,16 @@ urlpatterns = [
 
     
 
+=======
+
+
+    path('adminupdate/<int:pk>', ad_user.UpdateRequest, name='adminrequest-update'),
+    path('approved/', ad_user.adminApproved, name='approved'),
+    path('notapproved/', ad_user.adminNotapproved, name='notapproved'),
+    path('admindetail/<int:pk>/', ad_user.RequestDetailView.as_view(), name='admindetail'),
+    path('create-cat', ngo.CategoryCreateView.as_view(), name='create-cat'),
+>>>>>>> cf2dc465626c1d597f4db970f5b106d04bb491e5
 
 ]
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

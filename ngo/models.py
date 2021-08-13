@@ -1,12 +1,16 @@
+import cloudinary
 from django.db import models
 from django.urls import reverse
-from cloudinary.models import CloudinaryField
 from django.dispatch import receiver 
 from django.db.models.signals import post_save
 from django.contrib.auth.models import AbstractUser
-
+from cloudinary.models import CloudinaryField
 
 #Create your models here.
+from django.db import models
+from cloudinary.models import CloudinaryField
+class Photo(models.Model):
+  image = CloudinaryField('image')
 ################### FOR ALL ################################################
 class User(AbstractUser):
     is_donor = models.BooleanField(default=False)
@@ -63,7 +67,7 @@ class NGO(models.Model):
 class NGOProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     username=models.CharField(max_length=200,null=True)
-    profile_image=models.ImageField(default='default.jpeg', upload_to='Profilepics/')
+    #profile_image=models.ImageField(upload_to='Profilepics/')
     bio=models.CharField(max_length=1000,null=True, default="My Bio")
     email=models.EmailField(max_length=200,null=True)
 
@@ -89,9 +93,8 @@ class NGO(models.Model):
     country = models.CharField(max_length=100)
     funded = models.BooleanField(default=False, null=True)
     is_approved = models.BooleanField(default=False, null=True)
-    summary=models.TextField(max_length=400,null=True)
     date = models.DateTimeField(auto_now_add=True, null=True)
-    images=models.ImageField(upload_to='Images',null=True)
+    images = cloudinary.models.CloudinaryField('image',null=True, blank=True)
 
     class Meta:
         ordering = ['-date',]
@@ -107,6 +110,7 @@ class NGO(models.Model):
 	    categorys = cls.objects.filter(categorys__name__icontains=search_term).all()
 	    return categorys
 
+
     
 
 
@@ -117,7 +121,7 @@ class NGO(models.Model):
 class DonorProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
     username=models.CharField(max_length=200,null=True)
-    profile_image=models.ImageField(default='default.jpeg', upload_to='Profilepics/')
+    #profile_image=models.ImageField( upload_to='Profilepics/')
     bio=models.CharField(max_length=1000,null=True, default="My Bio")
     email=models.EmailField(max_length=200,null=True)
     
@@ -177,7 +181,7 @@ class Donor(models.Model):
 class AdminProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     username=models.CharField(max_length=200,null=True)
-    profile_image=models.ImageField(default='default.jpeg', upload_to='Profilepics/')
+    #profile_image=models.ImageField(upload_to='Profilepics/')
     bio=models.CharField(max_length=1000,null=True, default="My Bio")
     email=models.EmailField(max_length=200,null=True)
 

@@ -5,6 +5,7 @@
 {% block content %}
 
 {%if user.is_ngo%}
+
 <div
   class="hero-wrap"
   style="
@@ -59,10 +60,10 @@
       <div class="row d-flex">
 
         {% for request in queryset %}
-
-        <div class="col-md-5 d-flex ftco-animate">
+        
+        <div class="col-md-4 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-            <a href="{%url 'detail' request.pk%}" class="block-20"><img src="{{request.images.url}}"></a>">
+            <a href="#" class="block-20"><img src="{{request.images.url}}" alt="project_image"></a>
                 
             </a>
             <div class="text p-4 d-block">
@@ -71,9 +72,9 @@
                 <!-- <div><a href="#">Approved: {{request.is_approved}}</a></div> -->
               </div>
               <h3 class="heading mt-3"><a href="{%url 'detail' request.pk%}">{{ request.Organisation }}</a></h3>
-              <p>{{request.pitch}}</p>
-              <a href="{%url 'total_donations' request.pk%}"><input type="submit" id="join-btn" name="join" alt="Join" value="DONATIONS"></a>
-              
+              <p>{{request.pitch|truncatechars:150 | safe}}<a href="{%url 'admindetail' request.pk%}" class="btn btn-sm btn-outline-info mr-3">Read more...</a></p>
+              <a href="{%url 'total_donations' request.pk%}"><input type="submit" id="join-btn" name="join" alt="Join" value="DONATIONS" style="position: relative; left: 70px;top: 10px;"></a>
+              <a href=""><butt</a>
             </div>
           </div>
         </div>
@@ -86,7 +87,7 @@
 
 </section>
 
-{%elif user.is_ngo%}
+{%elif user.is_donor%}
 <div
   class="hero-wrap"
   style="
@@ -136,7 +137,7 @@
 
         <div class="col-md-5 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-            <a href="{%url 'detail' request.pk%}" class="block-20" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg');">
+            <a href="{%url 'detail' request.pk%}" class="block-20"><img src="{{request.images}}">
             </a>
             <div class="text p-4 d-block">
                 <div class="meta mb-3">
@@ -144,7 +145,7 @@
                 <!-- <div><a href="#">Approved: {{request.is_approved}}</a></div> -->
               </div>
               <h3 class="heading mt-3"><a href="{%url 'detail' request.pk%}">{{ request.Organisation }}</a></h3>
-              <p>{{request.summary}}</p>
+              <p>{{request.pitch}}</p>
             </div>
           </div>
         </div>
