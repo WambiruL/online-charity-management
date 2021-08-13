@@ -70,7 +70,8 @@ def donorProfile(request):
 
 def viewNGORequest(request):
     requests = NGO.objects.filter(is_approved=True)
-    context={'requests':requests}
+    categories = Category.objects.all()
+    context={'requests':requests,'categories':categories}
     return render(request,'donor/donorhomepage.html',context)
 
 def singleDonationRequest(request, pk):
@@ -96,6 +97,8 @@ def makeDonation(request,pk):
         form = MakeDonationForm()
 
     return render(request,'donor/makedonation.html', {'form':form})
+
+
 
 def donations(request):
     DonorProfile.objects.get_or_create(user=request.user)
@@ -134,3 +137,12 @@ def UpdateDonation(request, pk):
     context["form"] = form
     return render(request, "donor/donation_update.html", context)
 
+
+def get_objects_per_category(request, **kwargs):
+    categories = Category.objects.all()
+    return render(request,'donor/donorhomepage.html',{'categories':categories})
+
+def specific_requests(request,id):
+    category=Category.objects.get(id=id)
+    requests=NGO.objects.filter(is_approved=True,categories=category)
+    return render(request,'ngo/single_request.html',{'requests':requests,'category':category})
