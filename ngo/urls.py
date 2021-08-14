@@ -9,13 +9,13 @@ from django.conf import settings
 urlpatterns = [
 
     ################### NGO ################################################
-    path('', ngo.get_ngo_post, name='lists'),
+    path('lists/', ngo.get_ngo_post, name='lists'),
     path('single_request/<int:id>', ngo.specific_requests, name='single_request'),
     #path('categories/', ngo.get_objects_per_category, name='categories'),
     path('create/', ngo.RequestCreate, name='create-request'),
     path('create-cat', ngo.CategoryCreateView.as_view(), name='create-cat'),
     path('detail/<int:pk>/', ngo.RequestDetailView.as_view(), name='detail'),
-    path('update/<int:pk>', ngo.RequestDetailView.as_view(), name='request-update'),
+    path('update/<int:pk>', ngo.UpdateRequest, name='request-update'),
     path('delete/<int:pk>', ngo.RequestDeleteView.as_view(), name='request-delete'),
     path('ngo-profile/', ngo.ngoProfile, name='ngo-profile'),
     path('search/',ngo.search_results,name='search'),

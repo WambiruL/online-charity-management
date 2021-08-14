@@ -6,6 +6,13 @@
 
 {% block content %}
 <section class="ftco-section">
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li  style="list-style-type: none; height: 70px; width: 400px; font-size: 20px; text-align: center; position: relative; left: 500px;" {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+      {% endfor %}
+  </ul>
+  {% endif %}
 
     <h3 class="font-weight-bold " style="color: black;text-align: center;">REQUESTS MADE</h3>
 
@@ -17,7 +24,7 @@
 
         <div class="col-md-4 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-            <a href="{%url 'admindetail' request.pk%}" class="block-20"><img src="{{request.images.url}}"></a>
+            <a href="{%url 'admindetail' request.pk%}" class="block-20"><img src="{{request.images.url}}" style="width:600px;"></a>
             </a>
             <div class="text p-4 d-block">
                 <div class="meta mb-3">

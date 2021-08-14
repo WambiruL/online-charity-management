@@ -3,12 +3,7 @@
 {% block content %}
 
 {% load static %}
-{% if messages %}
-{% for message in messages %}
-<div class="alert alert-{{ message.tags }}"></div>
-    {{ message }}
-{% endfor %}
-{% endif %}
+
 <div class="style" >
     <div class="container" style="color: black;">
         <br><br>
