@@ -10,8 +10,8 @@ urlpatterns = [
     path('create/', ngo.RequestCreate, name='create-request'),
     path('create-cat', ngo.CategoryCreateView.as_view(), name='create-cat'),
     path('detail/<int:pk>/', ngo.RequestDetailView.as_view(), name='detail'),
-    path('update/<int:pk>', ngo.UpdateRequest, name='request-update'),
-    path('delete/<int:pk>', ngo.deleteView, name='request-delete'),
+    path('update/<int:pk>', ngo.RequestDetailView.as_view(), name='request-update'),
+    path('delete/<int:pk>', ngo.RequestDeleteView.as_view(), name='request-delete'),
     path('ngo-profile/', ngo.ngoProfile, name='ngo-profile'),
     path('search/',ngo.search_results,name='search'),
     
@@ -19,7 +19,7 @@ urlpatterns = [
 
     ################### DONOR ################################################
     path('home/',donor.viewNGORequest,name='home'),
-    #path('donor_create', donor.DonorCreateView.as_view(), name='donor_create'),
+    path('donor_create', donor.DonorCreateView.as_view(), name='donor_create'),
     path('donorlist', donor.DonorListView.as_view(), name='donor_list'),
     path('donor_profile/', donor.donorProfile, name='donor-profile'),
     path('donate/', donor.makeDonation, name='donate'),
@@ -28,15 +28,6 @@ urlpatterns = [
     ################### ADMIN ################################################
     path('admin_profile/', ad_user.adminProfile, name='admin-profile'),
     path('queries/', ad_user.admin_view, name='queries'),
-
-
-    path('adminupdate/<int:pk>', ad_user.UpdateRequest, name='adminrequest-update'),
-    path('approved/', ad_user.adminApproved, name='approved'),
-    path('notapproved/', ad_user.adminNotapproved, name='notapproved'),
-    path('admindetail/<int:pk>/', ad_user.RequestDetailView.as_view(), name='admindetail'),
-
-    
-
    
     
 
