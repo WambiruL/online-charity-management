@@ -12,7 +12,13 @@
 
 
 {% block content %}
-
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li  style="list-style-type: none; height: 70px; width: 400px; font-size: 20px; text-align: center; position: relative; left: 500px;" {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 <div class="container my-5">
 
