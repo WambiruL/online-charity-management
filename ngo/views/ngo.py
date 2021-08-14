@@ -90,7 +90,6 @@ def RequestCreate(request):
     user=request.user
     ngo=NGOProfile.objects.get(user=user)
     print(ngo)
-    user.is_ngo
     if request.method == 'POST':
         form = NGORequestCreateForm(request.POST,request.FILES)
         if form.is_valid():
@@ -102,7 +101,7 @@ def RequestCreate(request):
     else:
         form = NGORequestCreateForm()
 
-    return render(request,'ngo/ngocreate.html', {'form':form})
+    return render(request,'ngo/ngocreate.html', {'form':form,'messages':messages})
 
 class CategoryCreateView(generic.CreateView):
 	model = Category

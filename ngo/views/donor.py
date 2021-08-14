@@ -92,7 +92,10 @@ def makeDonation(request,pk):
             donation.user=donor
             donation.receipient=receipient        
             form.save()
+            messages.success(request, f'Thank you for your donation')
+            print(messages)
             return redirect('donations')
+            
     else:
         form = MakeDonationForm()
 

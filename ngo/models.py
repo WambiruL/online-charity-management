@@ -28,40 +28,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    
-
-
-################### NGO ################################################
-class NGO(models.Model):
-	#user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-	Organisation = models.CharField(max_length=200)
-	category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-	pitch = models.TextField(max_length=5000)
-	amount_needed = models.IntegerField()
-	country = models.CharField(max_length=100)
-	funded = models.BooleanField(default=False, null=True)
-
-	#project_images = models.ImageField(upload_to='images/', null=True)
-	is_approved = models.BooleanField(default=False, null=True)
-	summary=models.TextField(max_length=400,null=True)
-    
-        # class Meta:
-        #     ordering = ["-pk"]
-
-	def __str__(self):
-		return self.Organisation
-
-
-		
-	def get_absolute_url(self):
-		return reverse('detail', kwargs={'pk': self.pk})
-
-	@classmethod
-	def search_by_name(cls,search_term):
-		categorys = cls.objects.filter(categorys__name__icontains=search_term).all()
-		return categorys
-
-
 
 ################### NGO ################################################
 class NGOProfile(models.Model):
