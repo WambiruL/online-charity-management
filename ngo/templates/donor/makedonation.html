@@ -1,7 +1,14 @@
 {%extends "ngo/base.html"%}
 {% load bootstrap4 %}
 {% block content %}
+
 {% load static %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}"></div>
+    {{ message }}
+{% endfor %}
+{% endif %}
 <div class="style" >
     <div class="container" style="color: black;">
         <br><br>
@@ -16,6 +23,9 @@
                             {% bootstrap_form form %}
                             <button type="submit" class="btn btn-outline-primary" style="background-color: rgb(29, 121, 133);color: white;">DONATE </button>
                         </form>
+                        
+                        
+                        
                     </div>
                 </div>
             </div>
