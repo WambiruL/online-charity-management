@@ -1,6 +1,12 @@
-/*__pycache__/
-*.pyc
 virtual/
-.env
 migrations/
+*/__pycache__/
+*.pyc
+.env
+
+
+
+
+
+
 

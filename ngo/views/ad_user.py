@@ -6,6 +6,8 @@ from ngo.forms import *
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
+from django.views.generic import CreateView, ListView
+from django.views import generic
 
 class AdminSignUpView(CreateView):
     model = User
@@ -20,7 +22,7 @@ class AdminSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('admin-profile')
+        return redirect('queries')
 
 
 def adminProfile(request):
@@ -71,7 +73,7 @@ def UpdateRequest(request, pk):
         return HttpResponseRedirect('/queries/')
     # add form dictionary to context
     context["form"] = form
-    return render(request, "ngo/request_update.html", context)
+    return render(request, "admin/adminupdate.html", context)
     # def user_update(self):
     #     if user.is_ngo():
             
@@ -91,4 +93,16 @@ def adminNotapproved(request):
    # Only fetch the requests that are approved
    queryset = NGO.objects.filter(is_approved=False)
    return render(request, 'admin/notapproved.html', {'queryset' : queryset})
+
+
+
+class RequestDetailView(generic.DetailView):
+	model = NGO
+	template_name = 'admin/admindetails.html'
+	fields = '__all__'
+
+	success_url = 'admindetail'
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		return context
 

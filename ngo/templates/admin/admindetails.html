@@ -1,0 +1,48 @@
+{% extends "ngo/base.html" %}
+{% load bootstrap4 %}
+{%load static%}
+
+{% block content %}
+
+<body>
+
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 d-flex ftco-animate">
+          <div class="blog-entry align-self-stretch">
+            <a href="" class="block-20"><img src="{{object.images.url}}"></a>
+            </a>
+            <div class="text p-4 d-block">
+              <div class="meta mb-3">
+                <div><a href="#">Country: {{object.country }}</a></div>
+                <div><a href="#">Approved: {{object.is_approved}}</a></div>
+                <div><a href="#">Amount needed(KES):{{object.amount_needed}}</a></div>
+                <!-- <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div> -->
+              </div>
+              <h3 class="heading mb-4"><a href="#">{{object.Organisation }}</a></h3>
+              
+              <p>{{object.pitch}}</p>
+              
+              {%if user.is_donor%}
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{%url 'donate' object.pk%}"><i class="ion-ios-share"></i> Donate </a></p>
+              {% else %}
+
+
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{%url 'adminrequest-update' object.pk%}"><i class="ion-ios-create"></i> Update Request </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{%url 'request-delete' object.pk%}"><i class="ion-ios-trash"></i> Delete Request</a></p>
+              {% endif %}
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </section>
+
+</body>
+
+</html>
+
+{% endblock %}

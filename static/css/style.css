@@ -4,6 +4,27 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+<<<<<<< HEAD
+=======
+ .btn-join{
+   width: 600px;
+   height: 100px;
+   text-align: center;
+   
+ }
+
+
+.btn-join:hover{
+  transform: scale(1.2, 1.2);
+	z-index: 9;
+
+}
+.btn-white:hover{
+  transform: scale(1.2, 1.2);
+	z-index: 9;
+
+}
+>>>>>>> ccb5add5900e2d50b5122e555baadfcf65c556f0
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -51,6 +72,12 @@ html {
 @-ms-viewport {
   width: device-width; }
 
+<<<<<<< HEAD
+=======
+th{
+  background-color: lightseagreen;
+}
+>>>>>>> ccb5add5900e2d50b5122e555baadfcf65c556f0
 article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
@@ -62,7 +89,13 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
+<<<<<<< HEAD
   background-color: #fff; }
+=======
+ 
+  overflow-x: hidden;
+}
+>>>>>>> ccb5add5900e2d50b5122e555baadfcf65c556f0
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -140,7 +173,11 @@ sup {
   top: -.5em; }
 
 a {
+<<<<<<< HEAD
   color: #78d5ef;
+=======
+  color: lightseagreen;
+>>>>>>> ccb5add5900e2d50b5122e555baadfcf65c556f0
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects; }
@@ -3169,6 +3206,12 @@ input[type="button"].btn-block {
     background-color: #dee2e6;
     border-radius: 1rem; }
 
+<<<<<<< HEAD
+=======
+  #category:hover{
+    background-color: darkcyan;
+  }
+>>>>>>> ccb5add5900e2d50b5122e555baadfcf65c556f0
 .nav {
   display: -webkit-box;
   display: -ms-flexbox;
