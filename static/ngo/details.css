@@ -72,7 +72,6 @@ body {
     height: 125px;
     margin: 0 0 0 38px;
     font-family: 'Playfair Display', serif;
-    color: #8d8d8d;
     line-height: 1.7em;
     font-size: 15px;
     font-weight: lighter;
@@ -143,3 +142,18 @@ body {
     background-color:springgreen ;
   }
 
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }

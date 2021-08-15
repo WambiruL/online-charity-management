@@ -1,0 +1,27 @@
+{% extends "ngo/base.html" %}
+
+{%load static%}
+
+{% block content %}
+
+  <!--Section: Content-->
+
+<div class="container my-5">
+    <!-- Section: Block Content -->
+    <div class="dark-grey-text text-center">
+        <h3 class="font-weight-bold mb-4 pb-2" style="color: black;text-align: center;">BROWSE BY CATEGORY</h3>
+        
+        {% for category in categories %}
+        <p class='btn btn-info btn-sm' onclick="window.location='/single_request/{{category.id}}'">{{category.name }}</p>
+        
+   
+            {% endfor %}
+
+        </div>
+        
+    </div>
+       
+
+</div>
+
+{%endblock%}

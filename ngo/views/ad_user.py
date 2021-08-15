@@ -22,7 +22,7 @@ class AdminSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('admin-profile')
+        return redirect('queries')
 
 
 def adminProfile(request):
@@ -35,7 +35,7 @@ def adminProfile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Your account has been updated!')
+            messages.success(request, f'Your ADMIN account has been updated!')
             return redirect('queries')
     else:
         u_form = UserUpdateForm(instance=request.user)
@@ -93,6 +93,7 @@ def adminNotapproved(request):
    # Only fetch the requests that are approved
    queryset = NGO.objects.filter(is_approved=False)
    return render(request, 'admin/notapproved.html', {'queryset' : queryset})
+
 
 
 class RequestDetailView(generic.DetailView):

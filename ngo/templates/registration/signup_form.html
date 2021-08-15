@@ -1,8 +1,12 @@
 {%extends "registration/base.html"%}
 {% load bootstrap4 %}
 {% block content %}
+{%load static%}
+<link rel="stylesheet" href="{% static 'registration.css' %}">
 {% load static %}
+
 <div class="container">
+  
     <div class="row">
         <div class="col-lg-3 col-md-2"></div>
         <div class="col-lg-6 col-md-8 reg-box">
@@ -14,11 +18,11 @@
                         <form method="post" novalidate>
                             {% csrf_token %}
                             {% bootstrap_form form %}
-                            <button type="submit" class="btn btn-outline-primary">CREATE YOUR ACCOUNT</button>
+                            <button type="submit" class="btn btn-outline-primary" style="background-color: black;color: white;">CREATE YOUR ACCOUNT</button>
                         </form>
                     </div>
                     <div class="card-footer">
-                    <p style="color: white; font-size: 20px;">Already have an account?<a href="{%url 'login'%}">Login Here</a></p>
+                    <p style="font-size: 20px; text-align: center;">Already have an account?<a href="{%url 'login'%}" style="color:white;"><strong>Login Here</strong></a></p>
                     </div>
                 </div>
             </div>
@@ -30,6 +34,6 @@
 
 
 
-
+</div>
 
 {%endblock%}

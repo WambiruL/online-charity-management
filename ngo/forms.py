@@ -3,6 +3,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from .models import *
 
+from django.forms import ModelForm      
+from .models import Photo
+
+class PhotoForm(ModelForm):
+  class Meta:
+      model = Photo
+      fields='__all__'
 
 ################## NGO ################################################
 class NGOSignUpForm(UserCreationForm):
@@ -27,20 +34,20 @@ class NGORequestUpdateForm(forms.ModelForm):
     class Meta:
         model=NGO
         fields='__all__'
-        exclude=['user','funded','is_approved']
+        exclude=['funded','is_approved','summary','user']
 
 class NGORequestCreateForm(forms.ModelForm):
     class Meta:
         model=NGO
         fields='__all__'
-        exclude=['user','funded','is_approved']
+        exclude=['funded','is_approved','summary','user']
 
 
 ################## ADMIN################################################
 class AdminProfileUpdateForm(forms.ModelForm):
     class Meta:
         model=AdminProfile
-        fields=['profile_image','bio']
+        fields=['bio']
 
 class AdminSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -58,7 +65,9 @@ class AdminUpdateRequestForm(forms.ModelForm):
     class Meta:
         model=NGO
         fields='__all__'
-        exclude=['user','funded']
+        exclude=['user','funded','summary']
+
+
 
 ################## DONOR ################################################
 class DonorSignUpForm(UserCreationForm):
@@ -81,9 +90,16 @@ class MakeDonationForm(forms.ModelForm):
     class Meta:
         model = Donor
         fields = '__all__'
+        exclude=['user','receipient']
+       
         
 
-        
+class DonationUpdateForm(forms.ModelForm):
+    class Meta:
+        model=Donor
+        fields='__all__'
+        exclude=['user','receipient']
+
 
 ################## FOR ALL ################################################
 

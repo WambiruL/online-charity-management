@@ -21,12 +21,24 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
+
 cloudinary.config(
-    cloud_name = 'hs8k1napd',
-    api_key = '711616426271462',
-    api_secret = 'jSwVe26AvQnapdwGEBcFABvfxYA',
+    cloud_name = 'dydn50a2l',
+    api_key = '224465232963419',
+    api_secret = 'neoAn4StXANSXe1WvO2elETrngw',
 )
 
+try:
+    from django.contrib.messages import constants as messages
+    MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-info',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+    }
+except Exception as e:
+    pass
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -63,6 +75,8 @@ INSTALLED_APPS = [
     'ngo',
     'bootstrap4',
     'crispy_forms',
+    'cloudinary',
+    
 
 ]
 
@@ -77,8 +91,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Project.urls'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL='signup'
+LOGIN_REDIRECT_URL = 'lists'
+LOGOUT_REDIRECT_URL='homepage'
+LOGIN_URL='homepage'
 
 TEMPLATES = [
     {
