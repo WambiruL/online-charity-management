@@ -34,6 +34,7 @@ class Category(models.Model):
 class NGOProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     username=models.CharField(max_length=200,null=True)
+    profile_image=cloudinary.models.CloudinaryField('Profilepics/',null=True)
     bio=models.CharField(max_length=1000,null=True, default="My Bio")
     email=models.EmailField(max_length=200,null=True)
 	
@@ -104,6 +105,7 @@ class NGO(models.Model):
 class DonorProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
     username=models.CharField(max_length=200,null=True)
+    profile_image=cloudinary.models.CloudinaryField('Profilepics/',null=True)
     bio=models.CharField(max_length=1000,null=True, default="My Bio")
     email=models.EmailField(max_length=200,null=True)
     

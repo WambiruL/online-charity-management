@@ -46,7 +46,7 @@ class DonorListView(ListView):
         return context
 
 
-
+@login_required(login_url='accounts/login')
 def donorProfile(request):
     DonorProfile.objects.get_or_create(user=request.user)
     if request.method == 'POST':
@@ -57,8 +57,8 @@ def donorProfile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Your account has been updated!')
-            return redirect('lists')
+            messages.success(request, f'Your DONOR account has been updated!')
+            return redirect('/home')
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = DonorProfileUpdateForm(instance=request.user.donorprofile)
@@ -68,6 +68,7 @@ def donorProfile(request):
     }
     return render(request, 'donor/donor-profile.html', context)
 
+@login_required(login_url='accounts/login')
 def viewNGORequest(request):
     requests = NGO.objects.filter(is_approved=True)
     categories = Category.objects.all()
@@ -78,7 +79,7 @@ def singleDonationRequest(request, pk):
     requests = NGO.objects.get(pk=pk)
     return render(request, 'donor/singleDonation.html',{'requests':requests})
 
-
+@login_required(login_url='accounts/login')
 def makeDonation(request,pk):
     receipient=NGO.objects.get(pk=pk)
     user=request.user
@@ -92,7 +93,7 @@ def makeDonation(request,pk):
             donation.user=donor
             donation.receipient=receipient        
             form.save()
-            messages.success(request, f'Thank you for your donation')
+            messages.success(request, f'Thank you for your donation to {receipient}')
             print(messages)
             return redirect('donations')
             
@@ -103,6 +104,8 @@ def makeDonation(request,pk):
 
 
 
+
+@login_required(login_url='accounts/login')
 def donations(request):
     DonorProfile.objects.get_or_create(user=request.user)
     donations = Donor.objects.filter(user=request.user.donorprofile)
@@ -122,7 +125,7 @@ def search_results(request):
 
 # def donationStatus(request,pk):
 #     donation=Donation.objects.get(pk=pk)
-
+@login_required(login_url='accounts/login')
 def UpdateDonation(request, pk):
     # dictionary for initial data with
     # field names as keys

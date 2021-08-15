@@ -49,6 +49,14 @@
 
 <section class="ftco-section" style="position: relative;bottom: 100px;">
 
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li  style="list-style-type: none; height: 70px; width: 400px; font-size: 20px; text-align: center; position: relative; left: 500px;" {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+
   <div class="container my-5">
       <!-- Section: Block Content -->
       <div class="dark-grey-text text-center">
@@ -73,7 +81,7 @@
 
         <div class="col-md-4 d-flex ftco-animate" style="width: 500px;">
             <div class="blog-entry align-self-stretch">
-            <a href="{%url 'detail' request.pk%}" class="block-20"><img src="{{request.images.url}}"></a>
+            <a href="{%url 'detail' request.pk%}" class="block-20"><img src="{{request.images.url}}" style="width: 600px;"></a>
             </a>
             <div class="text p-4 d-block">
                 <div class="meta mb-3">
