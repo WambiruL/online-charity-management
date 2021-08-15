@@ -27,7 +27,7 @@ class Category(models.Model):
         verbose_name_plural='Categories'
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 ################### NGO ################################################
@@ -60,7 +60,7 @@ class NGOProfile(models.Model):
         self.user
 
     def __str__(self):
-        return self.user.username
+        return str(self.user.username)
 
 
 
@@ -81,7 +81,7 @@ class NGO(models.Model):
         ordering = ['-date',]
 
     def __str__(self):
-        return self.Organisation
+        return str(self.Organisation)
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'pk': self.pk})
@@ -95,7 +95,7 @@ class NGO(models.Model):
         self.user
 
     def __str__(self):
-        return self.user.username
+        return str(self.user.username)
 
 	
 
@@ -130,7 +130,7 @@ class DonorProfile(models.Model):
         self.user
 
     def __str__(self):
-        return self.user.username
+        return str(self.user.username)
 
 class Donor(models.Model):
     user = models.ForeignKey(DonorProfile, on_delete=models.CASCADE,null=True)
@@ -155,7 +155,7 @@ class Donor(models.Model):
         self.user
 
     def __str__(self):
-        return self.user.username
+        return str(self.user.username)
 
 
 ######################################### Admin #############################################
@@ -168,7 +168,7 @@ class AdminProfile(models.Model):
     email=models.EmailField(max_length=200,null=True)
 
     def __str__(self):
-        return self.user.username
+        return str(self.user.username)
 
     @receiver(post_save, sender=User) #add this
     def create_user_profile(sender, instance, created, **kwargs):
