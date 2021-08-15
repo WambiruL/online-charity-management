@@ -1,58 +1,151 @@
 from django.test import TestCase
+from .models import Category, Donor,User,Photo,Admin,NGO,NGOProfile,DonorProfile
+import datetime as dt
 
-# Create your tests here.
-from django.test import TestCase
-from .models import NGO, Category,NGOProfile
-from django.contrib.auth.models import User
+# Create your tests here
 
-# Create your tests here.
+# Test for Category class
+class CategoryTestClass(TestCase):
 
-
-class CategoryTest(TestCase):
-
+    # Set up method
     def setUp(self):
-        self.name = Category(name='food')
+        self.category = Category(id=1,name = 'test-category')
+        self.category.save()
 
     def test_instance(self):
-        self.assertTrue(isinstance(self.name,Category))
+        self.assertTrue(isinstance(self.category,Category))
 
-    def test_save(self):
-        self.name.save()
-        categorys = Category.objects.all()
-        self.assertTrue(len(categorys) > 0)
+# Test for User class
+class UserTestClass(TestCase):
 
-    def test_delete_category(self):
-        self.name.save()
-        self.name.delete()
-        categorys = Category.objects.all()
-        self.assertTrue(len(categorys) == 0)
-
-class NGOTest(TestCase):
-
+    # Set up method
     def setUp(self):
-        self.Organisation = NGO(Organisation='Health')
+        self.user = User(id=1,is_donor='False',is_ngo='True',is_admin='False')
+        self.user.save()
 
     def test_instance(self):
-        self.assertTrue(isinstance(self.Organisation,NGO))
+        self.assertTrue(isinstance(self.user,User))
 
+# Test for Photo class
+class PhotoTestClass(TestCase):
 
+    # Set up method
+    def setUp(self):
+        self.photo = Photo(image='test/image.jpg')
+        self.photo.save()
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.photo,Photo))
+# Test for NGOProfile class
 class NGOProfileTestClass(TestCase):
     def setUp(self):
-        self.user = NGOProfile(user= 'James', username = 'Muriuki', email='james@moringaschool.com',bio="true")
-    
-    #testing instance
+        self.user = User(username='test_user')
+        self.user.save()
+        self.ngoprofile = NGOProfile(user=self.user,username='test_username',bio='test_bio',email='test_email')
+        self.ngoprofile.save_profile()
+
+    def tearDown(self):
+        User.objects.all().delete()
+        Category.objects.all().delete()
+        Photo.objects.all().delete()
+        NGOProfile.objects.all().delete()
+        Donor.objects.all().delete()
+        NGO.objects.all().delete()
 
     def test_instance(self):
-        self.assertTrue(isinstance(self.user,NGOProfile))
-    
-    #Testing save method
-    def test_save_method(self):
-        self.james.save_ngo()
-        ngos = NGOProfile.objects.all()
-        self.assertTrue(len(ngos) > 0)
+        self.assertTrue(isinstance(self.user,User))
+        self.assertTrue(isinstance(self.ngoprofile, NGOProfile))
 
-    def test_delete(self):
-        self.james.save_editor()
-        self.james.delete_editor()
-        editors =NGOProfile.objects.all()
-        self.assertTrue(len(editors) == 0)
+    def test_save_method(self):
+        self.ngoprofile.save_profile()
+        ngoprofile = NGOProfile.objects.all()
+        self.assertTrue(len(ngoprofile) > 0)
+
+# Test for DonorProfile class
+class DonorProfileTestClass(TestCase):
+    def setUp(self):
+        self.user = User(username='test_user')
+        self.user.save()
+        self.donorprofile = DonorProfile(user=self.user,username='test_username',bio='test_bio',email='test_email')
+        self.donorprofile.save_profile()
+
+    def tearDown(self):
+        User.objects.all().delete()
+        Category.objects.all().delete()
+        Photo.objects.all().delete()
+        NGOProfile.objects.all().delete()
+        Donor.objects.all().delete()
+        NGO.objects.all().delete()
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.user,User))
+        self.assertTrue(isinstance(self.donorprofile, DonorProfile))
+
+    def test_save_method(self):
+        self.donorprofile.save_profile()
+        donorprofile = DonorProfile.objects.all()
+        self.assertTrue(len(donorprofile) > 0)
+
+
+
+class AdminTestClass(TestCase):
+
+    # Set up method
+    def setUp(self):
+        self.admin = Admin(name='test_name')
+        self.admin.save()
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.admin,Admin))
+
+
+class NGOTestClass(TestCase):
+    def setUp(self):
+        self.user = User(username='test_user')
+        self.user.save()
+
+        self.category = Category(id=1,name = 'test-category')
+        self.category.save()
+
+        self.ngo = NGO(NGOProfile(user=self.user),Organisation='test_organisation',categories=self.category,pitch='test_pitch',amount_needed='1000',country='kenya',funded='False',is_approved='False',images='test_image.jpg')
+        self.ngo.save_ngo()
+
+    def tearDown(self):
+        User.objects.all().delete()
+        Category.objects.all().delete()
+        Photo.objects.all().delete()
+        NGOProfile.objects.all().delete()
+        Donor.objects.all().delete()
+        NGO.objects.all().delete()
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.user,User))
+        self.assertTrue(isinstance(self.ngo, NGO))
+
+
+class DonorTestClass(TestCase):
+    def setUp(self):
+        self.user = User(username='test_user')
+        self.user.save()
+
+        self.category = Category(id=1,name = 'test-category')
+        self.category.save()
+
+        self.donor = Donor(DonorProfile(user=self.user),receipient=NGO(NGOProfile(user=self.user)),donation_amount='1000',description='test_description')
+        self.donor.save_donor()
+
+    def tearDown(self):
+        User.objects.all().delete()
+        Category.objects.all().delete()
+        Photo.objects.all().delete()
+        NGOProfile.objects.all().delete()
+        Donor.objects.all().delete()
+        NGO.objects.all().delete()
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.user,User))
+        self.assertTrue(isinstance(self.donor, Donor))
+
+
+
+       
