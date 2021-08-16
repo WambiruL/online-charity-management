@@ -11,6 +11,9 @@ from django.utils.decorators import method_decorator
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from ngo.email import donated_email
+from django.core.mail import send_mail
+
 
 # Create your views here.
 
@@ -84,15 +87,16 @@ def makeDonation(request,pk):
     receipient=NGO.objects.get(pk=pk)
     user=request.user
     donor=DonorProfile.objects.get(user=user)
-
-    print(donor)
+    email=donor.user.email
     if request.method == 'POST':
         form = MakeDonationForm(request.POST)
         if form.is_valid():
             donation=form.save(commit=False)
             donation.user=donor
+            donation.email=email
             donation.receipient=receipient        
             form.save()
+            donated_email(donor,email)           
             messages.success(request, f'Thank you for your donation to {receipient.Organisation}')
             print(messages)
             return redirect('donations')
