@@ -205,8 +205,8 @@ def UpdateRequest(request, pk):
 
 class RequestDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = NGO
-    template_name='ngo/detail_view.html'
-    success_url='lists'
+    template_name='ngo/ngo_confirm_delete.html'
+    success_url='/lists'
 
        
 
