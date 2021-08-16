@@ -1,0 +1,3 @@
+Hello {{name}}
+
+You have just made a funding requst. We are reviewing the request and will change status soon.

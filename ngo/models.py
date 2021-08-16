@@ -113,7 +113,7 @@ class DonorProfile(models.Model):
 class Donor(models.Model):
     user = models.ForeignKey(DonorProfile, on_delete=models.CASCADE,null=True)
     receipient=models.ForeignKey(NGO, related_name='Donor', on_delete=models.CASCADE,null=True)
-    donation_amount = models.IntegerField(max_length=70, default=0)
+    donation_amount = models.IntegerField(default=0)
     description = models.TextField(default=None)
     donation_time = models.DateTimeField(auto_now_add=True)
 	
@@ -165,10 +165,13 @@ class AdminProfile(models.Model):
 
 
 class Admin(models.Model):
+    user = models.ForeignKey(AdminProfile, on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length=100, null=True)
 
-
-	
+class ContactUs(models.Model):
+    name = models.CharField(max_length=70)
+    email = models.EmailField()
+    message = models.TextField()
 
 	
 

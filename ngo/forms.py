@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from .models import *
 
-from django.forms import ModelForm      
+from django.forms import ModelForm, fields      
 from .models import Photo
 
 class PhotoForm(ModelForm):
@@ -65,7 +65,7 @@ class AdminUpdateRequestForm(forms.ModelForm):
     class Meta:
         model=NGO
         fields='__all__'
-        exclude=['user','funded','summary']
+        exclude=['user','funded','summary','Organisation','categories','pitch','amount_needed','country','funded','date','images']
 
 
 
@@ -108,3 +108,8 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model=User
         fields=['username','email']
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model=ContactUs
+        fields = '__all__'

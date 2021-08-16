@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.views.generic import CreateView, ListView
 from django.views import generic
+from ngo.email import *
 
 class AdminSignUpView(CreateView):
     model = User
@@ -59,6 +60,7 @@ def admin_view(request):
    
 
 def UpdateRequest(request, pk):
+    email=request.user.email
     # dictionary for initial data with
     # field names as keys
     context ={}
@@ -69,7 +71,10 @@ def UpdateRequest(request, pk):
     # save the data from the form and
     # redirect to detail_view
     if form.is_valid():
+        admin=form.save(commit=False)
+        admin.email=email
         form.save()
+        approve_request(admin,email)
         return HttpResponseRedirect('/queries/')
     # add form dictionary to context
     context["form"] = form

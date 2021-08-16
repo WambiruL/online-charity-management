@@ -1,0 +1,3 @@
+Hello {{admin}}}
+
+You have approved the organistion's funding request

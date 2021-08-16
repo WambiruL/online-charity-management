@@ -4,8 +4,6 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-<<<<<<< HEAD
-=======
  .btn-join{
    width: 600px;
    height: 100px;
@@ -24,7 +22,6 @@
 	z-index: 9;
 
 }
->>>>>>> ccb5add5900e2d50b5122e555baadfcf65c556f0
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -7858,7 +7855,7 @@ h1, h2, h3, h4, h5,
     bottom: 0;
     content: '';
     opacity: .9;
-    background: #f86f2d; }
+    background: #2d4bf8; }
   .ftco-section-3 .img {
     width: 100%; }
   .ftco-section-3 .img-2 {

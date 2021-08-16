@@ -22,6 +22,7 @@ urlpatterns = [
     path('total_donations/<int:pk>/',ngo.sum_of_donations,name='total_donations'),
     path('homepage/', ngo.homepage, name='homepage'),
     path('upload/',ngo.upload,name='upload'),
+    path('contact/', ngo.contact, name='contact'),
     
     
 
