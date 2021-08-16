@@ -28,6 +28,17 @@ cloudinary.config(
     api_secret = 'neoAn4StXANSXe1WvO2elETrngw',
 )
 
+try:
+    from django.contrib.messages import constants as messages
+    MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-info',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+    }
+except Exception as e:
+    pass
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -80,7 +91,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Project.urls'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'lists'
 LOGOUT_REDIRECT_URL='homepage'
 LOGIN_URL='homepage'
 

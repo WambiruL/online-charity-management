@@ -9,6 +9,7 @@ from cloudinary.models import CloudinaryField
 #Create your models here.
 from django.db import models
 from cloudinary.models import CloudinaryField
+
 class Photo(models.Model):
   image = CloudinaryField('image')
 ################### FOR ALL ################################################
@@ -26,19 +27,16 @@ class Category(models.Model):
         verbose_name_plural='Categories'
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 ################### NGO ################################################
 class NGOProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     username=models.CharField(max_length=200,null=True)
-    #profile_image=models.ImageField(upload_to='Profilepics/')
+    profile_image=cloudinary.models.CloudinaryField('Profilepics/',null=True)
     bio=models.CharField(max_length=1000,null=True, default="My Bio")
     email=models.EmailField(max_length=200,null=True)
-
-    def __str__(self):
-        return self.user.username
 	
 	
     @receiver(post_save, sender=User) #add this
@@ -49,6 +47,24 @@ class NGOProfile(models.Model):
     @receiver(post_save, sender=User) #add this
     def save_user_profile(sender, instance, **kwargs):
         instance.ngoprofile.save()
+
+    @classmethod
+    def profile(cls):
+        profiles = cls.objects.all()
+        return profiles
+
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
+
+    def save_profile(self):
+        self.user
+
+    def __str__(self):
+        return str(self.user.username)
+
+
+
 
 class NGO(models.Model):
     user = models.ForeignKey(NGOProfile, on_delete=models.CASCADE, null=True)
@@ -66,19 +82,21 @@ class NGO(models.Model):
         ordering = ['-date',]
 
     def __str__(self):
-        return self.Organisation
+        return str(self.Organisation)
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'pk': self.pk})
 
     @classmethod
-    def search_by_name(cls,search_term):
-	    categorys = cls.objects.filter(categorys__name__icontains=search_term).all()
-	    return categorys
+    def ngo(cls):
+        ngo_user = cls.objects.all()
+        return ngo_user
 
+    def save_ngo(self):
+        self.user
 
-    
-
+    def __str__(self):
+        return str(self.user.username)
 
 	
 
@@ -87,13 +105,9 @@ class NGO(models.Model):
 class DonorProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
     username=models.CharField(max_length=200,null=True)
-    #profile_image=models.ImageField( upload_to='Profilepics/')
+    profile_image=cloudinary.models.CloudinaryField('Profilepics/',null=True)
     bio=models.CharField(max_length=1000,null=True, default="My Bio")
     email=models.EmailField(max_length=200,null=True)
-    
-    def __str__(self):
-        return self.user.username
-
     
 
     @receiver(post_save, sender=User) #add this
@@ -105,10 +119,20 @@ class DonorProfile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.donorprofile.save()
 
-# class Donor(models.Model):
-# 	name = models.CharField(max_length=100, null=True)
-# 	amount = models.IntegerField()
+    @classmethod
+    def profile(cls):
+        profiles = cls.objects.all()
+        return profiles
 
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
+
+    def save_profile(self):
+        self.user
+
+    def __str__(self):
+        return str(self.user.username)
 
 class Donor(models.Model):
     user = models.ForeignKey(DonorProfile, on_delete=models.CASCADE,null=True)
@@ -124,21 +148,16 @@ class Donor(models.Model):
     class Meta:
         ordering = ['-donation_time',]
 
-# class Donation(models.Model):
-#     donor = models.ForeignKey(DonorProfile, on_delete=models.CASCADE)
-#     amount_donated = models.IntegerField()
-#     ngo = models.ForeignKey(NGO, on_delete=models.CASCADE)
-    
-    # def amount_remaining(self):
-    #     balance = NGO.amount_needed - Donation.amount_donated
-    #     return balance
+    @classmethod
+    def donor(cls):
+        donor_user = cls.objects.all()
+        return donor_user
 
-    # def amount_remaining(self, *args, **kwargs):
-    #     amount_needed = self.ngo.amount_needed
-    #     donation= Donation.objects.filter(ngo=self.ngo)
-    #     balance =amount_needed-donation
-    #     super(Donation, self).save(*args, **kwargs)
-            
+    def save_donor(self):
+        self.user
+
+    def __str__(self):
+        return str(self.user.username)
 
 
 ######################################### Admin #############################################
@@ -147,12 +166,11 @@ class Donor(models.Model):
 class AdminProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     username=models.CharField(max_length=200,null=True)
-    #profile_image=models.ImageField(upload_to='Profilepics/')
     bio=models.CharField(max_length=1000,null=True, default="My Bio")
     email=models.EmailField(max_length=200,null=True)
 
     def __str__(self):
-        return self.user.username
+        return str(self.user.username)
 
     @receiver(post_save, sender=User) #add this
     def create_user_profile(sender, instance, created, **kwargs):

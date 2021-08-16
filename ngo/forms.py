@@ -28,7 +28,7 @@ class NGOSignUpForm(UserCreationForm):
 class NGOProfileUpdateForm(forms.ModelForm):
     class Meta:
         model= NGOProfile
-        fields=['bio']
+        fields=['profile_image','bio']
 
 class NGORequestUpdateForm(forms.ModelForm):
     class Meta:
@@ -84,7 +84,7 @@ class DonorSignUpForm(UserCreationForm):
 class DonorProfileUpdateForm(forms.ModelForm):
     class Meta:
         model=DonorProfile
-        fields=['bio']
+        fields=['profile_image','bio']
 
 class MakeDonationForm(forms.ModelForm):
     class Meta:

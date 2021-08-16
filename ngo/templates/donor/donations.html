@@ -1,7 +1,13 @@
 {% extends "ngo/base.html" %}
 {%load static%}
 {% block content %}
-
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li  style="list-style-type: none; height: 70px; width: 400px; font-size: 20px; text-align: center; position: relative; left: 500px;" {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 <div class="container my-5">
 
@@ -20,7 +26,7 @@
                 <div class="col-md-4">
                 <div class="card">
                     <div class="card-header" style="background-color: white;">
-                        <h4 class="font-weight-bold mb-3" style="color: black;"> <p>ORGANISATION:{{donation.receipient}}</p></h4>
+                        <h4 class="font-weight-bold mb-3" style="color: black;"> <p>ORGANISATION:{{donation.receipient.Organisation}}</p></h4>
 
                     
                     </div>
