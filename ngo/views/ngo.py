@@ -16,9 +16,15 @@ from django.db.models import Sum
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
 from django.http import HttpResponse
+from django.core.mail import send_mail
+from ngo.email import send_usaidizi_email
+from cloudinary.forms import cl_init_js_callbacks
+from ngo.email import make_request
+from django.core.mail import send_mail
 
-from cloudinary.forms import cl_init_js_callbacks 
 # Create your views here.
+
+
 
 
 class NGOSignUpView(CreateView):
@@ -88,6 +94,7 @@ def ngoProfile(request):
 @login_required(login_url='accounts/login')
 def RequestCreate(request):
     user=request.user
+    email=request.user.email
     ngo=NGOProfile.objects.get(user=user)
     print(ngo)
     if request.method == 'POST':
@@ -95,7 +102,10 @@ def RequestCreate(request):
         if form.is_valid():
             requests=form.save(commit=False)
             requests.user=ngo
+            requests.email=email
             form.save()
+            make_request(ngo,email)
+            
             messages.success(request, f'Your request has been received. Waiting for the Admin to approve!')
             return redirect('lists')
     else:
@@ -205,8 +215,8 @@ def UpdateRequest(request, pk):
 
 class RequestDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = NGO
-    template_name='ngo/detail_view.html'
-    success_url='lists'
+    template_name='ngo/ngo_confirm_delete.html'
+    success_url='/lists'
 
        
 
@@ -263,7 +273,20 @@ def upload(request):
 
   return render(request, 'ngo/upload.html', context)
 	
-
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            recipient = ContactUs(name = name, email = email, message = message)
+            recipient.save()
+            send_usaidizi_email(name,email)
+            HttpResponseRedirect('homepage')
+    else:
+        form = ContactForm()
+    return render(request ,'homepage.html', {'contactForm': form})
 
 
 

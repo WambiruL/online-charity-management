@@ -1,0 +1,3 @@
+Hello {{name}}
+
+Welcome to the Usaidizi Platform.You can use the platform to request for a donation or make a donation to an organisation

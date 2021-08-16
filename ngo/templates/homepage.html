@@ -64,7 +64,7 @@
             </p>
             <p>
               <a
-                href="{%url 'donor_signup'%}"
+                href="/accounts/login"
                 class="btn btn-white px-3 py-2 mt-2"
                 >Donate</a
               >
@@ -84,7 +84,7 @@
             </p>
             <p>
               <a
-                href="{%url 'ngo_signup'%}"
+                href="/accounts/login"
                 class="btn btn-white px-3 py-2 mt-2"
                 >NGO</a
               >
@@ -101,7 +101,7 @@
             <p>Only authorised members</p>
             <p>
               <a
-                href="{%url 'admin_signup'%}"
+                href="/accounts/login"
                 class="btn btn-white px-3 py-2 mt-2"
                 >Staff</a
               >
@@ -196,7 +196,7 @@
           </div>
         </div>
         {% empty %}
-        <li>No requests yet.</li> 
+        <li style="color: black;">No requests yet.</li> 
         {% endfor %}
 
   <!-- Previous requests reel end-->
@@ -207,7 +207,7 @@
     <div class="container">
       <div class="row justify-content-center mb-5 pb-3">
         <div class="col-md-7 heading-section ftco-animate text-center">
-          <h2 class="mb-4" style="position: relative;left: 30px;">Latest Donations</h2>
+          <h2 class="mb-5" style="position: relative;left: 200px;width: 300px;">Latest Donations</h2>
         </div>
       </div>
       <div class="row">
@@ -222,7 +222,7 @@
                 <div class="text">
                   <p style="color:black; font-weight: 400;">
                     Donated <span style="color: lightseagreen;">{{donation.donation_amount}}</span> for
-                    <p style="color: black;"><strong>{{donation.receipient|upper}}</strong></p>
+                    <p style="color: black;"><strong>{{donation.receipient.Organisation|upper}}</strong></p>
                   </p>
                 </div>
               </div>
@@ -230,7 +230,7 @@
           </div>
         </div>
         {% empty %}
-        <li style="color: white">No donations yet.</li>
+        <li style="color: black">No donations yet.</li>
 
         <br />
 
@@ -240,8 +240,10 @@
     
   </section>
   <br>
-  <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="{% url 'signup' %}" class="btn btn-join btn-outline-white px-4 py-3 ftco-animate" style="position: relative;left: 300px;color: black;font-size: 70px;bottom: 0px;top: 100px;">Join Today</a></p>
+  
   <!-- Donations Made -->
 </section>
+<p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="{% url 'signup' %}" class="btn btn-join btn-outline-white px-4 py-3 ftco-animate" style="position: relative;left: 500px;color: whitesmoke;font-size: 50px;bottom:250px; border-radius: 100px;background-color: lightseagreen;">Join Today</a></p>
 </body>
+{% include 'contact.html' %}
 {% endblock %}

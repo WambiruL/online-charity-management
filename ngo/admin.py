@@ -12,3 +12,4 @@ admin.site.register(NGOProfile)
 admin.site.register(AdminProfile)
 admin.site.register(Admin)
 admin.site.register(DonorProfile)
+
