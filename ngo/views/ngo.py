@@ -104,7 +104,7 @@ def RequestCreate(request):
             requests.user=ngo
             requests.email=email
             form.save()
-            #make_request(ngo,email)
+            make_request(ngo,email)
             
             messages.success(request, f'Your request has been received. Waiting for the Admin to approve!')
             return redirect('lists')
