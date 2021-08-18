@@ -96,7 +96,7 @@ def makeDonation(request,pk):
             donation.email=email
             donation.receipient=receipient        
             form.save()
-            donated_email(donor,email)           
+            #donated_email(donor,email)           
             messages.success(request, f'Thank you for your donation to {receipient.Organisation}')
             print(messages)
             return redirect('donations')
