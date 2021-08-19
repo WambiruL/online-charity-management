@@ -23,8 +23,4 @@ sqlparse==0.4.1
 typing-extensions==3.10.0.0
 urllib3==1.26.6
 whitenoise==5.3.0
-<<<<<<< HEAD
-python-decouple==3.1
-=======
 zipp==3.5.0
->>>>>>> cee54c64834912f25c54fc3411a0d389f10172d4
