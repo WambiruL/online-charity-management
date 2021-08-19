@@ -10,7 +10,7 @@ urlpatterns = [
 
     ################### NGO ################################################
     path('lists/', ngo.get_ngo_post, name='lists'),
-    path('ngo/single_request/<int:id>', ngo.specific_requests, name='single_request'),
+    path('single_request/<int:id>', ngo.specific_requests, name='single_request'),
     #path('categories/', ngo.get_objects_per_category, name='categories'),
     path('ngo/create/', ngo.RequestCreate, name='create-request'),
     path('ngo/create-cat', ngo.CategoryCreateView.as_view(), name='create-cat'),
