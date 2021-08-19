@@ -70,7 +70,7 @@ def ngoProfile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Your account has been updated!')
+            messages.success(request, f'Your NGO account has been updated!')
             return redirect('lists')
     else:
         u_form = UserUpdateForm(instance=request.user)
@@ -79,7 +79,7 @@ def ngoProfile(request):
         'u_form': u_form,
         'p_form': p_form
     }
-    return render(request, 'ngo/ngo-profile.html', context)
+    return render(request, 'ngo/ngo-profile2.html', context)
 
 
 # Create your views here.
@@ -104,9 +104,10 @@ def RequestCreate(request):
             requests.user=ngo
             requests.email=email
             form.save()
-            make_request(ngo,email)
-            messages.success(request, f'Waiting for the Admin to approve')
-            return redirect('/')
+            #make_request(ngo,email)
+            
+            messages.success(request, f'Your request has been received. Waiting for the Admin to approve!')
+            return redirect('lists')
     else:
         form = NGORequestCreateForm()
 
@@ -195,7 +196,8 @@ def UpdateRequest(request, pk):
     # redirect to detail_view
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect('/')
+        messages.success(request, f'You have updated your request')
+        return HttpResponseRedirect('/lists')
     # add form dictionary to context
     context["form"] = form
     return render(request, "ngo/request_update.html", context)
@@ -213,21 +215,10 @@ def UpdateRequest(request, pk):
 
 class RequestDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = NGO
-    template_name='ngo/request_delete.html'
-    success_url='lists'
+    template_name='ngo/ngo_confirm_delete.html'
+    success_url='/lists'
 
-    def get_object(self):
-        id_ = self.kwargs.get("id")
-        return get_object_or_404(NGO, id=id_)
-
-    def post(self, request, *args, **kwargs):
-        request = self.get_object()
-        #print(employee.errors)
-        return render(request, 'ngo/request_delete.html', {'request': request})
-    
-
-    def get_success_url(self):
-        return reverse('employee:employee-list')
+       
 
 	# def get_success_url(self):
 	# 	return reverse('detail', kwargs={'pk': self.kwargs['pk']})

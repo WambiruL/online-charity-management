@@ -1,10 +1,12 @@
 <!-- NEW NAV -->
 <nav class="navbar navbar-expand-lg  ftco_navbar  ftco-navbar" id="ftco-navbar" style="background-color:lightseagreen;">
   <div class="container">
+    {%if not user.is_authenticated%}
     <a class="navbar-brand" href="{%url 'homepage'%}" style="color: black;">USAIDIZI</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="oi oi-menu"></span> Menu
     </button>
+    {%endif%}
 
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav ml-auto">
@@ -24,6 +26,7 @@
         {%elif user.is_donor%}
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a href="{%url 'home'%}" class="nav-link">Requests</a></li>
+        <li class="nav-item"><a href="{%url 'donations'%}" class="nav-link">Donations Made</a></li>
         <li class="nav-item"><a href="{%url 'donor-profile'%}" class="nav-link">Profile</a></li>
         <li class="nav-item"><a href="{%url 'logout'%}" class="nav-link">Logout</a></li>
 

@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('ngo.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', choice.SignUpView.as_view(), name='signup'),
+    path('', choice.SignUpView.as_view(), name='signup'),
     path('accounts/signup/ngo/', ngo.NGOSignUpView.as_view(), name='ngo_signup'),
     path('accounts/signup/donor/', donor.DonorSignUpView.as_view(), name='donor_signup'),
     path('accounts/signup/admin/', ad_user.AdminSignUpView.as_view(), name='admin_signup'),

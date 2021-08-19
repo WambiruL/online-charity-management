@@ -177,29 +177,24 @@
     </div>
     <div class="row">
       {% for request in queryset %}
-      <div class="col-md-4 ftco-animate">
-        <div class="cause-entry">
-          <a
-            href="#"
-            class="img"
-            style="
-              background-image: url(https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg);
-            "
-          ></a>
-          <div class="text p-3 p-md-4">
-            <h3><a href="">{{ request.Organisation }}</a></h3>
-            <p>{{request.pitch}}</p>
-            <span class="donation-time mb-3 d-block text-muted" style="color: black;">{{request.date}}</span>
-            
-           
+        
+        <div class="col-md-4 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch" style="height: 550px;">
+            <p class="block-20"><img src="{{request.images.url}}" style="width: 600px;" alt="project_image"></p>
+                
+            </a>
+            <div class="text p-4 d-block">
+               
+              <h3 class="heading mt-3" style="color: lightseagreen;"><strong>{{ request.Organisation|upper }}</strong></h3>
+              <p>{{request.pitch|truncatechars:150 | safe}}<a href="{%url 'signup'%}" class="btn btn-sm btn-outline-info mr-3">Read more</a></p>
+              {{request.date}}
+             
+            </div>
           </div>
         </div>
-     
-  </div>
-
-  {% empty %}
-  <p>No requests yet</p>
-  {% endfor %}
+        {% empty %}
+        <li style="color: black;">No requests yet.</li> 
+        {% endfor %}
 
   <!-- Previous requests reel end-->
 
@@ -209,7 +204,7 @@
     <div class="container">
       <div class="row justify-content-center mb-5 pb-3">
         <div class="col-md-7 heading-section ftco-animate text-center">
-          <h2 class="mb-4" style="position: relative;left: 30px;">Latest Donations</h2>
+          <h2 class="mb-5" style="position: relative;left: 200px;width: 300px;">Latest Donations</h2>
         </div>
       </div>
       <div class="row">
@@ -217,17 +212,14 @@
         <div class="col-lg-4 d-flex mb-sm-4 ftco-animate">
           <div class="staff">
             <div class="d-flex mb-4">
-              <div
-                class="img"
-                style="background-image: url(https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg)"
-              ></div>
+              <div><img src="{{donation.user.profile_image.url}}" class="img" style="width: 110px; height: 110px; border-radius: 50%;border: 2px grey solid;"></div>
               <div class="info ml-4">
-                <h3><a href="teacher-single.html">{{donation.user}}</a></h3>
+                <h3><p style="color: lightseagreen;"><strong>{{donation.user|upper}}</strong></p></h3>
                 <span class="position text-muted" style="color: black;">{{donation.donation_time|timesince}}</span>
                 <div class="text">
-                  <p>
-                    Donated <span>{{donation.donation_amount}}</span> for
-                    <a href="#">{{donation.receipient}}</a>
+                  <p style="color:black; font-weight: 400;">
+                    Donated <span style="color: lightseagreen;">{{donation.donation_amount}}</span> for
+                    <p style="color: black;"><strong>{{donation.receipient.Organisation|upper}}</strong></p>
                   </p>
                 </div>
               </div>
@@ -235,7 +227,7 @@
           </div>
         </div>
         {% empty %}
-        <li style="color: white">No donations yet.</li>
+        <li style="color: black">No donations yet.</li>
 
         <br />
 
@@ -244,9 +236,11 @@
     </div>
     
   </section>
+  <br>
   
-  <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="{% url 'signup' %}" class="btn btn-join btn-outline-white px-4 py-3 ftco-animate" style="position: relative;left: 300px;color: black;font-size: 70px;bottom: 0px;top: 100px;">Join Today</a></p>
   <!-- Donations Made -->
 </section>
+<p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="{% url 'signup' %}" class="btn btn-join btn-outline-white px-4 py-3 ftco-animate" style="position: relative;left: 500px;color: whitesmoke;font-size: 50px;bottom:250px; border-radius: 100px;background-color: lightseagreen;">Join Today</a></p>
 </body>
+{% include 'contact.html' %}
 {% endblock %}

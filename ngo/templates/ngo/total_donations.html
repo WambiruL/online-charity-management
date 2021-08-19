@@ -52,11 +52,11 @@
     <h2 class="text-center">DONATIONS MADE TO <strong>{{ngo.Organisation|upper}} - ${{obj.donation_amount__sum}}</strong></h2>
   
     <div class="container">
-      <table class="table table-striped">
+      <table class="table table-striped" >
           <thead>
               <tr>
-                  <th style="background-color: lightslategray;">DONOR</th>
-                  <th style="background-color: lightslategray;">AMOUNT DONATED</th>
+                  <th style="background-color: lightskyblue;">DONOR</th>
+                  <th style="background-color: lightskyblue;">AMOUNT DONATED</th>
                  
                  
               </tr>
@@ -78,13 +78,13 @@
          
          
       </table>
-      <table class="table table-striped">
-      <thead>
+      <table class="table table-striped" style="width: 450px;text-align: center;">
+      <thead >
         <tr>
             
             
-            <th style="background-color: lightslategray;">AMOUNT RAISED</th>
-            <th style="background-color: lightslategray;">AMOUNT REMAINING</th>
+            <th style="background-color: lightskyblue;">AMOUNT RAISED</th>
+           
            
         </tr>
     </thead>
@@ -92,11 +92,21 @@
         <tr style="background-color:lightseagreen;">
         
         <td><strong>${{obj.donation_amount__sum}}</strong> OUT OF <strong>${{ngo.amount_needed}}</strong></td>
-        <td><strong>${{balances}}</strong></td>
+        
         </tr>
 
     </tbody>
     </table>
+    <div class="card" style="width: 23rem; text-align: center; position: relative; bottom: 120px; left: 600px; background-color: lightseagreen;">
+      <div class="card-header">
+        <h2>AMOUNT REMAINING</h2>
+
+      </div>
+      <div class="card-body" style="background-color: lightskyblue;">
+        <h5><strong>${{balances}}</strong></h5>
+
+      </div>
+    </div>
   </div>
   
 </div>

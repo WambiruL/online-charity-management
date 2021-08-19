@@ -38,7 +38,7 @@
           class="mb-4"
           data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"
         >
-          Have a view of the some of the causes put up for funding
+          Have a view of the some of the requests put up for funding
         </h1>
         <!-- <p class="mb-5" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Created by <a href="#">Colorlib.com</a></p> -->
 
@@ -49,10 +49,19 @@
 
 <section class="ftco-section" style="position: relative;bottom: 100px;">
 
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li  style="list-style-type: none; height: 70px; width: 400px; font-size: 20px; text-align: center; position: relative; left: 500px;" {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+
   <div class="container my-5">
+    
       <!-- Section: Block Content -->
       <div class="dark-grey-text text-center">
-          <h3 class="font-weight-bold mb-4 pb-2" style="color: black;text-align: center;">BROWSE BY CATEGORY</h3>
+          <h5 class="font-weight-bold mb-4 pb-2" style="color: black;text-align: center;">BROWSE BY CATEGORY</h5>
           
           {% for category in categories %}
           <p class='btn btn-info btn-sm' onclick="window.location='/single_request/{{category.id}}'">{{category.name }}</p>
@@ -63,8 +72,7 @@
       </div>
           
     </div>
-    <h3 class="font-weight-bold " style="color: black;text-align: center;">REQUESTS MADE</h3>
-
+   
     <div class="container">
         
       <div class="row d-flex">
@@ -73,7 +81,7 @@
 
         <div class="col-md-4 d-flex ftco-animate" style="width: 500px;">
             <div class="blog-entry align-self-stretch">
-            <a href="{%url 'detail' request.pk%}" class="block-20"><img src="{{request.images.url}}"></a>
+            <a href="{%url 'detail' request.pk%}" class="block-20"><img src="{{request.images.url}}" style="width: 600px;"></a>
             </a>
             <div class="text p-4 d-block">
                 <div class="meta mb-3">
