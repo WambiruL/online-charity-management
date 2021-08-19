@@ -79,7 +79,7 @@ def ngoProfile(request):
         'u_form': u_form,
         'p_form': p_form
     }
-    return render(request, 'ngo/ngo-profile.html', context)
+    return render(request, 'ngo/ngo-profile2.html', context)
 
 
 # Create your views here.
