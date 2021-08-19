@@ -179,19 +179,16 @@
       {% for request in queryset %}
         
         <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
+            <div class="blog-entry align-self-stretch" style="height: 550px;">
             <p class="block-20"><img src="{{request.images.url}}" style="width: 600px;" alt="project_image"></p>
                 
             </a>
             <div class="text p-4 d-block">
-                <div class="meta mb-3">
-                <!-- <div><a href="#">Sept 10, 2018</a></div> -->
-                <!-- <div><a href="#">Approved: {{request.is_approved}}</a></div> -->
-              </div>
+               
               <h3 class="heading mt-3" style="color: lightseagreen;"><strong>{{ request.Organisation|upper }}</strong></h3>
-              <p style="color: black;">{{request.pitch}}</p>
+              <p>{{request.pitch|truncatechars:150 | safe}}<a href="{%url 'signup'%}" class="btn btn-sm btn-outline-info mr-3">Read more</a></p>
               {{request.date}}
-              <a href=""><butt</a>
+             
             </div>
           </div>
         </div>
