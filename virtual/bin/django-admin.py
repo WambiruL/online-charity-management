@@ -1,4 +1,4 @@
-#!/home/lorraine/Documents/Moringa-core/Pro-dev/online-charity-management/virtual/bin/python
+#!/home/x/Projects/online-charity-management/virtual/bin/python3
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
