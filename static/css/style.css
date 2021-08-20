@@ -84,7 +84,7 @@ body {
   color: #212529;
   text-align: left;
  
-  overflow-x: hidden;
+ 
 }
 
 [tabindex="-1"]:focus {
